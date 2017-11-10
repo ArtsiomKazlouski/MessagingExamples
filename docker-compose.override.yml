@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  rabbitmq:    
+    ports:
+      - "5672:5672"   
+      - "15672:15672"    
+
+  audit.elasticsearch: 
+     ports:
+      - "9200:9200"
+      - "9300:9300"
+   
+  audit.kibana:
+     ports:
+        - "5601:5601"     
+
+  db.postgres:
+    ports:
+        - "2345:5432"    
+      
+  ehr.fhirbase.migrator:
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
