@@ -18,7 +18,5 @@ services:
   db.postgres:
     ports:
         - "2345:5432"    
+
       
-  ehr.fhirbase.migrator:
-      labels:
-        - "com.microsoft.visualstudio.targetoperatingsystem=linux"

@@ -15,8 +15,6 @@ namespace Calculator.WebApi
         [HttpGet]
         public async Task<IHttpActionResult> Plus(int a, int b)
         {
-
-
             return Ok(new {Result = 5});
         }
     }
