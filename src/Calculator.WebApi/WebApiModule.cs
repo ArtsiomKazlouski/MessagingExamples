@@ -44,8 +44,6 @@ namespace Calculator.WebApi
            
         };
 
-
-
         public override void Handle(ExceptionHandlerContext context)
         {
 

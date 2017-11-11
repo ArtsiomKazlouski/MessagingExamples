@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Autofac;
 using Microsoft.Owin;
 using Owin;
@@ -16,22 +17,14 @@ namespace Calculator.WebApi
 
             ContainerBuilder builder = new ContainerBuilder();
 
-            builder.RegisterModule<WebApiModule>()
-                .RegisterModule<DbConnectionModule>();
-
-            RegisterDependency(builder);
+            builder.RegisterModule<WebApiModule>();
+            
             ILifetimeScope container = builder.Build();
 
-            ResolveComponents(container);
-
-            AddsAditionalComponentToOwinPipelene(app);
-
-            app.UseIdentityServerBearerTokenAuthentication(CreateAuthenticationOptions());
-
-            ResourceAuthorizationRegistration(app);
+            
 
             HttpConfiguration httpConfiguration = container.Resolve<HttpConfiguration>();
-            ConFigureDocumentations(httpConfiguration);
+            //ConFigureDocumentations(httpConfiguration);
 
             app
                 .UseAutofacMiddleware(container)
