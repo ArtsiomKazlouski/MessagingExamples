@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="AllergyIntolerance" type="AllergyIntolerance">
+    <xs:annotation>
+      <xs:documentation>Риск вредной или нежелательной физиологической реакции, присущей именному этому человеку и связанной с воздействием некоторого вещества.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AllergyIntolerance">
+    <xs:annotation>
+      <xs:documentation>Риск вредной или нежелательной физиологической реакции, присущей именному этому человеку и связанной с воздействием некоторого вещества.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Сюда записываются идентификаторы, ассоциированные с этой аллергией/непереносимостью, определенные в результате бизнес-процессов и/или используемые для ссылки на нее, когда прямая URL-ссылка на сам ресурс не подходит (например в CDA-документах или в письменной/печатной документации).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="recordedDate" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата записи о восприимчивости.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="recorder" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, сделавший эту запись и несущий ответственность за её содержимое.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="patient" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Пациент, у которого наблюдается эта аллергия или непереносимость.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reporter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Источник информации об аллергии, которая записывается.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="substance" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Наименование вещества или класса веществ, которое считается вызвавшим или имеющим риск вызвать неблагоприятную побочную реакцию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="0" maxOccurs="1" type="AllergyIntoleranceStatus">
+            <xs:annotation>
+              <xs:documentation>Утверждение об определенности, связанной с предрасположенностью или потенциальным риском реакции на названное вещество.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="criticality" minOccurs="0" maxOccurs="1" type="AllergyIntoleranceCriticality">
+            <xs:annotation>
+              <xs:documentation>Предположительная оценка потенциального клинического вреда, или серьезность реакции на указанное вещество.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="AllergyIntoleranceType">
+            <xs:annotation>
+              <xs:documentation>Определение лежащего в основе физиологического механизма реакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="category" minOccurs="0" maxOccurs="1" type="AllergyIntoleranceCategory">
+            <xs:annotation>
+              <xs:documentation>Категория указанного вещества.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="lastOccurence" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Представляет дату и/или время последнего известного случая наступления реакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="comment" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация о предрасположенности к нежелательной побочной реакции, не фиксируемая в других полях.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="event" type="AllergyIntolerance.Event" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подробная информация о каждом событии нежелательной побочной реакции, связанном с воздействием указанного вещества.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AllergyIntolerance.Event">
+    <xs:annotation>
+      <xs:documentation>Риск вредной или нежелательной физиологической реакции, присущей именному этому человеку и связанной с воздействием некоторого вещества.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="substance" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Наименование конкретного вещества, которое считается вызвавшим это событие нежелательной побочной реакции. Примечание: вещество, вызвавшее конкретную реакцию, может отличаться от вещества, указанного в качестве потенциального риска, но должно быть непротиворечивым. Например это может быть указание более конкретного вещества (марка лекарственного средства) или сложносоставное вещество, содержащее указанное вещество. Обработка только поля AllergyIntolerance.substance и игнорирование AllergyIntolerance.event.substance должно быть клинически безопасным.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="certainty" minOccurs="0" maxOccurs="1" type="AllergyIntoleranceCertainty">
+            <xs:annotation>
+              <xs:documentation>Степень клинической уверенности в том, что конкретное вещество было причиной проявления этой реакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="manifestation" minOccurs="1" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Клинические симптомы/признаки, наблюдаемые или связанные с событием нежелательной побочной реакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текстовое описание реакции в целом, в том числе подробности проявления при необходимости.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="onset" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Запись даты и/или времени начала реакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="duration" minOccurs="0" maxOccurs="1" type="Duration">
+            <xs:annotation>
+              <xs:documentation>Сколько времени продолжалась нежелательная побочная реакция.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="severity" minOccurs="0" maxOccurs="1" type="AllergyIntoleranceSeverity">
+            <xs:annotation>
+              <xs:documentation>Клиническая оценка тяжести реакции в целом с потенциальным рассмотрением нескольких различных проявлений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="exposureRoute" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Определение способа, которым субъект подвергался воздействию вещества.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="comment" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительный текст о событии неблагоприятной побочной реакции, не учтенный в других полях.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AllergyIntoleranceCertainty-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unlikely">
+        <xs:annotation>
+          <xs:documentation>There is a low level of clinical certainty that the reaction was caused by the identified Substance.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="likely">
+        <xs:annotation>
+          <xs:documentation>There is a high level of clinical certainty that the reaction was caused by the identified Substance.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="confirmed">
+        <xs:annotation>
+          <xs:documentation>There is a very high level of clinical certainty that the reaction was due to the identified Substance, which may include clinical evidence by testing or rechallenge.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AllergyIntoleranceCertainty">
+    <xs:annotation>
+      <xs:documentation>Statement about the degree of clinical certainty that a Specific Substance was the cause of the Manifestation in an reaction event</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="AllergyIntoleranceCertainty-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AllergyIntoleranceType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="immune">
+        <xs:annotation>
+          <xs:documentation>Immune mediated reaction, including allergic reactions and hypersensitivities.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="non-immune">
+        <xs:annotation>
+          <xs:documentation>A non-immune mediated reaction, which can include pseudoallergic reactions, side effects, intolerances, drug toxicities (eg to Gentamicin), drug-drug interactions, food-drug interactions, and drug-disease interactions.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AllergyIntoleranceType">
+    <xs:annotation>
+      <xs:documentation>Identification of the underlying physiological mechanism for a Reaction Risk</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="AllergyIntoleranceType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AllergyIntoleranceSeverity-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="mild">
+        <xs:annotation>
+          <xs:documentation>Causes mild physiological effects.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="moderate">
+        <xs:annotation>
+          <xs:documentation>Causes moderate physiological effects.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="severe">
+        <xs:annotation>
+          <xs:documentation>Causes severe physiological effects.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AllergyIntoleranceSeverity">
+    <xs:annotation>
+      <xs:documentation>Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="AllergyIntoleranceSeverity-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AllergyIntoleranceCriticality-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="low">
+        <xs:annotation>
+          <xs:documentation>The potential clinical impact of a future reaction is estimated as low risk: exposure to substance is unlikely to result in a life threatening or organ system threatening outcome. Future exposure to the Substance is considered a relative contra-indication.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="high">
+        <xs:annotation>
+          <xs:documentation>The potential clinical impact of a future reaction is estimated as high risk: exposure to substance may result in a life threatening or organ system threatening outcome. Future exposure to the Substance may be considered an absolute contra-indication.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="unassessible">
+        <xs:annotation>
+          <xs:documentation>Unable to assess the potential clinical impact with the information available.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AllergyIntoleranceCriticality">
+    <xs:annotation>
+      <xs:documentation>Estimate of the potential clinical harm, or seriousness, of a reaction to an identified Substance</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="AllergyIntoleranceCriticality-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AllergyIntoleranceCategory-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="food">
+        <xs:annotation>
+          <xs:documentation>Any substance consumed to provide nutritional support for the body.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="medication">
+        <xs:annotation>
+          <xs:documentation>Substances administered to achieve a physiological effect.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="environment">
+        <xs:annotation>
+          <xs:documentation>Substances that are encountered in the environment.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AllergyIntoleranceCategory">
+    <xs:annotation>
+      <xs:documentation>Category of an identified Substance</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="AllergyIntoleranceCategory-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="AllergyIntoleranceStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unconfirmed">
+        <xs:annotation>
+          <xs:documentation>A low level of certainty about the propensity for a reaction to the identified Substance.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="confirmed">
+        <xs:annotation>
+          <xs:documentation>A high level of certainty about the propensity for a reaction to the identified Substance, which may include clinical evidence by testing or rechallenge.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="resolved">
+        <xs:annotation>
+          <xs:documentation>A reaction to the identified Substance has been clinically reassessed by testing or rechallenge and considered to be resolved.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="refuted">
+        <xs:annotation>
+          <xs:documentation>A propensity for a reaction to the identified Substance has been disproven with a high level of clinical certainty, which may include testing or rechallenge, and is refuted.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="entered-in-error">
+        <xs:annotation>
+          <xs:documentation>The statement was entered in error and Is not valid.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AllergyIntoleranceStatus">
+    <xs:annotation>
+      <xs:documentation>Assertion about certainty associated with a propensity, or potential risk, of a reaction to the identified Substance</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="AllergyIntoleranceStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

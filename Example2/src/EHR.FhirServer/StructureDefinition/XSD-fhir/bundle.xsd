@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Bundle" type="Bundle">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Bundle">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Resource">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="BundleType">
+            <xs:annotation>
+              <xs:documentation>Указывает назначение этого bundle - как его намереваются использовать.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="base" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Базовый URL для сервиса, который предоставил эти ресурсы. Все относительные URL разрешаются относительно этого (эквивалентно xml:base).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="total" minOccurs="0" maxOccurs="1" type="unsignedInt">
+            <xs:annotation>
+              <xs:documentation>Для набора совпадений при поиске это общее количество найденных совпадений (в противоположность количеству результатов в этом bundle).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="link" type="Bundle.Link" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Серия связей, обеспечивающих контекст для данного bundle.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="entry" type="Bundle.Entry" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Запись в bundle - будет содержать либо ресурс, либо информацию о ресурсе (только транзакционные и архивные).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="signature" minOccurs="0" maxOccurs="1" type="base64Binary">
+            <xs:annotation>
+              <xs:documentation>XML Digital Signature - в кодировке base64.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bundle.Link">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="relation" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Название, детализирующее функциональное использование данной связи - см. [[http://www.iana.org/assignments/link-relations/link-relations.xhtml]].</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="url" minOccurs="1" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Данные по ссылке для связи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bundle.Entry">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="base" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Базовый URL для ресурса, если он отличается от базового URL, указанного для bundle в целом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="link" type="Bundle.Link" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Ряд ссылок, предоставляющих контекст для данной записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="resource" minOccurs="0" maxOccurs="1" type="ResourceContainer">
+            <xs:annotation>
+              <xs:documentation>Ресурсы в записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="search" type="Bundle.Search" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Информация о процессе поиска, который привел к созданию данной записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="transaction" type="Bundle.Transaction" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация о том, как следует обрабатывать эту запись в рамках транзакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="transactionResponse" type="Bundle.TransactionResponse" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация о том, как эту запись необходимо обрабатывать в рамках транзакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bundle.Search">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="mode" minOccurs="0" maxOccurs="1" type="SearchEntryMode">
+            <xs:annotation>
+              <xs:documentation>Почему эта запись попала в результирующее множество - она была включена как совпадение или в соответствии с требованием _include.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="score" minOccurs="0" maxOccurs="1" type="decimal">
+            <xs:annotation>
+              <xs:documentation>При поиске оценка поискового рейтинга сервером для записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bundle.Transaction">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="method" minOccurs="1" maxOccurs="1" type="HTTPVerb">
+            <xs:annotation>
+              <xs:documentation>HTTP-метод для данной записи либо в истории обновлений, либо в транзакции/ответе транзакции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="url" minOccurs="1" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Поисковый URL для этого ресурса, который определяет, как ресурс сравнивается с существующим ресурсом при обработке транзакции (см. документацию по транзакциям).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="ifNoneMatch" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Если значения ETag совпадают, вернуть статус 304 Not modified. См. документацию по взаимодействию read/vread.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="ifMatch" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Выполнить операцию только в том случае, если значения Etag совпадают. Более подробную информацию см. в API-разделе &quot;Managing Resource Contention&quot;.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="ifModifiedSince" minOccurs="0" maxOccurs="1" type="instant">
+            <xs:annotation>
+              <xs:documentation>Выполнить операцию только в том случае, если даты последнего обновления совпадают. Более подробную информацию см. в API-разделе &quot;Managing Resource Contention&quot;.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="ifNoneExist" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Указать серверу не выполнять операцию create, если указанный ресурс уже существует. За более подробной информацией обратитесь к статье &quot;Conditional Create&quot;.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bundle.TransactionResponse">
+    <xs:annotation>
+      <xs:documentation>Контейнер для коллекции ресурсов A container for a collection of resources.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Статус-код, возвращенный после обработки этой записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="location" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Заголовок location, созданный при выполнении этой операции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="etag" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Etag для ресурса, если операция для этой записи создала версионируемый ресурс.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="lastModified" minOccurs="0" maxOccurs="1" type="instant">
+            <xs:annotation>
+              <xs:documentation>Дата/время изменения ресурса на сервере.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="HTTPVerb-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GET">
+        <xs:annotation>
+          <xs:documentation>HTTP GET.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="POST">
+        <xs:annotation>
+          <xs:documentation>HTTP POST.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PUT">
+        <xs:annotation>
+          <xs:documentation>HTTP PUT.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DELETE">
+        <xs:annotation>
+          <xs:documentation>HTTP DELETE.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="HTTPVerb">
+    <xs:annotation>
+      <xs:documentation>HTTP-метод (в командной строке HTTP)</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="HTTPVerb-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SearchEntryMode-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="match">
+        <xs:annotation>
+          <xs:documentation>This resource matched the search specification.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="include">
+        <xs:annotation>
+          <xs:documentation>This resource is returned because it is referred to from another resource in the search set.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SearchEntryMode">
+    <xs:annotation>
+      <xs:documentation>Почему запись вошла в результирующее множество - она была включена как совпадение или по требованию _include</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="SearchEntryMode-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BundleType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="document">
+        <xs:annotation>
+          <xs:documentation>Бандл является документом. Первым ресурсом идет Composition.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="message">
+        <xs:annotation>
+          <xs:documentation>Бандл является сообщением. Первым ресурсом идет MessageHeader.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="transaction">
+        <xs:annotation>
+          <xs:documentation>Бандл является транзакцией - предназначен для обработки сервером одним атомарным коммитом.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="transaction-response">
+        <xs:annotation>
+          <xs:documentation>Бандл является ответом транзакции.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="history">
+        <xs:annotation>
+          <xs:documentation>Бандл представляет собой список ресурсов, полученных в результате выполнения операции _history на сервере.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="searchset">
+        <xs:annotation>
+          <xs:documentation>Бандл представляет собой список ресурсов, возвращенных в результате выполнения операции поиска/запроса, другой операции или сообщения.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="collection">
+        <xs:annotation>
+          <xs:documentation>Бандл является набором ресурсов, собранных в единый документ для упрощения рассылки.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BundleType">
+    <xs:annotation>
+      <xs:documentation>Показывает назначение бандла - как он будет использоваться</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="BundleType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

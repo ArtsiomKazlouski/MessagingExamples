@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Encounter" type="Encounter">
+    <xs:annotation>
+      <xs:documentation>Взаимодействие между пациентом и поставщиком(-ами) медицинских услуг в целях предоставления медицинских услуг(-и) или оценки медицинского состояния пациента.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Encounter">
+    <xs:annotation>
+      <xs:documentation>Взаимодействие между пациентом и поставщиком(-ами) медицинских услуг в целях предоставления медицинских услуг(-и) или оценки медицинского состояния пациента.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор(-ы), присвоенные данному encounter.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="EncounterState">
+            <xs:annotation>
+              <xs:documentation>planned | arrived | in-progress | onleave | finished | cancelled.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="statusHistory" type="Encounter.StatusHistory" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Текущий статус всегда находится в текущей версии ресурса. История статусов позволяет ресурсу Encounter поддерживать историю статусов без необходимости чтения всех исторических версий этого ресурса или даже хранения их сервером.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="class" minOccurs="0" maxOccurs="1" type="EncounterClass">
+            <xs:annotation>
+              <xs:documentation>inpatient | outpatient | ambulatory | emergency +.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Конкретный тип Encounter (например консультация по электронной почте, хирургический дневной стационар, квалифицированный уход, реабилитация).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="patient" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Пациент, присутствующий на встрече (encounter).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="episodeOfCare" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Данное поле следует использовать там, где особый encounter должен быть классифицирован в рамках определенного эпизода оказания медицинской помощи. Такая ассоциация может способствовать группировке связанных encounters по их назначению, например для составления отчетов для правительства, или отслеживания проблем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="incomingReferralRequest" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>The referral request that this encounter is satisfies (incoming referral).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="participant" type="Encounter.Participant" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Основной practitioner, ответственный за предоставление услуги.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="fulfills" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Appointment, который запланировал этот encounter.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Время начала и время окончания encounter.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="length" minOccurs="0" maxOccurs="1" type="Duration">
+            <xs:annotation>
+              <xs:documentation>Количество времени, которое длился encounter. Сюда не входит время отсутствия.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reason" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Основание проведения encounter, выраженное в виде кода. Для госпитализации может использоваться в качестве кодированного диагноза при поступлении.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="indication" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Основание проведения encounter, как указано с помощью информации из другого ресурса. Для госпитализации это диагноз при поступлении.
+Как правило, это будет ресурс Condition (со ссылками на другие ресурсы в поле evidence.detail), или Procedure.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="priority" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Указывает срочность encounter.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="hospitalization" type="Encounter.Hospitalization" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Подробная информация о приеме в клинику.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="location" type="Encounter.Location" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Перечень помещений, в которых находился пациент.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="serviceProvider" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Организация, которая ответственна за поддержание информации об этом Encounter (например кто поддерживает отчет или пункт каталого основной услуги и т. д.). Это МОЖЕТ быть та же организация, что и в истории болезни, однако может быть и другая. Это не может быть организация места оказания услуги.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="partOf" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Другой Encounter, частью которого является данный encounter (административно или по времени).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Encounter.StatusHistory">
+    <xs:annotation>
+      <xs:documentation>Взаимодействие между пациентом и поставщиком(-ами) медицинских услуг в целях предоставления медицинских услуг(-и) или оценки медицинского состояния пациента.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="EncounterState">
+            <xs:annotation>
+              <xs:documentation>planned | arrived | in-progress | onleave | finished | cancelled.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="1" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Время, когда эпизод был в указанном статусе.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Encounter.Participant">
+    <xs:annotation>
+      <xs:documentation>Взаимодействие между пациентом и поставщиком(-ами) медицинских услуг в целях предоставления медицинских услуг(-и) или оценки медицинского состояния пациента.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Роль участника в Encounter.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Период времени, который указанный участник присутствовал во время encounter. Периоды могут перекрываться или быть подмножествами общего периода всех encounters.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="individual" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Лица, участвующие в Encounter, кроме пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Encounter.Hospitalization">
+    <xs:annotation>
+      <xs:documentation>Взаимодействие между пациентом и поставщиком(-ами) медицинских услуг в целях предоставления медицинских услуг(-и) или оценки медицинского состояния пациента.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="preAdmissionIdentifier" minOccurs="0" maxOccurs="1" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Догоспитальный идентификатор.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="origin" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Место, из которого прибыл пациент перед госпитализацией.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="admitSource" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Откуда пациент был принят (направление врача, перевод).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dietPreference" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Предпочтения в питании, о которых сообщил пациент.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="specialCourtesy" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Особые знаки внимания (VIP, член совета директоров).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="specialArrangement" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Инвалидная коляска, переводчик, носилки и т. п.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="destination" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Место, в которое пациент выписывается.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dischargeDisposition" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Категория или вид места размещения после выписки.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dischargeDiagnosis" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Окончательный диагноз, полученный пациентом перед выпиской из больницы после завершения всех анализов, операций и обследований.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reAdmission" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Является ли данная госпитализация повторным приемом (регоспитализацией).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Encounter.Location">
+    <xs:annotation>
+      <xs:documentation>Взаимодействие между пациентом и поставщиком(-ами) медицинских услуг в целях предоставления медицинских услуг(-и) или оценки медицинского состояния пациента.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="location" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Место проведения encounter.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="0" maxOccurs="1" type="EncounterLocationStatus">
+            <xs:annotation>
+              <xs:documentation>Статус присутствия участника в указанном месте в указанный период времени. Если участник больше не находится в этом месте, тогда период будет иметь дату/время окончания.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Период времени, в течение которого пациент присутствовал в этом месте.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="EncounterLocationStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="planned">
+        <xs:annotation>
+          <xs:documentation>The patient is planned to be moved to this location at some point in the future.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="present">
+        <xs:annotation>
+          <xs:documentation>The patient is currently at this location, or was between the period specified.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="reserved">
+        <xs:annotation>
+          <xs:documentation>This location is held empty for this patient.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EncounterLocationStatus">
+    <xs:annotation>
+      <xs:documentation>Статус размещения</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="EncounterLocationStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

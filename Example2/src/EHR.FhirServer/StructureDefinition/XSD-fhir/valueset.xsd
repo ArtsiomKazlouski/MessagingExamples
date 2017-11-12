@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="ValueSet" type="ValueSet">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ValueSet">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="url" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, который используется для обозначения этого набора значений, когда на него ссылаются в спецификации, модели, проекте или экземпляре (должен быть глобально уникальным URI, а также может быть urn:uuid: или urn:oid:).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="1" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Формальный идентификатор, который используется для идентификации этого набора значений при представлении в других форматах, или для ссылок в специализации, модели, проекте или примере.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, который используется для указания на эту версию набора значений, когда на него ссылается спецификация, модель, проект или экземпляр. Это произвольное значение, контролируемое автором профиля вручную, и это значение должно быть меткой даты/времени.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое название на естественном языке, описывающее этот набор значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="useContext" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Контент был разработан с фокусом на и намерением поддержать перечисленные виды контекста. Эти термины можно использовать для содействия в индексации и поиске определений наборов значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="immutable" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Если установлено в 'true', то никакие новые версии логического определения содержимого не могут быть созданы. Примечание: Другие метаданные при этом могут меняться.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="publisher" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя лица или организации, которые опубликовали этот набор значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contact" type="ValueSet.Contact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Контактные данные владельца для содействия пользователю в поиске и общении с владельцем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое описание на естественном языке использования этого набора значений - основание для определения, &quot;the semantic space&quot; для включения в набора значений, условия использования и т. п. Описание может включать список ожидаемых способов использования этого набора значений, а также описывать выбранный подход построения набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="requirements" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Поясняет, зачем этот набор значений нужен и почему он был ограничен таким образом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="copyright" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Информация об авторских правах относительно этого набора значений и/или его содержимого. Обычно это юридические ограничения по использованию и публикации набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="ConformanceResourceStatus">
+            <xs:annotation>
+              <xs:documentation>Статус набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="experimental" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Этот набор значений был разработан в целях тестирования (или обучения/оценивания/маркетинга) и не предназначен для реального использования.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="extensible" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Предназначено ли это для использования с расширяемой привязкой или нет.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата, когда статус набора значений менялся последний раз.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="lockedDate" minOccurs="0" maxOccurs="1" type="date">
+            <xs:annotation>
+              <xs:documentation>Если задана дата блокировки Locked Date, тогда логическое определение контента (Content Logical Definition) должно оцениваться с помощью текущей версии всех упоминаемых кодовых систем и наборов значений по состоянию на Locked Date.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="define" type="ValueSet.Define" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Определение кодовой системы, встроенной инлайн в набор значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="compose" type="ValueSet.Compose" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Когда набор значений включает коды из другого места.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="expansion" type="ValueSet.Expansion" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Набор значений может быть расширен, если он превращен в простую коллекцию перечисленных кодов. Этот элемент хранит расширение, если оно было выполнено.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Contact">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя контактного лица для связи насчет этого набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактная информация физического лица (если было указано имя) или издателя.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Define">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="system" minOccurs="1" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI, который используется для ссылки на эту кодовую систему, включая в [Coding]{datatypes.html#Coding}.system.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Версия этой кодовой системы, которая определяет коды. Обратите внимание, что версия не обязательна, потому что хорошо поддерживаемая кодовая система не страдает из-за версионирования и, следовательно, версию нет необходимости поддерживать. Однако большинство кодовых систем не достаточно хорошо обслуживаются, и версию необходимо определять и отслеживать.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="caseSensitive" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Если сравнение кодов чувствительно к регистру, когда коды внутри этой системы сравниваются друг с другом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="concept" type="ValueSet.Concept" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Концепты в кодовой системе.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Concept">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Код, который идентифицирует концепт.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="abstract" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Если этот код не предназначен для использования в качестве фактического концепта.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="display" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текст для отображения пользователю.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="definition" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Формализованное определение концепта. Формализованные определения не являются обязательными, однако настоятельно рекомендуются, так как без них с концептом не ассоциируется никакое формальное значение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="designation" type="ValueSet.Designation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Дополнительные представления для этого концепта - другие языки, альтернативные имена, особое назначение, использование в определенных целях и т. п.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="concept" type="ValueSet.Concept" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Концепты-потомки (является / содержит).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Designation">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="language" minOccurs="0" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Язык, для которого задано это обозначение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="use" minOccurs="0" maxOccurs="1" type="Coding">
+            <xs:annotation>
+              <xs:documentation>Код, который подробно описывает, как это обозначение будет использоваться.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="value" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текстовое значение для этого обозначения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Compose">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="import" minOccurs="0" maxOccurs="unbounded" type="uri">
+            <xs:annotation>
+              <xs:documentation>Включает содержимое вышеупомянутого набора значений в состав этого набора значений. Это абсолютный URI, являющийся ссылкой на ValueSet.uri.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="include" type="ValueSet.Include" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Включает один или больше кодов из кодовой системы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="exclude" type="ValueSet.Include" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Исключает один или больше кодов из набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Include">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="system" minOccurs="1" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI, который является кодовой системой, из которой взяты выбранные коды.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Версия кодовой системы, из которой выбраны эти коды.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="concept" type="ValueSet.Concept1" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Указывает, будет концепт включен или исключен.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="filter" type="ValueSet.Filter" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Выбирает концепты указанием критериев соответствия, основанных на свойствах (включая отношения), заданных системой. Если указано несколько параметров фильтра, то все они ДОЛЖНЫ давать значение true.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Concept1">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Устанавливает код для концепта, который будет включен или исключен.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="display" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текст для показа пользователю для этого концепта в контексте данного набора значений. Если значение для показа не предоставлено, тогда приложения, использующие этот набор значений, применяют значение для отображения, заданное для этого кода системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="designation" type="ValueSet.Designation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Дополнительные представления для этого концепта, когда он используется в этом наборе значений - другие языки, альтернативные имена, особое назначение, использование в определенных целях и т. п.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Filter">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="property" minOccurs="1" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Код, идентифицирующий свойство, определенное в кодовой системе.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="op" minOccurs="1" maxOccurs="1" type="FilterOperator">
+            <xs:annotation>
+              <xs:documentation>Вид операции для выполнения при фильтрации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="value" minOccurs="1" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Значением совпадения может быть либо код, определенный системой, либо строковое значение, которое применяется регулярным выражением к строковому литералу значения свойства.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Expansion">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="1" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, который уникальным образом идентифицирует это разложение набора значений. Системы могут использовать повторно один и тот же идентификатор до тех пор, пока это разложение и определение остаются теми же самыми, но не обязаны делать это.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="timestamp" minOccurs="1" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Время, когда была выполнена развертка набора значений разворачивающей системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="parameter" type="ValueSet.Parameter" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Параметр, управлявший процессом разворачивания. Эти параметры могут использоваться пользователями развернутых наборов значений для проверки, подходит ли эта развертка для конкретного использования, или для выбора корректной развертки.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contains" type="ValueSet.Contains" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Коды, содержащиеся в расширении набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Parameter">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя параметра.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Значение параметра.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="valueString" type="string"/>
+            <xs:element name="valueBoolean" type="boolean"/>
+            <xs:element name="valueInteger" type="integer"/>
+            <xs:element name="valueDecimal" type="decimal"/>
+            <xs:element name="valueUri" type="uri"/>
+            <xs:element name="valueCode" type="code"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ValueSet.Contains">
+    <xs:annotation>
+      <xs:documentation>Набор значений устанавливает набор кодов, взятых из одной или нескольких кодовых систем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="system" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI, который является кодовой системой, в которой определен код для этого элемента в расширении An absolute URI which is the code system in which the code for this item in the expansion is defined.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="abstract" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Если значение true, то эта запись включена в расширение в целях навигации, и пользователь не может выбирать этот код непосредственно в качестве допустимого значения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Версия кодовой системы, которая определила этот код и/или значение для отображения. Следует использовать только с теми кодовыми системами, которые не обеспечивают неизменяемость концептов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="code" minOccurs="0" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Код - если пустой, то его не возможно выбрать.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="display" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Значение концепта для отображения пользователю.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contains" type="ValueSet.Contains" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Коды, входящие в этот концепт.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="FilterOperator-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="=">
+        <xs:annotation>
+          <xs:documentation>The specified property of the code equals the provided value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="is-a">
+        <xs:annotation>
+          <xs:documentation>Includes all concept ids that have a transitive is-a relationship with the concept Id provided as the value, including the provided concept itself.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="is-not-a">
+        <xs:annotation>
+          <xs:documentation>The specified property of the code does not have an is-a relationship with the provided value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="regex">
+        <xs:annotation>
+          <xs:documentation>The specified property of the code  matches the regex specified in the provided value.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="in">
+        <xs:annotation>
+          <xs:documentation>The specified property of the code is in the set of codes or concepts specified in the provided value (comma separated list).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="not-in">
+        <xs:annotation>
+          <xs:documentation>The specified property of the code is not in the set of codes or concepts specified in the provided value (comma separated list).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FilterOperator">
+    <xs:annotation>
+      <xs:documentation>Вид операции для совершения в рамках фильтра на основе свойства</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="FilterOperator-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

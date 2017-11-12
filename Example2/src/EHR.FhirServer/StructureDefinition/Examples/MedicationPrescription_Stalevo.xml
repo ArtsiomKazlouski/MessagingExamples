@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MedicationPrescription xmlns="http://hl7.org/fhir">
+    <!--<narrative xmlns="http://hl7.org/fhir">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Сталево таблетки п/о 50мг 12,5мг 200мг флакон №30
+        ничего не понятно :( таблетки?
+      </p>
+    </div>
+  </narrative>-->
+    <!-- встроенный ресурс Practitioner -->
+    <!-- определяет данные врача, выписавшего рецепт-->
+    <contained>
+        <Practitioner>
+            <id value="internalPractitioner1"></id>
+            <!--идентификатор врача в МИС-->
+            <identifier>
+                <system value="e-meditella"></system>
+                <value value="3425"></value>
+            </identifier>
+            <name>
+                <use value="official"></use>
+                <family value="Хирургов"></family>
+                <family value="Федор"></family>
+                <family value="Ибрагимович"></family>
+            </name>
+
+        </Practitioner>
+    </contained>
+    <!--встроенный ресурс Medication-->
+    <!--определяет лекарственное средство-->
+    <contained>
+        <Medication xmlns="http://hl7.org/fhir">
+            <code>
+        <coding>
+          <system value="http://www.pharma.by/Справочник.Номенклатура"></system>
+          <code value="15014"></code>
+            <display value=">Сталево"></display>
+            </coding>
+            </code>
+            <isBrand value="true"></isBrand>
+            <kind value="product"></kind>
+            <product>
+                <form>
+                    <coding>
+                        <system value="http://www.pharma.by/Справочник.ЛекарственнаяФорма"></system>
+                        <code value="0001"></code>
+                        <display value="таблетки"></display>
+                    </coding>
+                </form>
+                <ingredient>
+                    <item>
+                    </item>
+                    <amount>
+                        <numerator>
+                            <value value="50"></value>
+                            <units value="0093"></units>
+                            <system value="http://www.pharma.by/Справочник.ЕдиницыИзмерения"></system>
+                        </numerator>
+                        <denominator>
+                            <value value="1"></value>
+                        </denominator>
+                    </amount>
+                </ingredient>
+                <ingredient>
+                    <item>
+                    </item>
+                    <amount>
+                        <numerator>
+                            <value value="12.5"></value>
+                            <units value="0093"></units>
+                            <system value="http://www.pharma.by/Справочник.ЕдиницыИзмерения"></system>
+                        </numerator>
+                        <denominator>
+                            <value value="1"></value>
+                        </denominator>
+                    </amount>
+                </ingredient>
+            </product>
+        </Medication>
+    </contained>
+    <!--<id value="medicationPrescriptionExample2"></id>-->
+    <dateWritten value="2015-06-12" />
+    <status value="active"></status>
+    <patient>
+        <reference value="externalPatient1" />
+    </patient>
+    <prescriber>
+        <reference value="internalPractitioner1" />
+    </prescriber>
+    <!--лекарственное средство к отпуску-->
+    <medication>
+        <reference id="internalMedication1" />
+    </medication>
+    <dosageInstruction>
+        <text value="Один раз в день по одной таблетке"></text>
+    </dosageInstruction>
+    <dispense>
+        <!--срок действия рецепта-->
+        <validityPeriod>
+            <start value="2015-06-12"></start>
+            <end value="2015-08-12"></end>
+        </validityPeriod>
+        <!--количество выдач-->
+        <numberOfRepeatsAllowed value="1"></numberOfRepeatsAllowed>
+        <!--количество преперата к выдаче-->
+        <quantity>
+            <value value="30"></value>
+        </quantity>
+    </dispense>
+</MedicationPrescription>

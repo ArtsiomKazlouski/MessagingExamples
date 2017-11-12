@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RootNamespace>Hl7.Fhir.Core.Tests</RootNamespace>
+    <RuntimeIdentifiers>centos.7-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Rest\Search\**" />
+    <Compile Remove="Search\**" />
+    <EmbeddedResource Remove="Rest\Search\**" />
+    <EmbeddedResource Remove="Search\**" />
+    <None Remove="Rest\Search\**" />
+    <None Remove="Search\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Model\TagExtensionsTest.cs" />
+    <Compile Remove="Model\TagTests.cs" />
+    <Compile Remove="Serialization\TreeRewriterTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" Version="11.0.50727.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.1.17" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hl7.Fhir.Core\Hl7.Fhir.Core.NetCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\edgecases.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\examples-json.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\examples.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\TestPatient.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\TestPatient.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

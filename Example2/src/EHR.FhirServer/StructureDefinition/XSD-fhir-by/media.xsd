@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Media" type="Media">
+    <xs:annotation>
+      <xs:documentation>Фотографии, видео и аудиозаписи, полученные или используемые в здравоохранении. Фактическое содержимое может быть либо встроенным, либо предоставляться по прямой ссылке.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Media">
+    <xs:annotation>
+      <xs:documentation>Фотографии, видео и аудиозаписи, полученные или используемые в здравоохранении. Фактическое содержимое может быть либо встроенным, либо предоставляться по прямой ссылке.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="DigitalMediaType">
+            <xs:annotation>
+              <xs:documentation>Это фотография (статическое изображение), аудиозапись или видеозапись.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subtype" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Подробное описание этого типа медиа - обычно каким образом оно было получено (на устройстве какого типа). Если изображения из DICOM-системы обернуты в ресурс Media, тогда это и будет способом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификаторы, ассоциированные с изображением - это могут быть идентификаторы самого изображения, идентификаторы для контекста его коллекции (например серии идентификаторов) и идентификаторы контекста, например инвентарные номера или другие идентификаторы рабочего процесса.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subject" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>О ком/чем этот ресурс Media содержит запись.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="operator" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Лицо, исполнившее получение изображения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="view" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Название проекции изображения, например боковая или переднезадняя.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="deviceName" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя устройства/производителя устройства, которое использовалось для выполнения записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="height" minOccurs="0" maxOccurs="1" type="positiveInt">
+            <xs:annotation>
+              <xs:documentation>Высота изображения в пикселях (фото/видео).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="width" minOccurs="0" maxOccurs="1" type="positiveInt">
+            <xs:annotation>
+              <xs:documentation>Ширина изображения в пикселях (фото/видео).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="frames" minOccurs="0" maxOccurs="1" type="positiveInt">
+            <xs:annotation>
+              <xs:documentation>Количество кадров в фото. Используется для многостраничных факсов или в контексте получения изображений с множеством срезов в одном изображении, или анимированных gif-изображений. Если имеется больше 1 кадра, это ДОЛЖНО иметь значение, чтобы предупредить программное обеспечение интерфейса, что требуется виджет для рендеринга многокадрового объекта.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="duration" minOccurs="0" maxOccurs="1" type="unsignedInt">
+            <xs:annotation>
+              <xs:documentation>Продолжительность записи в секундах - для аудио и видео.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="content" minOccurs="1" maxOccurs="1" type="Attachment">
+            <xs:annotation>
+              <xs:documentation>Фактическое содержимое медиаданных - встроенное или по прямой ссылке на файл-источник медиаданных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DigitalMediaType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="photo">
+        <xs:annotation>
+          <xs:documentation>The media consists of one or more unmoving images, including photographs, computer-generated graphs and charts, and scanned documents.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="video">
+        <xs:annotation>
+          <xs:documentation>The media consists of a series of frames that capture a moving image.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="audio">
+        <xs:annotation>
+          <xs:documentation>The media consists of a sound recording.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DigitalMediaType">
+    <xs:annotation>
+      <xs:documentation>Что представляют собой медиаданные: фото, видео или аудио</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="DigitalMediaType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

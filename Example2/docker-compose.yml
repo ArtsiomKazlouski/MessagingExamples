@@ -1,0 +1,235 @@
+version: '2'
+
+networks:
+  mq:
+    driver: bridge
+
+  fhir.db:
+    driver: bridge
+    
+  auth:
+    driver: bridge
+  auth.db:
+    driver: bridge
+  auth.smtp:
+    driver: bridge
+
+  audit.elastic:
+    driver: bridge
+  
+  cds.db:
+    driver: bridge
+    
+services:
+  ehr.fhirserver:
+      image: ehr.fhirserver
+      depends_on:
+        - ehr.fhirbase
+        - ehr.fhirbase.migrator
+      command:  bash -c "chmod u+x  ./wait-for-it.sh && ./wait-for-it.sh ehr.fhirbase:5432 -t 120 -- dotnet EHR.FhirServer.dll"     
+      environment:
+        CONNECTIONSTRINGS__prescription_db: Server=ehr.fhirbase;Port=5432;Database=fhir;User Id=fhir;Password=fhir;
+        Endpoints__Authority: http://ehr.authenticationserver:5000/       
+        Toggles__Authentication: "false"
+        Toggles__ServerEvent: "true"
+      build:
+        context: ./src/EHR.FhirServer
+        dockerfile: Dockerfile
+      networks:
+        - fhir.db
+        - mq
+        - auth       
+ 
+
+  ehr.serverevent.publisher:    
+      image: ehr.serverevent.publisher
+      depends_on:
+        - "ehr.rabbitmq"
+        - "ehr.serverevent.migrator"
+      networks:
+       - fhir.db
+       - mq 
+      command:  bash -c "chmod u+x ./wait-for-it.sh && ./wait-for-it.sh ehr.rabbitmq:5672 -t 300 -- ./wait-for-it.sh ehr.fhirbase:5432 -t 300 -- dotnet EHR.ServerEvent.Publisher.dll"          
+      environment:
+        CONNECTIONSTRINGS__FHIRBASE: User ID=fhir;Password=fhir;Host=ehr.fhirbase;Port=5432;Database=fhir;
+        POOLING__RECEIVERSCOUNT: 1
+        POOLING__POOLINGOPTIONS__QUEUEPOLLINTERVAL: 00:00:10
+        POOLING__POOLINGOPTIONS__InvisibilityTimeout: 00:01:00
+        POOLING__POOLINGOPTIONS__SCHEMANAME: server_event
+        POOLING__POOLINGOPTIONS__TableName: server_event        
+        RABBIT__EXCHANGENAME: ehr.serverevent
+        RABBIT__RoutingKeyPrefix: serverevent
+        RABBIT__Username: rabbit
+        RABBIT__Password: rabbit        
+        RABBIT__Virtualhost: ehr
+        RABBIT__Port: 5672          
+        RABBIT__Hostname: ehr.rabbitmq
+      build:
+        context: ./src/EHR.ServerEvent.Publisher
+        dockerfile: Dockerfile     
+
+  ehr.cds.subscriber:    
+      image: ehr.cds.subscriber
+      build:         
+          context: ./src/EHR.ServerEvent.Subscriber
+          dockerfile: Dockerfile          
+      depends_on:
+        - ehr.rabbitmq
+        - ehr.cds.db
+      command:  bash -c "chmod u+x ./wait-for-it.sh && ./wait-for-it.sh ehr.rabbitmq:5672 -t 300 -- ./wait-for-it.sh ehr.cds.db:5432 -t 300 -- dotnet EHR.ServerEvent.Subscriber.dll"      
+      networks:
+        - mq
+        - cds.db
+      environment:          
+          TransformTo: cds
+          WriteTo: cds-pg
+          ConnectionStrings__CdsDatabaseConnectionString: Server=ehr.cds.db;Port=5432;Database=sickleafcds;Uid=cdsuser;Pwd=cdsuserpass
+          RABBITCONFIG__Queue: cds         
+          RABBITCONFIG__USERNAME: rabbit
+          RABBITCONFIG__PASSWORD: rabbit
+          RABBITCONFIG__VIRTUALHOST: ehr
+          RABBITCONFIG__PORT: 5672          
+          RABBITCONFIG__HOSTNAME: ehr.rabbitmq
+          RABBITCONFIG__RequeueOnErrorAfter:  "00:00:10.000" 
+   
+  ehr.audit.subscriber:    
+      image: ehr.audit.subscriber
+      build:         
+          context: ./src/EHR.ServerEvent.Subscriber
+          dockerfile: Dockerfile          
+      depends_on:
+        - ehr.rabbitmq
+        - ehr.audit.elasticsearch
+      command:  bash -c "chmod u+x ./wait-for-it.sh && ./wait-for-it.sh ehr.rabbitmq:5672 -t 300 -- ./wait-for-it.sh ehr.audit.elasticsearch:9200 -t 300 -- dotnet EHR.ServerEvent.Subscriber.dll"      
+      networks:
+        - mq
+        - audit.elastic
+      environment:          
+          TransformTo: audit
+          WriteTo: elasticsearch
+          ElasticSettings__Address: http://ehr.audit.elasticsearch:9200
+          ElasticSettings__IdxName: auditevent
+          RABBITCONFIG__Queue: audit         
+          RABBITCONFIG__USERNAME: rabbit
+          RABBITCONFIG__PASSWORD: rabbit
+          RABBITCONFIG__VIRTUALHOST: ehr
+          RABBITCONFIG__PORT: 5672          
+          RABBITCONFIG__HOSTNAME: ehr.rabbitmq
+          RABBITCONFIG__RequeueOnErrorAfter:  "00:00:10.000" 
+       
+  ehr.serverevent.migrator:
+      build:
+         context: ./docker/ehr.serverevent.migrator/
+         dockerfile: Dockerfile   
+      networks:
+        - fhir.db
+      depends_on:
+        - ehr.fhirbase 
+      command: -c "/flyway/wait-for-postgres.sh ehr.fhirbase 5432 fhir fhir fhir && sleep 30  && flyway -url=jdbc:postgresql://ehr.fhirbase:5432/fhir -schemas=server_event -user=fhir -password=fhir migrate" 
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+          
+  ehr.audit.elasticsearch:
+     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0 
+     environment:
+       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+       # disable X-Pack
+       # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
+       #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
+       xpack.security.enabled: "false"
+       xpack.monitoring.enabled: "false"
+       xpack.graph.enabled: "false"
+       xpack.watcher.enabled: "false"
+     volumes:
+       - ./docker/ehr.audit.elasticsearch/data:/usr/share/elasticsearch/data
+     networks:
+       - audit.elastic
+   
+  ehr.audit.kibana:
+     image: docker.elastic.co/kibana/kibana:5.3.0
+     volumes:
+       - ./docker/ehr.audit.kibana/config/:/usr/share/kibana/config    
+     networks:
+       - audit.elastic
+     depends_on:
+       - ehr.audit.elasticsearch 
+  
+  ehr.rabbitmq:
+      image: ehr.rabbitmq      
+      networks:
+        - mq
+      build:
+        context: ./docker/ehr.rabbitmq/
+        dockerfile: Dockerfile
+      ports:
+        - "5672:5672"   
+        - "15672:15672"
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux" 
+      
+  ehr.fhirbase:
+      image: ehr.fhirbase
+      environment:
+        POSTGRES_USER: fhir
+        POSTGRES_PASSWORD: fhir
+        POSTGRES_DB: fhir
+        TDSVER: 7.0
+      build:
+        context: ./docker/ehr.fhirbase/
+        dockerfile: Dockerfile   
+      networks:
+        - fhir.db
+        
+  ehr.fhirbase.migrator:
+      build:
+         context: ./docker/ehr.fhirbase.migrator/
+         dockerfile: Dockerfile   
+      networks:
+        - fhir.db
+      depends_on:
+        - ehr.fhirbase 
+      command: -c "/flyway/wait-for-postgres.sh ehr.fhirbase 5432 fhir fhir fhir 
+                    && sleep 30 
+                    && flyway 
+                        -url=jdbc:postgresql://ehr.fhirbase:5432/fhir 
+                        -user=fhir -password=fhir 
+                        -baselineOnMigrate=true 
+                        -baselineVersion=201708101734473447 migrate" 
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+  ehr.cds.db:
+      image: postgres:9.6.3-alpine
+      environment:
+        POSTGRES_USER: cdsuser
+        POSTGRES_PASSWORD: cdsuserpass
+        POSTGRES_DB: sickleafcds
+      networks:
+        - cds.db
+
+  ehr.cds.migrator:
+      build:
+         context: ./docker/ehr.cds.migrator/
+         dockerfile: Dockerfile   
+      networks:
+        - cds.db
+      depends_on:
+        - ehr.cds.db
+      command: -c "/flyway/wait-for-postgres.sh ehr.cds.db 5432 cdsuser cdsuserpass sickleafcds && sleep 30  && flyway -url=jdbc:postgresql://ehr.cds.db:5432/sickleafcds -schemas=public -user=cdsuser -password=cdsuserpass migrate" 
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+  ehr.cds.host:
+      image: ehr.cds.host
+      depends_on:
+        - ehr.cds.migrator
+      command:  bash -c "chmod u+x  ./wait-for-it.sh && ./wait-for-it.sh ehr.cds.migrator:5432 -t 120 -- dotnet EHR.Cds.Host.dll"     
+      environment:
+        CONNECTIONSTRINGS__DATABASECONNECTIONSTRING: Server=ehr.cds.db;Port=5432;Database=sickleafcds;User Id=cdsuser;Password=cdsuserpass;     
+      build:
+        context: ./src/EHR.Cds.Host
+        dockerfile: Dockerfile
+      networks:
+        - cds.db 
+       
+   

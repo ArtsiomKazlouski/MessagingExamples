@@ -1,0 +1,26 @@
+﻿{
+  "WriteTo": "{{ serverEventSubscriber_write_to }}",
+  "TransformTo": "{{ serverEventSubscriber_transform_to }}",
+  "ConnectionStrings": {
+    "CdsDatabaseConnectionString": "User ID={{ serverEventSubscriber_db_user }};Password={{ serverEventSubscriber_db_password }};Host={{ serverEventSubscriber_db_host }};Port={{ serverEventSubscriber_db_port }};Database={{ serverEventSubscriber_db_database }};"
+  },
+  "RabbitConfig": {
+    "Queue": "{{ serverEventSubscriber_rabbit_queue }}",
+    "Username": "{{ serverEventSubscriber_rabbit_username }}",
+    "Password": "{{ serverEventSubscriber_rabbit_password }}",
+    "VirtualHost": "{{ serverEventSubscriber_rabbit_virtual_host }}",
+    "Port": {{ serverEventSubscriber_rabbit_port }},
+    "HostName": "{{ serverEventSubscriber_rabbit_host_name }}",
+    "RequeueOnErrorAfter": "{{ serverEventSubscriber_rabbit_requeue_on_error_after | default("00:00:01.000")}}" 
+  },
+  "ElasticSettings": {
+    "Address": "{{ serverEventSubscriber_elastic_address }}",
+    "IdxName": "{{ serverEventSubscriber_elastic_idx_name }}"
+  },
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Debug"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+SELECT fhirbase_generate.generate_tables('{Patient, Claim, Composition, Organization, Encounter, Condition, Practitioner, EpisodeOfCare, RelatedPerson, MedicationPrescription, MedicationDispense}');

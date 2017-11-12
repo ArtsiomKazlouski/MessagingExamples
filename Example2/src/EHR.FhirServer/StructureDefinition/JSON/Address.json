@@ -1,0 +1,566 @@
+{
+    "resourceType":"StructureDefinition",
+    "id":"spark72",
+    "meta":{
+        "versionId":"spark573",
+        "lastUpdated":"6/22/2015 1:09:52 PM"
+    },
+    "url":"http://uiip/fhir/StructureDefinition/Address-blr-electronic-prescription",
+    "name":"Address",
+    "publisher":"UIIP",
+    "description":"Base StructureDefinition for Address Resource",
+    "requirements":"Need to be able to record postal addresses, along with notes about their use.",
+    "status":"draft",
+    "date":"6/21/2015 9:00:00 PM",
+    "mapping": [
+        {
+            "identity":"v2",
+            "uri":"http://hl7.org/v2",
+            "name":"HL7 v2"
+        },
+        {
+            "identity":"rim",
+            "uri":"http://hl7.org/v3",
+            "name":"RIM"
+        },
+        {
+            "identity":"servd",
+            "uri":"http://www.omg.org/spec/ServD/1.0/",
+            "name":"ServD"
+        },
+        {
+            "identity":"vcard",
+            "uri":"http://w3.org/vcard",
+            "name":"vCard"
+        }
+    ],
+    "type":"constraint",
+    "abstract":false,
+    "base":"http://hl7.org/fhir/StructureDefinition/Address",
+    "snapshot":{
+        "element": [
+            {
+                "path":"Address",
+                "short":"A postal address",
+                "definition":"There is a variety of postal address formats defined around the world. This format defines a superset that is the basis for all addresses around the world.",
+                "comments":"Note: address is for postal addresses, not physical locations.",
+                "requirements":"Need to be able to record postal addresses, along with notes about their use.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"Element"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XAD"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"Address"
+                    }
+                ]
+            },
+            {
+                "path":"Address.use",
+                "short":"home | work | temp | old - purpose of this address",
+                "definition":"The purpose of this address.",
+                "comments":"This is labeled as "Is Modifier" because applications should not mistake a temporary or old address etc for a current/permanent one. Applications can assume that an address is current unless it explicitly says that it is temporary or old.",
+                "requirements":"Allows an appropriate address to be chosen from a list of many.",
+                "min":"0",
+                "max":"0",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "exampleCode":"home",
+                "isModifier":true,
+                "binding":{
+                    "name":"AddressUse",
+                    "strength":"required",
+                    "description":"The use of an address",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/address-use"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XAD.7"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"unique(./use)"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./AddressPurpose"
+                    }
+                ]
+            },
+            {
+                "path":"Address.text",
+                "short":"Text representation of the address",
+                "definition":"A full text representation of the address.",
+                "comments":"Can provide both a text representation and parts.",
+                "requirements":"A renderable, unencoded form.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "exampleString":"137 Nowhere Street, Erewhon 9132",
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XAD.1 + XAD.2 + XAD.3 + XAD.4 + XAD.5 + XAD.6"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./formatted"
+                    }
+                ]
+            },
+            {
+                "path":"Address.line",
+                "short":"Street name, number, direction & P.O. Box etc",
+                "definition":"This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information.",
+                "requirements":"home | work | temp | old - purpose of this address.",
+                "min":"0",
+                "max":"0",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "exampleString":"137 Nowhere Street",
+                "mapping": [
+                    {
+                        "identity":"vcard",
+                        "map":"street address"
+                    },
+                    {
+                        "identity":"v2",
+                        "map":"XAD.1 + XAD.2 (note: XAD.1 and XAD.2 have different meanings for a company address than for a person address)"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD.part[parttype = AL]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./StreetAddress (newline delimitted)"
+                    }
+                ]
+            },
+            {
+                "path":"Address.city",
+                "short":"Name of city, town etc.",
+                "definition":"The name of the city, town, village or other community or delivery center.",
+                "alias": [
+                    "Muncipality"
+                ],
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "exampleString":"Erewhon",
+                "mapping": [
+                    {
+                        "identity":"vcard",
+                        "map":"locality"
+                    },
+                    {
+                        "identity":"v2",
+                        "map":"XAD.3"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD.part[parttype = CTY]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./Jurisdiction"
+                    }
+                ]
+            },
+            {
+                "path":"Address.state",
+                "short":"Sub-unit of country (abreviations ok)",
+                "definition":"Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (i.e. US 2 letter state codes).",
+                "alias": [
+                    "Province",
+                    "Territory"
+                ],
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"vcard",
+                        "map":"region"
+                    },
+                    {
+                        "identity":"v2",
+                        "map":"XAD.4"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD.part[parttype = STA]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./Region"
+                    }
+                ]
+            },
+            {
+                "path":"Address.postalCode",
+                "short":"Postal code for area",
+                "definition":"A postal code designating a region defined by the postal service.",
+                "alias": [
+                    "Zip"
+                ],
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "exampleString":"9132",
+                "mapping": [
+                    {
+                        "identity":"vcard",
+                        "map":"postal code"
+                    },
+                    {
+                        "identity":"v2",
+                        "map":"XAD.5"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD.part[parttype = ZIP]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./PostalIdentificationCode"
+                    }
+                ]
+            },
+            {
+                "path":"Address.country",
+                "short":"Country (can be ISO 3166 3 letter code)",
+                "definition":"Country - a nation as commonly understood or generally accepted.",
+                "comments":"ISO 3166 3 letter codes can be used in place of a full country name.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"vcard",
+                        "map":"country name"
+                    },
+                    {
+                        "identity":"v2",
+                        "map":"XAD.6"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD.part[parttype = CNT]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./Country"
+                    }
+                ]
+            },
+            {
+                "path":"Address.period",
+                "short":"Time period when address was/is in use",
+                "definition":"Time period when address was/is in use.",
+                "requirements":"Allows addresses to be placed in historical context.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"Period"
+                    }
+                ],
+                "examplePeriod":{
+                    "start":"2010-03-23",
+                    "end":"2010-07-01"
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XAD.12 / XAD.13 + XAD.14"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./usablePeriod[type="IVL<TS>"]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./StartDate and ./EndDate"
+                    }
+                ]
+            },
+            {
+                "path":"Address.period.start",
+                "short":"Starting time with inclusive boundary",
+                "definition":"The start of the period. The boundary is inclusive.",
+                "comments":"If the low element is missing, the meaning is that the low boundary is not known.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"dateTime"
+                    }
+                ],
+                "condition": [
+                    "per-1"
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"DR.1"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./low"
+                    }
+                ]
+            },
+            {
+                "path":"Address.period.end",
+                "short":"End time with inclusive boundary, if not ongoing",
+                "definition":"The end of the period. If the end of the period is missing, it means that the period is ongoing.",
+                "comments":"The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"dateTime"
+                    }
+                ],
+                "condition": [
+                    "per-1"
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"DR.2"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./high"
+                    }
+                ]
+            },
+            {
+                "path":"Address.extension",
+                "slicing":{
+                    "discriminator": [
+                        "url"
+                    ],
+                    "rules":"openAtEnd"
+                }
+            },
+            {
+                "path":"Address.extension",
+                "name":"soatoCode",
+                "definition":"??? ?????",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"CodeableConcept"
+                    }
+                ],
+                "isModifier":false,
+                "binding":{
+                    "name":"SoatoCode",
+                    "strength":"required"
+                }
+            },
+            {
+                "path":"Address.extension",
+                "name":"addressType",
+                "definition":"??? ??????",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"CodeableConcept"
+                    }
+                ],
+                "binding":{
+                    "name":"AddressTypeBLR",
+                    "strength":"required"
+                }
+            }
+        ]
+    },
+    "differential":{
+        "element": [
+            {
+                "path":"Address.extension",
+                "slicing":{
+                    "discriminator": [
+                        "url"
+                    ],
+                    "rules":"openAtEnd"
+                }
+            },
+            {
+                "path":"Address.extension",
+                "name":"soatoCode",
+                "definition":"??? ?????",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"CodeableConcept"
+                    }
+                ],
+                "isModifier":false,
+                "binding":{
+                    "name":"SoatoCode",
+                    "strength":"required"
+                }
+            },
+            {
+                "path":"Address.extension",
+                "name":"addressType",
+                "definition":"??? ??????",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"CodeableConcept"
+                    }
+                ],
+                "binding":{
+                    "name":"AddressTypeBLR",
+                    "strength":"required"
+                }
+            }
+            {
+                "path":"Address.use",
+                "short":"home | work | temp | old - purpose of this address",
+                "definition":"The purpose of this address.",
+                "comments":"This is labeled as "Is Modifier" because applications should not mistake a temporary or old address etc for a current/permanent one. Applications can assume that an address is current unless it explicitly says that it is temporary or old.",
+                "requirements":"Allows an appropriate address to be chosen from a list of many.",
+                "min":"0",
+                "max":"0",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "exampleCode":"home",
+                "isModifier":true,
+                "binding":{
+                    "name":"AddressUse",
+                    "strength":"required",
+                    "description":"The use of an address",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/address-use"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XAD.7"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"unique(./use)"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./AddressPurpose"
+                    }
+                ]
+            },
+            {
+                "path":"Address.text",
+                "short":"Text representation of the address",
+                "definition":"A full text representation of the address.",
+                "comments":"Can provide both a text representation and parts.",
+                "requirements":"A renderable, unencoded form.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "exampleString":"137 Nowhere Street, Erewhon 9132",
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XAD.1 + XAD.2 + XAD.3 + XAD.4 + XAD.5 + XAD.6"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./formatted"
+                    }
+                ]
+            },
+            {
+                "path":"Address.line",
+                "short":"Street name, number, direction & P.O. Box etc",
+                "definition":"This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information.",
+                "requirements":"home | work | temp | old - purpose of this address.",
+                "min":"0",
+                "max":"0",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "exampleString":"137 Nowhere Street",
+                "mapping": [
+                    {
+                        "identity":"vcard",
+                        "map":"street address"
+                    },
+                    {
+                        "identity":"v2",
+                        "map":"XAD.1 + XAD.2 (note: XAD.1 and XAD.2 have different meanings for a company address than for a person address)"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"AD.part[parttype = AL]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./StreetAddress (newline delimitted)"
+                    }
+                ]
+            }
+        ]
+    }
+}

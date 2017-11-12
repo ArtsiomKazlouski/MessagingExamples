@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="QuestionnaireAnswers" type="QuestionnaireAnswers">
+    <xs:annotation>
+      <xs:documentation>Структурированный набор вопросов и ответов на них. Вопросы упорядочены и сгруппированы в последовательные подмножества, соответствующие структуре группировки лежащих в основе вопросов.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="QuestionnaireAnswers">
+    <xs:annotation>
+      <xs:documentation>Структурированный набор вопросов и ответов на них. Вопросы упорядочены и сгруппированы в последовательные подмножества, соответствующие структуре группировки лежащих в основе вопросов.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="1" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Бизнес-идентификатор, присвоенный конкретному заполненному (или частично заполненному) вопроснику.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="questionnaire" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Указывает ресурс Questionnaire, определяющий форму, в которой предоставляются ответы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="QuestionnaireAnswersStatus">
+            <xs:annotation>
+              <xs:documentation>Общий статус жизненного цикла ответов на вопросник.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subject" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>О ком/чём этот QuestionnaireAnswers. Это может быть пациент, организация, практикующий специалист, устройство и т. д. Это кто-то или что-то, к кому/чему относятся ответы, но не обязательно источник информации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="author" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, который получил ответы на вопросы в ресурсе QuestionnaireAnswers и записал их в систему.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="authored" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата и/или время, когда была создана эта версия ответов на вопросник.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="source" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, который ответил на вопросы о субъекте.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="encounter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Encounter, во время которого был собран этот ряд ответов на вопросник. Если было несколько встреч, это будет та, что считается наиболее подходящей для контекста ответов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="group" type="QuestionnaireAnswers.Group" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Группа вопросов к, возможно, аналогично сгруппированному набору вопросов в QuestionnaireAnswers.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QuestionnaireAnswers.Group">
+    <xs:annotation>
+      <xs:documentation>Структурированный набор вопросов и ответов на них. Вопросы упорядочены и сгруппированы в последовательные подмножества, соответствующие структуре группировки лежащих в основе вопросов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="linkId" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Определяет группу в Questionnaire, которая соответствует данной группе в ресурсе QuestionnaireAnswers.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="title" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текст, который отображается над содержимым группы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="text" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительный текст для группы, используемый для отображения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subject" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Более конкретное описание субъекта, к которому относятся ответы этого раздела, детализирующее субъекта, заданного в QuestionnaireAnswers.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="group" type="QuestionnaireAnswers.Group" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подгруппа в группе. Порядок групп в пределах этой группы имеет значение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="question" type="QuestionnaireAnswers.Question" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Набор вопросов в рамках этой группы. Порядок вопросов в группе имеет значение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QuestionnaireAnswers.Question">
+    <xs:annotation>
+      <xs:documentation>Структурированный набор вопросов и ответов на них. Вопросы упорядочены и сгруппированы в последовательные подмножества, соответствующие структуре группировки лежащих в основе вопросов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="linkId" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Определяет вопрос из Questionnaire, который соответствует данному вопросу в ресурсе QuestionnaireAnswers.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="text" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Непосредственно сам вопрос в том виде, как он отображается  пользователю для получения ответа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="answer" type="QuestionnaireAnswers.Answer" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Ответ(-ы) респондента на вопрос.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="group" type="QuestionnaireAnswers.Group" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Вложенная группа, содержащая вложенный вопрос для этого вопроса. Порядок групп в вопросе имеет значение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QuestionnaireAnswers.Answer">
+    <xs:annotation>
+      <xs:documentation>Структурированный набор вопросов и ответов на них. Вопросы упорядочены и сгруппированы в последовательные подмножества, соответствующие структуре группировки лежащих в основе вопросов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Ответ (или один из ответов), предоставленных респондентом на вопрос.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="valueBoolean" type="boolean"/>
+            <xs:element name="valueDecimal" type="decimal"/>
+            <xs:element name="valueInteger" type="integer"/>
+            <xs:element name="valueDate" type="date"/>
+            <xs:element name="valueDateTime" type="dateTime"/>
+            <xs:element name="valueInstant" type="instant"/>
+            <xs:element name="valueTime" type="time"/>
+            <xs:element name="valueString" type="string"/>
+            <xs:element name="valueUri" type="uri"/>
+            <xs:element name="valueAttachment" type="Attachment"/>
+            <xs:element name="valueCoding" type="Coding"/>
+            <xs:element name="valueQuantity" type="Quantity"/>
+            <xs:element name="valueReference" type="Reference"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QuestionnaireAnswersStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="in-progress">
+        <xs:annotation>
+          <xs:documentation>This QuestionnaireAnswers has been partially filled out with answers, but changes or additions are still expected to be made to it.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="completed">
+        <xs:annotation>
+          <xs:documentation>This QuestionnaireAnswers has been filled out with answers, and the current content is regarded as definitive.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="amended">
+        <xs:annotation>
+          <xs:documentation>This QuestionnaireAnswers has been filled out with answers, then marked as complete, yet changes or additions have been made to it afterwards.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QuestionnaireAnswersStatus">
+    <xs:annotation>
+      <xs:documentation>Статус жизненного цикла QuestionnaireAnswers</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="QuestionnaireAnswersStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

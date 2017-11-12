@@ -1,0 +1,320 @@
+{
+    "resourceType":"StructureDefinition",
+    "id":"ContactPoint",
+    "url":"http://uiip/fhir/StructureDefinition/ContactPoint-blr-electronic-prescription",
+    "name":"ContactPoint",
+    "publisher":"UIIP",
+    "description":"Base StructureDefinition for ContactPoint Resource",
+    "requirements":"Need to track phone, fax, mobile, sms numbers, email addresses, twitter tags, etc.",
+    "status":"draft",
+    "date":"6/21/2015 9:00:00 PM",
+    "mapping": [
+        {
+            "identity":"v2",
+            "uri":"http://hl7.org/v2",
+            "name":"HL7 v2"
+        },
+        {
+            "identity":"rim",
+            "uri":"http://hl7.org/v3",
+            "name":"RIM"
+        },
+        {
+            "identity":"servd",
+            "uri":"http://www.omg.org/spec/ServD/1.0/",
+            "name":"ServD"
+        }
+    ],
+    "type":"constraint",
+    "abstract":false,
+    "base":"http://hl7.org/fhir/StructureDefinition/ContactPoint",
+    "snapshot":{
+        "element": [
+            {
+                "path":"ContactPoint",
+                "short":"Details of a Technology mediated contact point (phone, fax, email, etc)",
+                "definition":"Details for All kinds of technology mediated contact points for a person or organization, including telephone, email, etc.",
+                "requirements":"Need to track phone, fax, mobile, sms numbers, email addresses, twitter tags, etc.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"Element"
+                    }
+                ],
+                "constraint": [
+                    {
+                        "key":"cpt-2",
+                        "name":"System is required",
+                        "severity":"error",
+                        "human":"A system is required if a value is provided.",
+                        "xpath":"not(exists(f:value)) or exists(f:system)"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XTN"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"TEL"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"ContactPoint"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.system",
+                "short":"phone | fax | email | url",
+                "definition":"Telecommunications form for contact point - what communications system is required to make use of the contact.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "condition": [
+                    "cpt-2"
+                ],
+                "binding":{
+                    "name":"ContactPointSystem",
+                    "strength":"required",
+                    "description":"Telecommunications form for contact point",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/contact-point-system"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XTN.3"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./scheme"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./ContactPointType"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.value",
+                "short":"The actual contact point details",
+                "definition":"The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+                "comments":"Additional out of band data such as extensions, or notes about use of the contact are sometimes included in the value.",
+                "requirements":"Need to support legacy numbers that are not in a tightly controlled format.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XTN.1 (or XTN.12)"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./url"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./Value"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.use",
+                "short":"home | work | temp | old | mobile - purpose of this contact point",
+                "definition":"Identifies the purpose for the contact point.",
+                "comments":"This is labeled as "Is Modifier" because applications should not mistake a temporary or old contact etc for a current/permanent one. Applications can assume that a contact is current unless it explicitly says that it is temporary or old.",
+                "requirements":"Need to track the way a person uses this contact, so a user can choose which is appropriate for their purpose.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "isModifier":true,
+                "binding":{
+                    "name":"ContactPointUse",
+                    "strength":"required",
+                    "description":"Use of contact point",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/contact-point-use"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XTN.2 - but often indicated by field"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"unique(./use)"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./ContactPointPurpose"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.period",
+                "short":"Time period when the contact point was/is in use",
+                "definition":"Time period when the contact point was/is in use.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"Period"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"N/A"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./useablePeriod[type="IVL<TS>"]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./StartDate and ./EndDate"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.period.start",
+                "short":"Starting time with inclusive boundary",
+                "definition":"The start of the period. The boundary is inclusive.",
+                "comments":"If the low element is missing, the meaning is that the low boundary is not known.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"dateTime"
+                    }
+                ],
+                "condition": [
+                    "per-1"
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"DR.1"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./low"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.period.end",
+                "short":"End time with inclusive boundary, if not ongoing",
+                "definition":"The end of the period. If the end of the period is missing, it means that the period is ongoing.",
+                "comments":"The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"dateTime"
+                    }
+                ],
+                "condition": [
+                    "per-1"
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"DR.2"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./high"
+                    }
+                ]
+            }
+        ]
+    },
+    "differential":{
+        "element": [
+            {
+                "path":"ContactPoint.system",
+                "short":"phone | fax | email | url",
+                "definition":"Telecommunications form for contact point - what communications system is required to make use of the contact.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "condition": [
+                    "cpt-2"
+                ],
+                "binding":{
+                    "name":"ContactPointSystem",
+                    "strength":"required",
+                    "description":"Telecommunications form for contact point",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/contact-point-system"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XTN.3"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./scheme"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./ContactPointType"
+                    }
+                ]
+            },
+            {
+                "path":"ContactPoint.value",
+                "short":"The actual contact point details",
+                "definition":"The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).",
+                "comments":"Additional out of band data such as extensions, or notes about use of the contact are sometimes included in the value.",
+                "requirements":"Need to support legacy numbers that are not in a tightly controlled format.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XTN.1 (or XTN.12)"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./url"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./Value"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,383 @@
+{
+    "resourceType":"StructureDefinition",
+    "id":"HumanName",
+    "url":"http://uiip/fhir/StructureDefinition/HumanName-blr-electronic-prescription",
+    "name":"HumanName",
+    "publisher":"UIIP",
+    "description":"Base StructureDefinition for HumanName Resource",
+    "requirements":"Need to be able to record names, along with notes about their use.",
+    "status":"draft",
+    "date":"6/21/2015 9:00:00 PM",
+    "mapping": [
+        {
+            "identity":"v2",
+            "uri":"http://hl7.org/v2",
+            "name":"HL7 v2"
+        },
+        {
+            "identity":"rim",
+            "uri":"http://hl7.org/v3",
+            "name":"RIM"
+        },
+        {
+            "identity":"servd",
+            "uri":"http://www.omg.org/spec/ServD/1.0/",
+            "name":"ServD"
+        }
+    ],
+    "type":"constraint",
+    "abstract":false,
+    "base":"http://hl7.org/fhir/StructureDefinition/HumanName",
+    "snapshot":{
+        "element": [
+            {
+                "path":"HumanName",
+                "short":"Name of a human - parts and usage",
+                "definition":"A human's name with the ability to identify parts and usage.",
+                "comments":"Names may be changed, or repudiated, or people may have different names in different contexts. Names may be divided into parts of different type that have variable significance depending on context, though the division into parts does not always matter. With personal names, the different parts may or may not be imbued with some implicit meaning; various cultures associate different importance with the name parts and the degree to which systems must care about name parts around the world varies widely.",
+                "requirements":"Need to be able to record names, along with notes about their use.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"Element"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"EN (actually, PN)"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"ProviderName"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.use",
+                "short":"usual | official | temp | nickname | anonymous | old | maiden",
+                "definition":"Identifies the purpose for this name.",
+                "comments":"This is labeled as "Is Modifier" because applications should not mistake a temporary or old name etc for a current/permanent one. Applications can assume that a name is current unless it explicitly says that it is temporary or old.",
+                "requirements":"Allows the appropriate name for a particular context of use to be selected from among a set of names.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "isModifier":true,
+                "binding":{
+                    "name":"NameUse",
+                    "strength":"required",
+                    "description":"The use of a human name",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/name-use"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.7, but often indicated by which field contains the name"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"unique(./use)"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./NamePurpose"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.text",
+                "short":"Text representation of the full name",
+                "definition":"A full text representation of the name.",
+                "comments":"Can provide both a text representation and structured parts.",
+                "requirements":"A renderable, unencoded form.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"implied by XPN.11"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./formatted"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.family",
+                "short":"Family name (often called 'Surname')",
+                "definition":"The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+                "comments":"For family name, hyphenated names such as "Smith-Jones" are a single name, but names with spaces such as "Smith Jones" are broken into multiple parts.",
+                "alias": [
+                    "surname"
+                ],
+                "min":"1",
+                "max":"*",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.1"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./part[partType = FAM]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./FamilyName"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.given",
+                "short":"Given names (not always 'first'). Includes middle names",
+                "definition":"Given name.",
+                "comments":"If only initials are recorded, they may be used in place of the full name.  Not called "first name" since given names do not always come first.",
+                "alias": [
+                    "first name",
+                    "middle name"
+                ],
+                "min":"0",
+                "max":"*",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.2 + XPN.3"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./part[partType = GIV]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./GivenNames"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.prefix",
+                "short":"Parts that come before the name",
+                "definition":"Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.",
+                "min":"0",
+                "max":"*",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.5"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./part[partType = PFX]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./TitleCode"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.suffix",
+                "short":"Parts that come after the name",
+                "definition":"Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.",
+                "min":"0",
+                "max":"*",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN/4"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./part[partType = SFX]"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.period",
+                "short":"Time period when name was/is in use",
+                "definition":"Indicates the period of time when this name was valid for the named person.",
+                "requirements":"Allows names to be placed in historical context.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"Period"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.13 + XPN.14"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./usablePeriod[type="IVL<TS>"]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./StartDate and ./EndDate"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.period.start",
+                "short":"Starting time with inclusive boundary",
+                "definition":"The start of the period. The boundary is inclusive.",
+                "comments":"If the low element is missing, the meaning is that the low boundary is not known.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"dateTime"
+                    }
+                ],
+                "condition": [
+                    "per-1"
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"DR.1"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./low"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.period.end",
+                "short":"End time with inclusive boundary, if not ongoing",
+                "definition":"The end of the period. If the end of the period is missing, it means that the period is ongoing.",
+                "comments":"The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03.",
+                "min":"0",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"dateTime"
+                    }
+                ],
+                "condition": [
+                    "per-1"
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"DR.2"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./high"
+                    }
+                ]
+            }
+        ]
+    },
+    "differential":{
+        "element": [
+            {
+                "path":"HumanName.use",
+                "short":"usual | official | temp | nickname | anonymous | old | maiden",
+                "definition":"Identifies the purpose for this name.",
+                "comments":"This is labeled as "Is Modifier" because applications should not mistake a temporary or old name etc for a current/permanent one. Applications can assume that a name is current unless it explicitly says that it is temporary or old.",
+                "requirements":"Allows the appropriate name for a particular context of use to be selected from among a set of names.",
+                "min":"1",
+                "max":"1",
+                "type": [
+                    {
+                        "code":"code"
+                    }
+                ],
+                "isModifier":true,
+                "binding":{
+                    "name":"NameUse",
+                    "strength":"required",
+                    "description":"The use of a human name",
+                    "valueSetReference":{
+                        "reference":"http://hl7.org/fhir/vs/name-use"
+                    }
+                },
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.7, but often indicated by which field contains the name"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"unique(./use)"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./NamePurpose"
+                    }
+                ]
+            },
+            {
+                "path":"HumanName.family",
+                "short":"Family name (often called 'Surname')",
+                "definition":"The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+                "comments":"For family name, hyphenated names such as "Smith-Jones" are a single name, but names with spaces such as "Smith Jones" are broken into multiple parts.",
+                "alias": [
+                    "surname"
+                ],
+                "min":"1",
+                "max":"*",
+                "type": [
+                    {
+                        "code":"string"
+                    }
+                ],
+                "mapping": [
+                    {
+                        "identity":"v2",
+                        "map":"XPN.1"
+                    },
+                    {
+                        "identity":"rim",
+                        "map":"./part[partType = FAM]"
+                    },
+                    {
+                        "identity":"servd",
+                        "map":"./FamilyName"
+                    }
+                ]
+            }
+        ]
+    }
+}

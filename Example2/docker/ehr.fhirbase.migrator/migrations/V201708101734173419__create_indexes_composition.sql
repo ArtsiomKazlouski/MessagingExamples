@@ -1,0 +1,1 @@
+SELECT fhir.index_resource('Composition');

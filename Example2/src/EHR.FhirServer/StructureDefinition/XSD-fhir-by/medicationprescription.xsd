@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AMedicaND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="MedicationPrescription" type="MedicationPrescription">
+    <xs:annotation>
+      <xs:documentation>Заказ на поставку  лекарственного средства, а также на введение  лекарственного средства пациенту.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="MedicationPrescription">
+    <xs:annotation>
+      <xs:documentation>Заказ на поставку  лекарственного средства, а также на введение  лекарственного средства пациенту.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Внешний идентификатор, который будет использоваться другой не-FHIR системой - например система возмещения расходов может назначать свой собственный идентификатор каждому создаваемому предписанию. Особенно это важно там, где FHIR обеспечивает только часть общего рабочего процесса, а записи должны отслеживаться целой системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dateWritten" minOccurs="1" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата (и, возможно, время), когда было выписано предписание.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="MedicationPrescriptionStatus">
+            <xs:annotation>
+              <xs:documentation>Код для указания статуса заказа. Как правило, это будет состояние active или completed.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="patient" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Пациент, которому выдано предписание.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="prescriber" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Специалист по медицинскому обеспечению, ответственный за выдачу этого предписания.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Может быть причиной или показанием к выписке предписания.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="reasonCodeableConcept" type="CodeableConcept"/>
+            <xs:element name="reasonReference" type="Reference"/>
+          </xs:choice>
+          <xs:element name="note" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация о предписании, которая не может быть передана в других атрибутах.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="medication" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Определяет назначаемое лекарственное средство. Это ссылка на ресурс, представляющий лекарственное средство, который может быть детализацией лекарственного средства или просто атрибутом, содержащим код, определяющий лекарственное средство из известного списка лекарств.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dosageInstruction" type="MedicationPrescription.DosageInstruction" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Показывает, как пациенту следует использовать лекарственное средство.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dispense" type="MedicationPrescription.Dispense" minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Подробная информация о приготовлении и отпускании лекарства.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="substitution" type="MedicationPrescription.Substitution" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Показывает, возможна ли или нужна ли замена при выдаче. В некоторых случаях замена должна произойти, в других не должна произойти, в третьих это не имеет значения. Этот блок поясняет намерение медицинского работника, имеющего право назначать рецептурные препараты. Если ничего не указано, замена может быть сделана.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MedicationPrescription.DosageInstruction">
+    <xs:annotation>
+      <xs:documentation>Заказ на поставку  лекарственного средства, а также на введение  лекарственного средства пациенту.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="text" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое описание инструкции по дозировке может использоваться в случаях, когда указания слишком сложные для кодирования. Когда заданы кодированные указания, произвольное текстовое описание инструкции также может присутствовать для отображения людям, принимающим или назначающим лекарство.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="additionalInstructions" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Дополнительные инструкции, например &quot;проглотить с большим количеством воды&quot;, которые могут быть либо закодированы, либо нет.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>График времени выдачи лекарственного средства пациенту. Тип данных Schedule позволяет задавать различные выражения, например &quot;каждые 8 часов&quot;; &quot;три раза в день&quot;; &quot;за полчаса до завтрака в течение 10 дней с 23-Dec 2011:&quot;;  &quot;15 Oct 2013, 17 Oct 2013 и 1 Nov 2013&quot;.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="scheduledDateTime" type="dateTime"/>
+            <xs:element name="scheduledPeriod" type="Period"/>
+            <xs:element name="scheduledTiming" type="Timing"/>
+          </xs:choice>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Если имеет значение true или содержит кодированный концепт, это означает, что лекарственное средство принимается только по мере необходимости в соответствии с указанным расписанием, а не при каждой запланированной дозе. Если указан CodeableConcept, он показывает условие принятия лекарственного средства.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="asNeededBoolean" type="boolean"/>
+            <xs:element name="asNeededCodeableConcept" type="CodeableConcept"/>
+          </xs:choice>
+          <xs:element name="site" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное указание анатомического местоположения, где лекарственное средство входит в тело.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="route" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, обозначающий способ или физиологический путь ввода терапевтического средства в или на пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="method" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное значение, обозначающее метод, которым медикамент вводится в или на тело. Наиболее часто используется для инъекций. Примеры: Slow Push; Deep IV.
+
+При использовании справочников этот термин уже согласован со способом или формой введения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Количество терапевтического или другого вещества, выданного при одном введении.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="doseRange" type="Range"/>
+            <xs:element name="doseQuantity" type="Quantity"/>
+          </xs:choice>
+          <xs:element name="rate" minOccurs="0" maxOccurs="1" type="Ratio">
+            <xs:annotation>
+              <xs:documentation>Определяет скорость, с которой вещество вводится в субъект. Обычно скорость указывается для вливаний. Пример: 200 мл в течение 2 часов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="maxDosePerPeriod" minOccurs="0" maxOccurs="1" type="Ratio">
+            <xs:annotation>
+              <xs:documentation>Максимальное общее количество терапевтического вещества, которое может быть введено субъекту в течение периода времени. Например 1000 мг в течение 24 часов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MedicationPrescription.Dispense">
+    <xs:annotation>
+      <xs:documentation>Заказ на поставку  лекарственного средства, а также на введение  лекарственного средства пациенту.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="medication" minOccurs="0" maxOccurs="0" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Идентифицирует назначаемое лекарственное средство. Это ссылка на ресурс, представляющий лекарственное средство, который может быть детализацией лекарственного средства или просто атрибутом, содержащим код лекарственного средства из известного списка лекарств.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="validityPeriod" minOccurs="1" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Комментарии по разработке: означает срок действия предписания (stale dating the Prescription) 
+Отражает срок действия предписания с точки зрения медицинского работника, имеющего право назначать рецептурные препараты. Нельзя выполнять выдачу по предписанию с вышедшим сроком действия. Нижняя граница периода выдачи обозначает самую раннюю дату, начиная с которой предписание может быть выполнено первый раз. Если верхняя граница не указана, значит предписание не ограничено по времени или по умолчанию станет недействительным в соответствии с нормативными документами. 
+Логическое обоснование: показывает, когда предписание вступает в силу и когда оно становится недействительным.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="numberOfRepeatsAllowed" minOccurs="0" maxOccurs="1" type="positiveInt">
+            <xs:annotation>
+              <xs:documentation>Целое число, показывающее количество повторных выдачей. 
+Примечание по использованию: к примеру, число раз, которое предписанное количество должно быть предоставлено, включая первоначальное стандартное наполнение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="quantity" minOccurs="1" maxOccurs="1" type="Quantity">
+            <xs:annotation>
+              <xs:documentation>Количество, которое должно быть выдано при исполнении.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="expectedSupplyDuration" minOccurs="0" maxOccurs="0" type="Duration">
+            <xs:annotation>
+              <xs:documentation>Период времени, в течение которого поставляемый продукт будет использоваться, либо продолжительность времени, в течение которого ожидается выдача (распределение) лекарства по рецепту. 
+В некоторых ситуациях этот атрибут может использоваться вместо quantity для задания количества поставки с помощью указания, как долго оно предполагается выдаваться, а не физически отпущенного количества, например 90 дней поставки лекарственного средства (на основании заказанной дозировки). По возможности всегда лучше указывать quantity, так как оно будет более точным. expectedSupplyDuration всегда будет предположительной оценкой, на которую могут влиять внешние факторы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MedicationPrescription.Substitution">
+    <xs:annotation>
+      <xs:documentation>Заказ на поставку  лекарственного средства, а также на введение  лекарственного средства пациенту.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, означающий, следует ли выдать другой медикамент вместо того, который был назначен.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reason" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Здесь указывается причина замены или почему замена должна или не должна быть сделана.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="MedicationPrescriptionStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="active">
+        <xs:annotation>
+          <xs:documentation>The prescription is 'actionable', but not all actions that are implied by it have occurred yet.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="on-hold">
+        <xs:annotation>
+          <xs:documentation>Actions implied by the prescription have been temporarily halted, but are expected to continue later.  May also be called &quot;suspended&quot;.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="completed">
+        <xs:annotation>
+          <xs:documentation>All actions that are implied by the prescription have occurred (this will rarely be made explicit).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="entered-in-error">
+        <xs:annotation>
+          <xs:documentation>The prescription was entered in error and therefore nullified.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="stopped">
+        <xs:annotation>
+          <xs:documentation>Actions implied by the prescription have been permanently halted, before all of them occurred.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="superceded">
+        <xs:annotation>
+          <xs:documentation>The prescription was replaced by a newer one, which encompasses all the information in the previous one.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="draft">
+        <xs:annotation>
+          <xs:documentation>The prescription is not yet 'actionable', i.e. it is a work in progress, required sign-off, need to be run through decision support.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MedicationPrescriptionStatus">
+    <xs:annotation>
+      <xs:documentation>A code specifying the state of the prescribing event. Describes the lifecycle of the prescription.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="MedicationPrescriptionStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

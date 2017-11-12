@@ -1,0 +1,24 @@
+﻿{
+
+  "ConnectionStrings": {
+    "Fhirbase": "User ID={{ db_user }};Password={{ db_password }};Host={{ db_host }};Port={{ db_port }};Database={{ db_database }};"
+  },
+  "Pooling": {
+    "ReceiversCount": {{ pooling_receivers_count | default(1) }},
+    "PoolingOptions": {
+      "QueuePollInterval": "{{ pooling_options_queue_pool_interval | default("00:00:05") }}",
+      "InvisibilityTimeout": "{{ pooling_options_invisibility_timeout | default("00:01:00") }}",
+      "SchemaName": "{{ pooling_options_schema_name }}",
+      "TableName": "{{ pooling_options_table_name }}"
+    }
+  },
+  "Rabbit": {
+    "ExchangeName": {{ rabbit_exchange_name }},
+    "RoutingKeyPrefix": "{{ rabbit_routing_key_preffix }}",
+    "Username": "{{ rabbit_username }}",
+    "Password": "{{ rabbit_password }}",
+    "VirtualHost": "{{ rabbit_virtual_host }}",
+    "Port": {{ rabbit_port }},
+    "HostName": "{{ rabbit_host_name }}"
+  }
+}

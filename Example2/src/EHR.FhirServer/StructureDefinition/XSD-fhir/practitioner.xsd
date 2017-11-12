@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Practitioner" type="Practitioner">
+    <xs:annotation>
+      <xs:documentation>Лицо, прямо или косвенно участвующее в предоставлении услуг здравоохранения.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Practitioner">
+    <xs:annotation>
+      <xs:documentation>Лицо, прямо или косвенно участвующее в предоставлении услуг здравоохранения.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, применяемый к данному лицу в данной роли.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="HumanName">
+            <xs:annotation>
+              <xs:documentation>Имя, ассоциированное с этим человеком.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактная информация этого practitioner, например телефонный номер или адрес электронной почты.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="address" minOccurs="0" maxOccurs="unbounded" type="Address">
+            <xs:annotation>
+              <xs:documentation>Почтовый адрес, по которому можно найти practitioner, или посетить, или отправить почту.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="gender" minOccurs="0" maxOccurs="1" type="AdministrativeGender">
+            <xs:annotation>
+              <xs:documentation>Административный пол - пол, который, считается, имеет этот человек для административных целей и ведения учета.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="birthDate" minOccurs="0" maxOccurs="1" type="date">
+            <xs:annotation>
+              <xs:documentation>Дата рождения practitioner.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="photo" minOccurs="0" maxOccurs="unbounded" type="Attachment">
+            <xs:annotation>
+              <xs:documentation>Изображение человека.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="practitionerRole" type="Practitioner.PractitionerRole" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>The list of Roles/Organizations that the Practitioner is associated with.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="qualification" type="Practitioner.Qualification" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Квалификация, полученная в результате обучения и сертификации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="communication" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Язык, который practitioner может использовать для общения с пациентом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Practitioner.PractitionerRole">
+    <xs:annotation>
+      <xs:documentation>Лицо, прямо или косвенно участвующее в предоставлении услуг здравоохранения.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="managingOrganization" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>The Organization where the Practitioner performs the roles associated.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="role" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Роли, которые уполномочен выполнять этот practitioner для организации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="specialty" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Конкретная специальность practitioner.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Период, в течение которого лицо уполномочено действовать в качестве специалиста в этой роли(-ях) в этой организации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="location" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Место(-а), в котором этот practitioner предоставляет услуги.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="healthcareService" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Перечень услуг здравоохранения, оказываемых этим работником для Организации/Местоположения(-ий) данной роли.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Practitioner.Qualification">
+    <xs:annotation>
+      <xs:documentation>Лицо, прямо или косвенно участвующее в предоставлении услуг здравоохранения.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, который применяется к квалификации этого лица в данной роли.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное представление квалификации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Период, в течение которого квалификация действительна.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="issuer" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Организация, которая регламентирует и выдает квалификацию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

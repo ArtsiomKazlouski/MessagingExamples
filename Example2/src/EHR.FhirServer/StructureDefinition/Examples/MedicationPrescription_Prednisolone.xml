@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MedicationPrescription xmlns="http://hl7.org/fhir">
+  <!--<narrative xmlns="http://hl7.org/fhir">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Rp: Раствор Преднизолон 30 мг/мл  1  мл ампулы №10 
+        D.t.d: № 10
+        S: вводить внутримышечно 1 раз в день
+      </p>
+    </div>
+  </narrative>-->
+
+  <!--встроенный ресурс Practitioner-->
+  <!--определяет данные врача, выписавшего рецепт-->
+  <contained>
+    <Practitioner>
+      <id value="internalPractitioner1"></id>
+      <!--идентификатор врача в МИС-->
+      <identifier>
+        <system value="e-meditella"></system>
+        <value value="3425"></value>
+      </identifier>
+
+      <name>
+        <use value="official"></use>
+        <family value="Хирургов"></family>
+        <family value="Федор"></family>
+        <family value="Ибрагимович"></family>
+      </name>
+    </Practitioner>
+  </contained>
+
+  <!--встроенный ресурс Medication-->
+  <!--определяет упаковку-->
+  <contained>
+    <Medication xmlns="http://hl7.org/fhir">
+      <id value="internalMedication1"></id>
+      <code>
+        <coding>
+          <system value="http://www.pharma.by/Справочник.Номенклатура"></system>
+          <code value="1187"></code>
+          <display value="Преднизолон"></display>
+        </coding>
+      </code>
+      <isBrand value="true"></isBrand>
+      <kind value="package"></kind>
+      <package>
+        <container>
+          <coding>
+            <system value="http://www.pharma.by/Справочник.ЕдиницыИзмерения"></system>
+            <code value="0012"></code>
+            <display value="ампулы"></display>
+          </coding>
+        </container>
+        <content>
+          <item>
+            <reference id="internalMedication2" />
+          </item>
+          <amount>
+            <value value="1"></value>
+            <system value="http://www.pharma.by/Справочник.ЕдиницыИзмерения"></system>
+            <code value="0036"></code>
+          </amount>
+        </content>
+      </package>
+    </Medication>
+  </contained>
+  <!--встроенный ресурс Medication-->
+  <!--определяет лекарственное средство в упаковке-->
+  <contained>
+    <Medication xmlns="http://hl7.org/fhir">
+      <id value="internalMedication2"></id>
+      <code>
+        <coding>
+          <system value="http://www.pharma.by/Справочник.Номенклатура"></system>
+          <code value="1187"></code>
+          <display value="Преднизолон"></display>
+        </coding>
+      </code>
+      <isBrand value="true"></isBrand>
+      <kind value="product"></kind>
+      <product>
+        <form>
+          <coding>
+            <system value="http://www.pharma.by/Справочник.ЛекарственнаяФорма"></system>
+            <code value="0073"></code>
+            <display value="р-р для инъекций"></display>
+          </coding>
+        </form>
+        <ingredient>
+          <item>
+          </item>
+          <amount>
+            <numerator>
+              <value value="30"></value>
+              <units value="0094"></units>
+              <system value="http://www.pharma.by/Справочник.ЕдиницыИзмерения"></system>
+            </numerator>
+            <denominator>
+              <value value="1"></value>
+            </denominator>
+          </amount>
+        </ingredient>
+      </product>
+    </Medication>
+  </contained>
+
+  <!--<id value="medicationPrescriptionExample6"></id>-->
+  <dateWritten value="2015-06-16" />
+  <status value="active"></status>
+
+  <patient>
+    <reference value="externalPatient1" />
+  </patient>
+
+  <prescriber>
+    <reference value="internalPractitioner1" />
+  </prescriber>
+
+  <!--лекарственное средство к отпуску-->
+  <medication>
+    <reference id="internalMedication1" />
+  </medication>
+
+  <dosageInstruction>
+    <text value="Вводить внутримышечно 1 раз в день"></text>
+  </dosageInstruction>
+
+  <dispense>
+    <!--срок действия рецепта-->
+    <validityPeriod>
+      <start value="2015-06-16"></start>
+      <end value="2015-08-16"></end>
+    </validityPeriod>
+    <!--количество выдач-->
+    <numberOfRepeatsAllowed value="1"></numberOfRepeatsAllowed>
+    <!--количество преперата к выдаче-->
+    <quantity>
+      <value value="10"></value>
+    </quantity>
+  </dispense>
+
+</MedicationPrescription>

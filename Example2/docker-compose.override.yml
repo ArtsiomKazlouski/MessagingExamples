@@ -1,0 +1,76 @@
+version: '2'
+
+services:
+  ehr.fhirserver:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:80"      
+    labels:
+      - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+      
+  
+      
+  ehr.serverevent.publisher:
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+  
+
+  ehr.serverevent.migrator:
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+  ehr.rabbitmq:    
+    ports:
+      - "5672:5672"   
+      - "15672:15672"
+    labels:
+      - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+        
+  ehr.cds.subscriber:
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+  ehr.audit.subscriber:
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+      
+  ehr.audit.elasticsearch: 
+     ports:
+      - "9200:9200"
+      - "9300:9300"
+     labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+   
+  ehr.audit.kibana:
+     ports:
+        - "5601:5601" 
+     labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+          
+
+  ehr.fhirbase:
+    ports:
+        - "2345:5432"
+    labels:
+      - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+      
+  ehr.fhirbase.migrator:
+      labels:
+        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+
+  ehr.cds.db:      
+    ports:
+      - "2347:5432"
+    labels:
+      - "com.microsoft.visualstudio.targetoperatingsystem=linux"
+
+  ehr.cds.host:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8181:80"      
+    labels:
+      - "com.microsoft.visualstudio.targetoperatingsystem=linux"     

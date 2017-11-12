@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Condition" type="Condition">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Condition">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Сюда записываются идентификаторы, ассоциированные с этим состоянием и установленные в бизнес-процессе и/или используемые для ссылки на него, когда прямая URL-ссылка на сам ресурс не подходит (например в CDA-документах или в письменной/печатной документации).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="patient" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Указывает пациента, с которым связана эта запись состояния.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="encounter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Encounter, во время которого состояние было впервые установлено.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="asserter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, который берет на себя ответственность заявлять о наличии этого состояния в рамках электронной записи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dateAsserted" minOccurs="0" maxOccurs="1" type="date">
+            <xs:annotation>
+              <xs:documentation>Расчетная или фактическая дата первого обнаружения/подозрения данного состояния/проблемы/диагноза.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Идентификация состояния, проблемы или диагноза.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="category" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Категория, присвоенная этому состоянию. Например жалоба | симптом | данные исследования | диагноз.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="clinicalStatus" minOccurs="1" maxOccurs="1" type="ConditionClinicalStatus">
+            <xs:annotation>
+              <xs:documentation>The clinical status of the condition.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="severity" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Субъективная оценка тяжести состояния, оцененная клиницистом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Предполагаемая или фактическая дата или дата/время начала состояния по мнению клинициста.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="onsetDateTime" type="dateTime"/>
+            <xs:element name="onsetAge" type="Age"/>
+            <xs:element name="onsetPeriod" type="Period"/>
+            <xs:element name="onsetRange" type="Range"/>
+            <xs:element name="onsetString" type="string"/>
+          </xs:choice>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Дата или предполагаемая дата разрешения состояния или перехода в ремиссию. Это названо &quot;abatement&quot; (уменьшение боли или выраженности симптома, ослабление боли или выраженности симптома, смягчение боли или выраженности симптома) из-за перегруженности терминов &quot;remission&quot; или &quot;resolution&quot; - состояния никогда по-настоящему не проходят, но могут быть улучшения.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="abatementDate" type="date"/>
+            <xs:element name="abatementAge" type="Age"/>
+            <xs:element name="abatementBoolean" type="boolean"/>
+            <xs:element name="abatementPeriod" type="Period"/>
+            <xs:element name="abatementRange" type="Range"/>
+            <xs:element name="abatementString" type="string"/>
+          </xs:choice>
+          <xs:element name="stage" type="Condition.Stage" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Клиническая стадия или степень состояния. Может включать формальные оценки тяжести.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="evidence" type="Condition.Evidence" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подтверждающие данные / проявления (болезни), на основании которых подозревается или подтверждается данное состояние.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="location" type="Condition.Location" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Анатомическое местоположение, в котором данное состояние проявляет себя.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dueTo" type="Condition.DueTo" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Содействующие (способствующие) состояния, проблемы, диагнозы, процедуры или события или вещество, которые стали причиной/вызвали это состояние.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="occurredFollowing" type="Condition.OccurredFollowing" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Содействующие (способствующие) состояния, проблемы, диагнозы, процедуры или события или вещество, которые предшествовали этому состоянию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="notes" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация о состоянии. Это общая запись текстовых заметок/комментариев к описанию состояния, его диагноз и прогноз.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Condition.Stage">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="summary" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Простое заключение о стадии, например &quot;Stage 3&quot;. Установление стадии зависит от болезни.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="assessment" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Ссылка на официальную запись основания, на котором основывается оценка стадии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Condition.Evidence">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Проявление или симптом, который привел к записи об этом состоянии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="detail" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Ссылки на другую существенную информацию, в том числе патологические отчеты.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Condition.Location">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Код структурного положения.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="siteCodeableConcept" type="CodeableConcept"/>
+            <xs:element name="siteReference" type="Reference"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Condition.DueTo">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, идентифицирующий цель этой взаимосвязи. Код заменяет подробный целевой экземпляр.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="target" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Цель взаимосвязи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Condition.OccurredFollowing">
+    <xs:annotation>
+      <xs:documentation>Используйте для записи подробной информации о состояниях, проблемах или диагнозах, установленных клиницистом. Есть множество применений, включая: запись диагноза во время Encounter; заполнение списка проблем или сводного отчета, например выписного эпикриза.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, идентифицирующий цель этой взаимосвязи. Код заменяет подробный целевой экземпляр.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="target" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Цель взаимосвязи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ConditionClinicalStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="provisional">
+        <xs:annotation>
+          <xs:documentation>This is a tentative diagnosis - still a candidate that is under consideration.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="working">
+        <xs:annotation>
+          <xs:documentation>The patient is being treated on the basis that this is the condition, but it is still not confirmed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="confirmed">
+        <xs:annotation>
+          <xs:documentation>There is sufficient diagnostic and/or clinical evidence to treat this as a confirmed condition.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="refuted">
+        <xs:annotation>
+          <xs:documentation>This condition has been ruled out by diagnostic and clinical evidence.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="entered-in-error">
+        <xs:annotation>
+          <xs:documentation>The statement was entered in error and Is not valid.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="unknown">
+        <xs:annotation>
+          <xs:documentation>The condition status is unknown.  Note that &quot;unknown&quot; is a value of last resort and every attempt should be made to provide a meaningful value other than &quot;unknown&quot;.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ConditionClinicalStatus">
+    <xs:annotation>
+      <xs:documentation>The clinical status of the Condition or diagnosis</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="ConditionClinicalStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

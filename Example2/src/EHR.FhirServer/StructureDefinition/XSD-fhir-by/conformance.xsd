@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Conformance" type="Conformance">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Conformance">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="url" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный uri, используемый для идентификации этого заявления о соответствии в спецификации, модели, проекте или примере (должен быть глобально уникальным URI, также может быть urn:uuid: или urn:oid:).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Идентификатор для указания на конкретную версию заявления о соответствии в спецификации, модели, проекте или примере. Это произвольное значение, контролируемое автором профиля вручную, и оно должно быть штампом времени.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое имя на естественном языке, идентифицирующее это заявление о соответствии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="publisher" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя физического лица или организации, которая опубликовала заявление.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contact" type="Conformance.Contact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Контактные данные для помощи пользователю найти и вступить в контакт с издателем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое описание на естественном языке заявления о соответствии и его применения. Обычно используется, когда conformance statement описывает желаемое, а не фактическое решение, например в качестве формального выражения требований в рамках RFP.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="requirements" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Поясняет, зачем это заявление о соответствии нужно и почему оно было ограничено таким образом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="copyright" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Информация об авторских правах относительно этого набора значений и/или его содержимого. Обычно это юридические ограничения по использованию и публикации набора значений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="0" maxOccurs="1" type="ConformanceResourceStatus">
+            <xs:annotation>
+              <xs:documentation>Статус этого заявления о соответствии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="experimental" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг для указания, что это заявление о соответствии создано для тестирования (обучения/оценки/маркетинга), и не предназначено для реального использования.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="1" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата (и, необязательно, время), когда заявление о соответствии было опубликовано.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="software" type="Conformance.Software" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Программное обеспечение, которое подпадает под условия данного заявления о соответствии. Используется, когда conformance statement описывает возможности конкретной версии программного обеспечения, независимо от инсталляции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="implementation" type="Conformance.Implementation" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Идентифицирует конкретный экземпляр реализации, который описан в заявлении о соответствии - т. е. конкретная инсталляция, а не возможности программы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="fhirVersion" minOccurs="1" maxOccurs="1" type="id">
+            <xs:annotation>
+              <xs:documentation>Версия спецификации FHIR, на которой основывается это заявление о соответствии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="acceptUnknown" minOccurs="1" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг о том, принимает ли приложение неизвестные элементы в рамках ресурса.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="format" minOccurs="1" maxOccurs="unbounded" type="code">
+            <xs:annotation>
+              <xs:documentation>Список форматов, поддерживаемых этой реализацией с помощью их типов контента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="profile" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Список профилей, поддерживаемых системой. Для сервера слова &quot;supported by the system&quot; означают, что система размещает/производит набор ресурсов, соответствующих определенному профилю, и позволяет своим клиентам выполнять поиск, используя этот профиль и находить соответствующие данные. Для клиента это означает, что система будет искать по этому профилю и обрабатываться данные в соответствии с руководством, подразумеваемым в этом профиле.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="rest" type="Conformance.Rest" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Определение restful-возможностей этого решения, если имеются.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="messaging" type="Conformance.Messaging" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание возможностей решения, связанных с обменом сообщениями.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="document" type="Conformance.Document" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Определение документа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Contact">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя контактного лица для связи насчет этого заявления.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактная информация физического лица (если было указано имя) или издателя.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Software">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя ПО.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Идентификатор версии ПО, на которую распространяется это заявление.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="releaseDate" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата выпуска этой версии ПО.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Implementation">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="description" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Информация об этой конкретной инсталляции, к которой относится это заявление о соответствии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="url" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный базовый URL этой реализации. Он образует базу для REST-интерфейсов, а также почтового ящика (mailbox) и документных интерфейсов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Rest">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="mode" minOccurs="1" maxOccurs="1" type="RestfulConformanceMode">
+            <xs:annotation>
+              <xs:documentation>Указывает, что описывает эта часть заявления: возможность инициирования или получения restful-операций.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Информация о restful-возможностях системы, которые применяются во всех приложениях, например безопасность.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="security" type="Conformance.Security" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Информация о безопасности реализации с точки зрения интерфейса - что необходимо знать клиенту.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="resource" type="Conformance.Resource" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Спецификация restful-возможностей этого решения для конкретного типа ресурса.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="interaction" type="Conformance.Interaction1" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Спецификация restful-операций, поддерживаемых системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="operation" type="Conformance.Operation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Определение операции или именованного запроса с параметрами, их значением и типом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentMailbox" minOccurs="0" maxOccurs="unbounded" type="uri">
+            <xs:annotation>
+              <xs:documentation>Список абсолютных URI, идентифицирующих профили, которые реализует сервер для приема документов в почтовом ящике. Если список пустой, значит документы не принимаются. Идентификатор профиля базовой спецификации &quot;http://hl7.org/fhir/documents/mailbox&quot;. Другие спецификации могут объявлять для этой цели свои собственные идентификаторы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="compartment" minOccurs="0" maxOccurs="unbounded" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI, являющийся ссылкой на определение логического модуля, который хостится системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Security">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="cors" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Сервер добавляет CORS-заголовки, когда отвечает на запросы - это позволяет javascript-приложениям использовать этот сервер.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="service" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Типы сервисов безопасности, поддерживаемые/требуемые системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Общее описание того, как работает обеспечение безопасности.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="certificate" type="Conformance.Certificate" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Сертификаты, связанные с профилями безопасности.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Certificate">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>MIME-тип сертификата.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="blob" minOccurs="0" maxOccurs="1" type="base64Binary">
+            <xs:annotation>
+              <xs:documentation>Непосредственно сам сертификат.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Resource">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Тип ресурса, подвергаемого действию через этот restful-интерфейс.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="profile" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Спецификация профиля, которая описывает поддержку решения для ресурса, включая все ограничения по кардинальным числам, привязкам, длине и другим ограничениям.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="interaction" type="Conformance.Interaction" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Идентифицирует restful-операцию, поддерживаемую решением.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="versioning" minOccurs="0" maxOccurs="1" type="ResourceVersionPolicy">
+            <xs:annotation>
+              <xs:documentation>Это поле устанавливается в значение true для обозначения, что система не поддерживает (сервер) или не использует (клиент) версионирование для этого типа ресурса. Если не установлено в true, сервер должен как минимум корректно отслеживать и заполнять метасвойство versionId в ресурсах.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="readHistory" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг того, может ли сервер возвращать прошлые версии в рамках операции vRead.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="updateCreate" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг для указания, позволяет ли сервер клиенту создавать новые сущности на сервере. Если операция обновления update используется (клиентом) или разрешена (сервером) в новое место, где ресурс еще не существует. Это значит, что сервер позволяет клиенту создавать новые сущности на сервере.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="conditionalCreate" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг, обозначающий, что сервер поддерживает условное создание.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="conditionalUpdate" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг, обозначающий, что сервер поддерживает условное обновления.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="conditionalDelete" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг, обозначающий, что сервер поддерживает условное удаление.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="searchInclude" minOccurs="0" maxOccurs="unbounded" type="string">
+            <xs:annotation>
+              <xs:documentation>Список значений _include, поддерживаемых сервером.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="searchParam" type="Conformance.SearchParam" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Параметры поиска для поддержки и/или использования реализациями - либо ссылки на те, что определены стандартом, либо дополнительные, определенные реализацией.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Interaction">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="TypeRestfulInteraction">
+            <xs:annotation>
+              <xs:documentation>Кодированный идентификатор операции, поддерживаемой системным ресурсом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Руководство, специфичное для реализации этой операции, например 'delete - это логическое удаление' или 'обновления разрешены только с version id' или 'creates разрешены только с сертификатами предварительной авторизации'.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.SearchParam">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя параметра поиска, используемого в интерфейсе.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="definition" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI, являющийся формальной ссылкой на место, где этот параметр был впервые определен, чтобы клиент мог быть уверен в значении этого параметра поиска (ссылка на [[[SearchParameter.url]]]).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="SearchParamType">
+            <xs:annotation>
+              <xs:documentation>Тип значения, на которое ссылается параметр поиска, и как интерпретировать его содержимое.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Позволяет документировать различное поведение и использование параметра поиска. Например алгоритмы поиска текстовых совпадений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="target" minOccurs="0" maxOccurs="unbounded" type="code">
+            <xs:annotation>
+              <xs:documentation>Типы ресурса (если это ссылка на ресурс).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="chain" minOccurs="0" maxOccurs="unbounded" type="string">
+            <xs:annotation>
+              <xs:documentation>Поддерживаются цепочечные имена.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Interaction1">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="SystemRestfulInteraction">
+            <xs:annotation>
+              <xs:documentation>Кодированный идентификатор операции, поддерживаемой системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Руководство, специфичное для реализации этой операции, например ограничение разрешенных видов транзакции или информация об осуществлении системного поиска.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Operation">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя запроса, используемое в параметре _query при вызове этого запроса.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="definition" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Где можно найти формальное определение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Messaging">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="endpoint" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Адрес, по которому отправлять сообщения и/или ответы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reliableCache" minOccurs="0" maxOccurs="1" type="unsignedInt">
+            <xs:annotation>
+              <xs:documentation>Продолжительность кеширования получателя при безотказном обмене сообщениями (если это получатель) или каким должно быть время кеширования у получателя (если это отправитель).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Документация возможностей системы касательно обмена сообщениями для этой точки взаимодействия, не задокументированной иным способом в заявлении о соответствии. Например описание процесса, как стать авторизованным партнером обмена сообщениями.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="event" type="Conformance.Event" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание поддержки решением события в этой точке взаимодействия.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Event">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="1" maxOccurs="1" type="Coding">
+            <xs:annotation>
+              <xs:documentation>Кодированный идентификатор поддерживаемого события обмена сообщениями.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="category" minOccurs="0" maxOccurs="1" type="MessageSignificanceCategory">
+            <xs:annotation>
+              <xs:documentation>Влияние содержимого сообщения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="mode" minOccurs="1" maxOccurs="1" type="ConformanceEventMode">
+            <xs:annotation>
+              <xs:documentation>Режим декларации события - является ли приложение отправителем или получателем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="protocol" minOccurs="0" maxOccurs="unbounded" type="Coding">
+            <xs:annotation>
+              <xs:documentation>Перечень идентификаторов протоколов передачи сообщений, поддерживаемых этой точкой взаимодействия.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="focus" minOccurs="1" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Ресурс, связанный с событием. Это тот ресурс, который определяет событие.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="request" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Информация о запросе для этого события.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="response" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Информация об ответе на это событие.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Руководство по обработке этого события, например внутренние системные точки запуска, бизнес-правила и т. д.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Conformance.Document">
+    <xs:annotation>
+      <xs:documentation>Заявление о соответствии - это набор требований для желаемой реализации или описание, как целевое приложение выполняет эти требования в конкретной реализации.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="mode" minOccurs="1" maxOccurs="1" type="DocumentMode">
+            <xs:annotation>
+              <xs:documentation>Режим объявления этого документа - является ли приложение производителем или потребителем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="documentation" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Описание того, как приложение поддерживает или использует указанный профиль документа. Например какие действия предпринимаются при создании документов и т. п.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="profile" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Ограничение на ресурс, используемый в документе.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DocumentMode-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="producer">
+        <xs:annotation>
+          <xs:documentation>The application produces documents of the specified type.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="consumer">
+        <xs:annotation>
+          <xs:documentation>The application consumes documents of the specified type.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DocumentMode">
+    <xs:annotation>
+      <xs:documentation>Является ли приложение производителем или потребителем документов</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="DocumentMode-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SystemRestfulInteraction-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="transaction">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="search-system">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="history-system">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SystemRestfulInteraction">
+    <xs:annotation>
+      <xs:documentation>Операции, поддерживаемые REST на системном уровне</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="SystemRestfulInteraction-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ResourceVersionPolicy-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="no-version">
+        <xs:annotation>
+          <xs:documentation>VersionId meta-property is not suppoerted (server) or used (client).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="versioned">
+        <xs:annotation>
+          <xs:documentation>VersionId meta-property is suppoerted (server) or used (client).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="versioned-update">
+        <xs:annotation>
+          <xs:documentation>VersionId is must be correct for updates (server) or will be specified (If-match header) for updates (client).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ResourceVersionPolicy">
+    <xs:annotation>
+      <xs:documentation>Как система поддерживает версионирование ресурса</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="ResourceVersionPolicy-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="RestfulConformanceMode-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="client">
+        <xs:annotation>
+          <xs:documentation>The application acts as a client for this resource.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="server">
+        <xs:annotation>
+          <xs:documentation>The application acts as a server for this resource.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RestfulConformanceMode">
+    <xs:annotation>
+      <xs:documentation>Режим RESTful-заявления о соответствии</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="RestfulConformanceMode-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TypeRestfulInteraction-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="read">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="vread">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="update">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="delete">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="history-instance">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="validate">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="history-type">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="create">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="search-type">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="TypeRestfulInteraction">
+    <xs:annotation>
+      <xs:documentation>Операции, поддерживаемые REST на уровне типа или экземпляра</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="TypeRestfulInteraction-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ConformanceEventMode-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="sender">
+        <xs:annotation>
+          <xs:documentation>The application sends requests and receives responses.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="receiver">
+        <xs:annotation>
+          <xs:documentation>The application receives requests and sends responses.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ConformanceEventMode">
+    <xs:annotation>
+      <xs:documentation>Режим заявления о соответствии для сообщений</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="ConformanceEventMode-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="MessageSignificanceCategory-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Consequence">
+        <xs:annotation>
+          <xs:documentation>The message represents/requests a change that should not be processed more than once. E.g. Making a booking for an appointment.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Currency">
+        <xs:annotation>
+          <xs:documentation>The message represents a response to query for current information. Retrospective processing is wrong and/or wasteful.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Notification">
+        <xs:annotation>
+          <xs:documentation>The content is not necessarily intended to be current, and it can be reprocessed, though there may be version issues created by processing old notifications.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageSignificanceCategory">
+    <xs:annotation>
+      <xs:documentation>Степень влияния содержимого сообщения</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="MessageSignificanceCategory-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

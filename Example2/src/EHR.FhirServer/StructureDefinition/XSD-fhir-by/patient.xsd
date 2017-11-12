@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Patient" type="Patient">
+    <xs:annotation>
+      <xs:documentation>Демографическая и другая административная информация о человеке или животном, получающем медицинскую помощь или другие услуги, связанные со здоровьем.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Patient">
+    <xs:annotation>
+      <xs:documentation>Демографическая и другая административная информация о человеке или животном, получающем медицинскую помощь или другие услуги, связанные со здоровьем.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор этого пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="1" maxOccurs="unbounded" type="HumanName">
+            <xs:annotation>
+              <xs:documentation>Имя, ассоциируемое с индивидуумом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактные данные (например телефонный номер или адрес электронной почты), по которым с индивидуумом можно связаться.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="gender" minOccurs="1" maxOccurs="1" type="AdministrativeGender">
+            <xs:annotation>
+              <xs:documentation>Административный пол - пол, который считается полом пациента для административных целей и для ведения учета.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="birthDate" minOccurs="0" maxOccurs="1" type="date">
+            <xs:annotation>
+              <xs:documentation>Дата и время рождения индивидуума.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Указывает, умер ли индивидуум или нет.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="deceasedBoolean" type="boolean"/>
+            <xs:element name="deceasedDateTime" type="dateTime"/>
+          </xs:choice>
+          <xs:element name="address" minOccurs="0" maxOccurs="unbounded" type="Address">
+            <xs:annotation>
+              <xs:documentation>Адрес индивидуума.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="maritalStatus" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Данное поле содержит самый последний семейный (гражданский) статус пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Указывает, появился ли пациент при многоплодных родах или фактический порядок рождения.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="multipleBirthBoolean" type="boolean"/>
+            <xs:element name="multipleBirthInteger" type="integer"/>
+          </xs:choice>
+          <xs:element name="photo" minOccurs="0" maxOccurs="unbounded" type="Attachment">
+            <xs:annotation>
+              <xs:documentation>Изображение пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contact" type="Patient.Contact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Контактное лицо пациента (например опекун, партнер, друг).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="animal" type="Patient.Animal" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Данный элемент имеет значение, если пациентом является животное.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="communication" type="Patient.Communication" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation>Языки, на которых можно общаться с пациентом о его/ее здоровье.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="careProvider" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Назначенный пациенту поставщик услуг (care provider).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="managingOrganization" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Организация, занимающаяся хранением записи пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="link" type="Patient.Link" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Ссылка на другой ресурс patient, который имеет отношение к этому же реальному пациенту.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="active" minOccurs="1" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Находится ли данная запись пациента в активном использовании.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Patient.Contact">
+    <xs:annotation>
+      <xs:documentation>Демографическая и другая административная информация о человеке или животном, получающем медицинскую помощь или другие услуги, связанные со здоровьем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="relationship" minOccurs="1" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Характер отношений между пациентом и контактным лицом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="HumanName">
+            <xs:annotation>
+              <xs:documentation>Имя, ассоциируемое с этим контактным лицом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактные данные для этого человека, например номер телефона или адрес электронной почты.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="address" minOccurs="0" maxOccurs="1" type="Address">
+            <xs:annotation>
+              <xs:documentation>Адрес контактного лица.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="gender" minOccurs="0" maxOccurs="1" type="AdministrativeGender">
+            <xs:annotation>
+              <xs:documentation>Административный пол - пол, который считается полом контактного лица для административных целей и для ведения учета.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="organization" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Организация, от имени которой действует контактное лицо, или на которую оно работает.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Период времени, в течение которого с этим контактным лицом или организацией можно связываться по поводу данного пациента.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Patient.Animal">
+    <xs:annotation>
+      <xs:documentation>Демографическая и другая административная информация о человеке или животном, получающем медицинскую помощь или другие услуги, связанные со здоровьем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="species" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Определяет вид животного на высоком уровне таксономической классификации.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="breed" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Определяет более подробную классификацию вида животного.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="genderStatus" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Указывает текущее состояние репродуктивных органов животного.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Patient.Communication">
+    <xs:annotation>
+      <xs:documentation>Демографическая и другая административная информация о человеке или животном, получающем медицинскую помощь или другие услуги, связанные со здоровьем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="language" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>ISO-639-1 alpha 2 код языка в нижнем регистре, с необязательным указанием за ним через дефис ISO-3166-1 alpha 2 кода региона в верхнем регистре. Например &quot;en&quot; для английского, или &quot;en-US&quot; для американского английского в отличие от &quot;en-EN&quot; для британского английского.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="preferred" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Показывает, является ли этот язык предпочтительным для пациента (относительно других языков, которыми он владеет на некотором уровне).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Patient.Link">
+    <xs:annotation>
+      <xs:documentation>Демографическая и другая административная информация о человеке или животном, получающем медицинскую помощь или другие услуги, связанные со здоровьем.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="other" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Другой ресурс patient, на который указывает ссылка.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="LinkType">
+            <xs:annotation>
+              <xs:documentation>Тип связи между данным ресурсом patient и другим ресурсом patient.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="LinkType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="replace">
+        <xs:annotation>
+          <xs:documentation>The patient resource containing this link must no longer be used. The link points forward to another patient resource that must be used in lieu of the patient resource that contains the link.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="refer">
+        <xs:annotation>
+          <xs:documentation>The patient resource containing this link is in use and valid but not considered the main source of information about a patient. The link points forward to another patient resource that should be consulted to retrieve additional patient information.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="seealso">
+        <xs:annotation>
+          <xs:documentation>The patient resource containing this link is in use and valid, but points to another patient resource that is known to contain data about the same person. Data in this resource might overlap or contradict information found in the other patient resource. This link does not indicate any relative importance of the resources concerned, and both should be regarded as equally valid.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LinkType">
+    <xs:annotation>
+      <xs:documentation>Тип связи между этим ресурсом patient и другим ресурсом patient.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="LinkType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

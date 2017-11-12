@@ -1,0 +1,12 @@
+{% extends "fhirServer_appsettings.base.json.j2" %}
+{% block toggles %}
+  "Endpoints": {
+    "Authority": "{{ fhirServer_authority_endpoint }}"
+  },
+ 
+  "Toggles": {
+    "Authentication": true,
+    "ServerEvent": true,
+	"Nginx":  true 
+  }
+{% endblock %}

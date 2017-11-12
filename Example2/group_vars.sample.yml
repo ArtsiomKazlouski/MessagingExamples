@@ -1,0 +1,100 @@
+########## fhirServer ##########
+fhirServer_db_server: TBD
+fhirServer_db_port: TBD
+fhirServer_db_database: TBD
+fhirServer_db_user: TBD
+fhirServer_db_password: TBD
+fhirServer_authority_endpoint: TBD
+fhirServer_api_name: TBD
+fhirServer_api_scopes:
+  - TBD1
+  - TBD2
+  - TBD3
+  - TBD4
+  - TBD5
+
+########## authenticationServer ##########
+authenticationServer_db_host: TBD
+authenticationServer_db_port: TBD
+authenticationServer_db_database: TBD
+authenticationServer_db_user: TBD
+authenticationServer_db_password: TBD
+authenticationServer_otp_email_address_from_name: TBD
+authenticationServer_otp_email_address_from_address: TBD@TBD.by
+authenticationServer_otp_smtp_host: TBD
+authenticationServer_otp_smtp_port: TBD
+authenticationServer_otp_smtp_username: TBD
+authenticationServer_otp_smtp_password: TBD
+# Optional. Uncomment to define other than defaul value. Default: Код авторизации
+# authenticationServer_otp_email_subject: TBD
+
+########## authenticationManager ##########
+authenticationManager_db_host: TBD
+authenticationManager_db_port: TBD
+authenticationManager_db_database: TBD
+authenticationManager_db_user: TBD
+authenticationManager_db_password: TBD
+authenticationManager_authentication_authority: TBD
+authenticationManager_authentication_redirect_url: TBD
+authenticationManager_authentication_post_logout_redirect_uris: TBD
+
+########## authenticationServer ##########
+cds_db_serverdb_server: TBD
+cds_db_serverdb_port: TBD
+cds_db_serverdb_database: TBD
+cds_db_serverdb_user: TBD
+cds_db_serverdb_password: TBD
+
+########## sickLeafViewer ##########
+sickLeafViewer_db_server: TBD
+sickLeafViewer_db_port: TBD
+sickLeafViewer_db_database: TBD
+sickLeafViewer_db_user: TBD
+sickLeafViewer_db_password: TBD
+sickLeafViewer_fhir_webapi_base_url: TBD
+sickLeafViewer_authentication_authority: TBD
+# Optional. Uncomment to define other than defaul value. Default: false
+# sickLeafViewer_use_local_account: TBD
+# sickLeafViewer_local_account_username: TBD
+# sickLeafViewer_local_account_password: TBD
+
+########## serverEventPublisher ##########
+serverEventPublisher_db_host: TBD
+serverEventPublisher_db_port: TBD
+serverEventPublisher_db_database: TBD
+serverEventPublisher_db_user: TBD
+serverEventPublisher_db_password: TBD
+# Optional. Uncomment to define other than defaul value. Default: 1
+#serverEventPublisher_pooling_receivers_count: TBD
+# Optional. Uncomment to define other than defaul value. Default: 00:00:05
+#serverEventPublisher_pooling_options_queue_pool_interval: TBD
+# Optional. Uncomment to define other than defaul value. Default: 00:01:00
+#serverEventPublisher_pooling_options_invisibility_timeout: TBD
+serverEventPublisher_pooling_options_schema_name: TBD
+serverEventPublisher_pooling_options_table_name: TBD
+serverEventPublisher_rabbit_exchange_name: TBD
+serverEventPublisher_rabbit_routing_key_preffix: TBD
+serverEventPublisher_rabbit_username: TBD
+serverEventPublisher_rabbit_password: TBD
+serverEventPublisher_rabbit_virtual_host: TBD
+serverEventPublisher_rabbit_port: TBD
+serverEventPublisher_rabbit_host_name: TBD
+
+########## serverEventSubscriber ##########
+serverEventSubscriber_db_host: TBD
+serverEventSubscriber_db_port: TBD
+serverEventSubscriber_db_database: TBD
+serverEventSubscriber_db_user: TBD
+serverEventSubscriber_db_password: TBD
+serverEventSubscriber_write_to: TBD
+serverEventSubscriber_transform_to: TBD
+serverEventSubscriber_rabbit_queue: TBD
+serverEventSubscriber_rabbit_username: TBD
+serverEventSubscriber_rabbit_password: TBD
+serverEventSubscriber_rabbit_virtual_host: TBD
+serverEventSubscriber_rabbit_port: TBD
+serverEventSubscriber_rabbit_host_name: TBD
+# Optional. Uncomment to define other than defaul value. Default: 00:00:01.000
+#serverEventSubscriber_rabbit_requeue_on_error_after: TBD
+serverEventSubscriber_elastic_address: TBD
+serverEventSubscriber_elastic_idx_name: TBD

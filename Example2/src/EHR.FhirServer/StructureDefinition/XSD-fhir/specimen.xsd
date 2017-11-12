@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Specimen" type="Specimen">
+    <xs:annotation>
+      <xs:documentation>Образец для анализа.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Specimen">
+    <xs:annotation>
+      <xs:documentation>Образец для анализа.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Вид материала, из которого взят образец.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="parent" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Reference to the parent (source) specimen which is used when the specimen was either derived from or a component of a another specimen.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subject" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Откуда пришел образец. Он может быть от пациента(-ов), из окружающей среды или устройства.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="accessionIdentifier" minOccurs="0" maxOccurs="1" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, назначенный лабораторией при поступлении образца(-ов). Не обязательно совпадает с идентификатором образца, это зависит от местного порядка осуществления лабораторных действий.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="receivedTime" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Время, когда образец был получен для обработки или исследования.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="collection" type="Specimen.Collection" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Подробности, касающиеся сбора образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="treatment" type="Specimen.Treatment" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подробности, касающиеся лечения и этапов обработки образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="container" type="Specimen.Container" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Контейнер, содержащий образец. Рекурсивный характер контейнеров, т. е. кровь в пробирке в лотке в стеллаже, здесь не рассматривается.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Specimen.Collection">
+    <xs:annotation>
+      <xs:documentation>Образец для анализа.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="collector" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, который осуществил сбор образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="comment" minOccurs="0" maxOccurs="unbounded" type="string">
+            <xs:annotation>
+              <xs:documentation>Для сообщения каких-либо подробностей или проблем, возникших в ходе процедуры взятия образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Время, когда образец был взят у субъекта - физиологически значимое время.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="collectedDateTime" type="dateTime"/>
+            <xs:element name="collectedPeriod" type="Period"/>
+          </xs:choice>
+          <xs:element name="quantity" minOccurs="0" maxOccurs="1" type="Quantity">
+            <xs:annotation>
+              <xs:documentation>Количество собранного образца; например объем пробы крови или физическое измерение образца анатомической патологии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="method" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное значение метода, использованного для выполнения данной процедуры.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Анатомическое место, из которого была взята проба (если субъектом является пациент). Это целевое место. Этот элемент не используется для образцов окружающей среды.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="bodySiteCodeableConcept" type="CodeableConcept"/>
+            <xs:element name="bodySiteReference" type="Reference"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Specimen.Treatment">
+    <xs:annotation>
+      <xs:documentation>Образец для анализа.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текстовое описание процедуры.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="procedure" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное значение, обозначающее процедуру, использованную для обработки образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="additive" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Материал, использованный на этом этапе обработки.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Specimen.Container">
+    <xs:annotation>
+      <xs:documentation>Образец для анализа.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификатор контейнера. Их может быть несколько: штрих-код производителя, идентификатор, назначенный лабораторией и т. д. В некоторых случаях идентификатор контейнера может отличаться от идентификатора образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Текстовое описание контейнера.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Тип контейнера, связанный с образцом (например стекло, аликвотная проба, и т. д.).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="capacity" minOccurs="0" maxOccurs="1" type="Quantity">
+            <xs:annotation>
+              <xs:documentation>Емкость (объем или другая мера) контейнера.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="specimenQuantity" minOccurs="0" maxOccurs="1" type="Quantity">
+            <xs:annotation>
+              <xs:documentation>Количество образца в контейнере; может быть объемом, размерами или другими соответствующими измерениями в зависимости от типа образца.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Введенное вещество для сохранения, поддержания или улучшения образца, примеры: формалин, цитрат, ЭДТК.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="additiveCodeableConcept" type="CodeableConcept"/>
+            <xs:element name="additiveReference" type="Reference"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RuntimeIdentifiers>centos.7-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="KindOfDisabilityStatisticalCodeReference.xml" />
+    <None Remove="StatisticalCodesReference.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="KindOfDisabilityStatisticalCodeReference.xml" />
+    <EmbeddedResource Include="StatisticalCodesReference.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Xml.XmlSerializer">
+      <HintPath>C:\Users\Artuom\.nuget\packages\system.xml.xmlserializer\4.3.0\ref\netstandard1.3\System.Xml.XmlSerializer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

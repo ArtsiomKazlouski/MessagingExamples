@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="Substance" />
+  <meta>
+    <lastUpdated value="2015-04-02T14:21:09.718+02:00" />
+  </meta>
+  <url value="http://hl7.org/fhir/StructureDefinition/Substance" />
+  <name value="Substance" />
+  <publisher value="UIIP" />
+  <description value="Base StructureDefinition for Substance Resource" />
+  <status value="draft" />
+  <date value="2015-06-22T00:00:00+03:00" />
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM" />
+  </mapping>
+  <type value="constraint" />
+  <abstract value="false" />
+  <base value="http://hl7.org/fhir/StructureDefinition/Substance" />
+</StructureDefinition>

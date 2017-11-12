@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Composition" type="Composition">
+    <xs:annotation>
+      <xs:documentation>Набор данных, связанных со здравоохранением, собранный вместе в единый логический документ, который предоставляет единую согласованную ведомость о смысловом значении, устанавливает собственный контекст и имеет клиническое заверение относительно того, кто создал эту ведомость.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Composition">
+    <xs:annotation>
+      <xs:documentation>Набор данных, связанных со здравоохранением, собранный вместе в единый логический документ, который предоставляет единую согласованную ведомость о смысловом значении, устанавливает собственный контекст и имеет клиническое заверение относительно того, кто создал эту ведомость.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="1" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Логический идентификатор композиции, присвоенный при создании. Этот идентификатор остается неизменным, в то время как композиция меняется со временем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="1" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Время редактирования композиции, когда композиция последний раз логически изменялась автором.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Указывает конкретный вид композиции (например History and Physical, Discharge Summary, Progress Note). Как правило, приравнивается к назначению создания композиции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="class" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Классификация типа композиции. Может подразумеваться или вытекать из кода, указанного в типе композиции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="title" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Официальное человекочитаемое обозначение композиции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="CompositionStatus">
+            <xs:annotation>
+              <xs:documentation>Статус рабочего процесса/клинический этой композиции. Статус является отметкой клинической позиции документа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="confidentiality" minOccurs="0" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Код, указывающий уровень конфиденциальности композиции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subject" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>О ком или о чем эта композиция. Композиция может быть о человеке (пациенте или медицинском работнике), об устройстве (например машине) или даже о группе субъектов (например документ о стаде сельскохозяйственных животных, или документ о ряде пациентов, подвергшихся одинаковому влиянию).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="author" minOccurs="1" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Определяет, кто ответственен за информацию в композиции. (Не обязательно тот, кто ее напечатал.).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="attester" type="Composition.Attester" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Участник, засвидетельствовавший правильность композиции/документа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="custodian" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Определяет организацию или группу, которая несет ответственность за текущее обслуживание и доступ к информации композиции/документа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="event" type="Composition.Event" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Клиническая услуга, например колоноскопия или аппендэктомия, которая документируется.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="encounter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Описывает клинический визит или тип ухода, с которым связана данная документация.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="section" type="Composition.Section" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Корневой раздел, составляющий композицию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Composition.Attester">
+    <xs:annotation>
+      <xs:documentation>Набор данных, связанных со здравоохранением, собранный вместе в единый логический документ, который предоставляет единую согласованную ведомость о смысловом значении, устанавливает собственный контекст и имеет клиническое заверение относительно того, кто создал эту ведомость.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="mode" minOccurs="1" maxOccurs="unbounded" type="CompositionAttestationMode">
+            <xs:annotation>
+              <xs:documentation>Тип заверения, который предлагает аутентификатор.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="time" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Когда композиция была заверена стороной.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="party" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Кто заверил композицию указанным образом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Composition.Event">
+    <xs:annotation>
+      <xs:documentation>Набор данных, связанных со здравоохранением, собранный вместе в единый логический документ, который предоставляет единую согласованную ведомость о смысловом значении, устанавливает собственный контекст и имеет клиническое заверение относительно того, кто создал эту ведомость.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="code" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Данный список кодов представляет собой основные клинические акты, такие как колоноскопия или аппендэктомия, которые документируются. В некоторых случаях событие берется из typeCode, например &quot;History and Physical Report&quot;, в котором документируемой процедурой обязательно будет акт &quot;History and Physical&quot;.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Период времени, покрываемый документацией. Не утверждается, что документация является полным представлением этого периода, только то, что она документирует события этого периода.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="detail" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Подробная информации о событии(-ях), на которое дает согласие композиция/документация.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Composition.Section">
+    <xs:annotation>
+      <xs:documentation>Набор данных, связанных со здравоохранением, собранный вместе в единый логический документ, который предоставляет единую согласованную ведомость о смысловом значении, устанавливает собственный контекст и имеет клиническое заверение относительно того, кто создал эту ведомость.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="title" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Название данного конкретного раздела. Это будет частью отображаемого содержимого для документа и часто используется для построения оглавления.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="code" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, определяющий вид содержимого раздела. Он не должен противоречить заголовку раздела.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="content" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Содержимое (narrative и data entries), ассоциируемое с этим разделом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="section" type="Composition.Section" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Вложенный подраздел внутри данного раздела.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

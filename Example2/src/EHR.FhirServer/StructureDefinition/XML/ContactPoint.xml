@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ContactPoint" />
+  <meta>
+    <lastUpdated value="2015-04-02T14:21:09.718+02:00" />
+  </meta>
+  <url value="http://uiip/fhir/StructureDefinition/ContactPoint-blr-electronic-prescription" />
+  <name value="ContactPoint" />
+  <publisher value="UIIP" />
+  <description value="Base StructureDefinition for ContactPoint Resource" />
+  <requirements value="Need to track phone, fax, mobile, sms numbers, email addresses, twitter tags, etc." />
+  <status value="draft" />
+  <date value="2015-06-22T00:00:00+03:00" />
+  <mapping>
+    <identity value="v2" />
+    <uri value="http://hl7.org/v2" />
+    <name value="HL7 v2" />
+  </mapping>
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM" />
+  </mapping>
+  <mapping>
+    <identity value="servd" />
+    <uri value="http://www.omg.org/spec/ServD/1.0/" />
+    <name value="ServD" />
+  </mapping>
+  <type value="constraint" />
+  <abstract value="false" />
+  <base value="http://hl7.org/fhir/StructureDefinition/ContactPoint" />
+  <snapshot>
+    <element>
+      <path value="ContactPoint" />
+      <short value="Details of a Technology mediated contact point (phone, fax, email, etc)" />
+      <definition value="Details for All kinds of technology mediated contact points for a person or organization, including telephone, email, etc." />
+      <requirements value="Need to track phone, fax, mobile, sms numbers, email addresses, twitter tags, etc." />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="Element" />
+      </type>
+      <constraint>
+        <key value="cpt-2" />
+        <name value="System is required" />
+        <severity value="error" />
+        <human value="A system is required if a value is provided." />
+        <xpath value="not(exists(f:value)) or exists(f:system)" />
+      </constraint>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="TEL" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="ContactPoint" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.system" />
+      <short value="phone | fax | email | url" />
+      <definition value="Telecommunications form for contact point - what communications system is required to make use of the contact." />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="cpt-2" />
+      <binding>
+        <name value="ContactPointSystem" />
+        <strength value="required" />
+        <description value="Telecommunications form for contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/vs/contact-point-system" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./scheme" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointType" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.value" />
+      <short value="The actual contact point details" />
+      <definition value="The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)." />
+      <comments value="Additional out of band data such as extensions, or notes about use of the contact are sometimes included in the value." />
+      <requirements value="Need to support legacy numbers that are not in a tightly controlled format." />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.1 (or XTN.12)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./url" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./Value" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.use" />
+      <short value="home | work | temp | old | mobile - purpose of this contact point" />
+      <definition value="Identifies the purpose for the contact point." />
+      <comments value="This is labeled as &quot;Is Modifier&quot; because applications should not mistake a temporary or old contact etc for a current/permanent one. Applications can assume that a contact is current unless it explicitly says that it is temporary or old." />
+      <requirements value="Need to track the way a person uses this contact, so a user can choose which is appropriate for their purpose." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="code" />
+      </type>
+      <isModifier value="true" />
+      <binding>
+        <name value="ContactPointUse" />
+        <strength value="required" />
+        <description value="Use of contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/vs/contact-point-use" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.2 - but often indicated by field" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="unique(./use)" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointPurpose" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.period" />
+      <short value="Time period when the contact point was/is in use" />
+      <definition value="Time period when the contact point was/is in use." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="Period" />
+      </type>
+      <mapping>
+        <identity value="v2" />
+        <map value="N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./useablePeriod[type=&quot;IVL&lt;TS&gt;&quot;]" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./StartDate and ./EndDate" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.period.start" />
+      <short value="Starting time with inclusive boundary" />
+      <definition value="The start of the period. The boundary is inclusive." />
+      <comments value="If the low element is missing, the meaning is that the low boundary is not known." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="per-1" />
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./low" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.period.end" />
+      <short value="End time with inclusive boundary, if not ongoing" />
+      <definition value="The end of the period. If the end of the period is missing, it means that the period is ongoing." />
+      <comments value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
+      <min value="0" />
+      <max value="1" />
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="per-1" />
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./high" />
+      </mapping>
+    </element>
+  </snapshot>
+  <differential>
+    <element>
+      <path value="ContactPoint.system" />
+      <short value="phone | fax | email | url" />
+      <definition value="Telecommunications form for contact point - what communications system is required to make use of the contact." />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="cpt-2" />
+      <binding>
+        <name value="ContactPointSystem" />
+        <strength value="required" />
+        <description value="Telecommunications form for contact point" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/vs/contact-point-system" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.3" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./scheme" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./ContactPointType" />
+      </mapping>
+    </element>
+    <element>
+      <path value="ContactPoint.value" />
+      <short value="The actual contact point details" />
+      <definition value="The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address)." />
+      <comments value="Additional out of band data such as extensions, or notes about use of the contact are sometimes included in the value." />
+      <requirements value="Need to support legacy numbers that are not in a tightly controlled format." />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="string" />
+      </type>
+      <mapping>
+        <identity value="v2" />
+        <map value="XTN.1 (or XTN.12)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./url" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="./Value" />
+      </mapping>
+    </element>
+  </differential>
+</StructureDefinition>

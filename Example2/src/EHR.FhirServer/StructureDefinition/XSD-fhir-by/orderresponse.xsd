@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="OrderResponse" type="OrderResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на заказ.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="OrderResponse">
+    <xs:annotation>
+      <xs:documentation>Ответ на заказ.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Идентификаторы, присвоенные этому заказу. Идентификаторы, как правило, назначаются системой, отвечающей на заказ, однако они могут быть предоставлены или добавлены другими системами.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="request" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Ссылка на заказ, которому соответствует данный ответ.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата и время, когда данный ответ на заказ был сделан (создан/отправлен).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="who" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, организация или устройство, которому присваивается создание ответа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Ссылка на правовую политику, служащую основанием данного ответа. Как правило, используется, когда заказ отклоняется, для предоставления причины отклонения.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="authorityCodeableConcept" type="CodeableConcept"/>
+            <xs:element name="authorityReference" type="Reference"/>
+          </xs:choice>
+          <xs:element name="orderStatus" minOccurs="1" maxOccurs="1" type="OrderStatus">
+            <xs:annotation>
+              <xs:documentation>Что данный ответ говорит о статусе первоначального заказа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительное описание ответа - например текстовое описание, предоставленное пользователем-человеком при принятии решений по поводу заказа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="fulfillment" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Ссылки на ресурсы, содержащие подробное описание результата выполнения заказа. Например Diagnostic Reports в ответе на заказ diagnostic order.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="OrderStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="pending">
+        <xs:annotation>
+          <xs:documentation>The order is known, but no processing has occurred at this time.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="review">
+        <xs:annotation>
+          <xs:documentation>The order is undergoing initial processing to determine whether it will be accepted (usually this involves human review).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="rejected">
+        <xs:annotation>
+          <xs:documentation>The order was rejected because of a workflow/business logic reason.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="error">
+        <xs:annotation>
+          <xs:documentation>The order was unable to be processed because of a technical error (i.e. unexpected error).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="accepted">
+        <xs:annotation>
+          <xs:documentation>The order has been accepted, and work is in progress.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="cancelled">
+        <xs:annotation>
+          <xs:documentation>Processing the order was halted at the initiators request.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="replaced">
+        <xs:annotation>
+          <xs:documentation>The order has been cancelled and replaced by another.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="aborted">
+        <xs:annotation>
+          <xs:documentation>Processing the order was stopped because of some workflow/business logic reason.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="completed">
+        <xs:annotation>
+          <xs:documentation>The order has been completed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OrderStatus">
+    <xs:annotation>
+      <xs:documentation>Статус ответа на заказ</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="OrderStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

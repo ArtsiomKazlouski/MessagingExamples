@@ -1,0 +1,161 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Выписка и отоваривание рецепта",
+		"_postman_id": "2cc977ba-95a8-451d-fa9d-23a95fb0765c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01 Создание ресурса Медицинское назначение (рецепт)",
+			"request": {
+				"url": "http://localhost:8080/fhir/MedicationPrescription/f6f732d4-48ae-4480-998b-58b264e3bfd0",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<MedicationPrescription xmlns=\"http://hl7.org/fhir\">\n  <id value=\"f6f732d4-48ae-4480-998b-58b264e3bfd0\" />\n  <!--<narrative xmlns=\"http://hl7.org/fhir\">\n    <div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>\n        Rp: Таблетки Эналаприл 5 мг  __ __ __ __ упаковка №10\n        D.t.d: № 10\n        S: по 1 таблетке 2 раза в день\n      </p>\n    </div>\n  </narrative>-->\n\n  <!--встроенный ресурс Medication-->\n  <!--определяет лекарственное средство по МНН-->\n  <contained>\n    <Medication xmlns=\"http://hl7.org/fhir\">\n      <id value=\"internalMedication2\"></id>\n      <code>\n        <coding>\n          <system value=\"http://www.pharma.by/Справочник.МеждународноеНаименование\"></system>\n          <code value=\"402019\"></code>\n          <display value=\"Эналаприл\"></display>\n        </coding>\n      </code>\n      <isBrand value=\"false\"></isBrand>\n    </Medication>\n  </contained>\n  <!--встроенный ресурс Medication-->\n  <!--определяет лекарственное средство с дозировкой-->\n  <contained>\n    <Medication xmlns=\"http://hl7.org/fhir\">\n      <id value=\"internalMedication1\"></id>\n      <code>\n        <coding>\n          <system value=\"http://www.pharma.by/Справочник.Справочник.Дозировка\"></system>\n          <code value=\"37254\"></code>\n          <display value=\"Эналаприл\"></display>\n        </coding>\n      </code>\n      <isBrand value=\"true\"></isBrand>\n      <kind value=\"product\"></kind>\n      <product>\n        <form>\n          <coding>\n            <system value=\"http://www.pharma.by/Справочник.ЛекарственнаяФорма\"></system>\n            <code value=\"0001\"></code>\n            <display value=\"таблетки\"></display>\n          </coding>\n        </form>\n        <ingredient>\n          <item>\n            <reference value=\"#internalMedication2\"></reference>\n          </item>\n        </ingredient>\n      </product>\n    </Medication>\n  </contained>\n  <extension url=\"http://fhir.org/fhir/StructureDefinition/by-medicamentType\">\n    <valueCodeableConcept>\n      <coding>\n        <system value=\"http://hl7.org/fhir/vs/by-medicament-type\" />\n        <code value=\"medicinal\" />\n      </coding>\n    </valueCodeableConcept>\n  </extension>\n  <dateWritten value=\"2015-06-15\" />\n  <status value=\"active\"></status>\n  <patient><reference value=\"Patient/79150369-6ab9-4d7d-9ef4-a61f43ca4043\" /></patient>\n  <prescriber><reference value=\"Practicioner/1955764a-229a-477f-b5e7-cb37ff2a1bd2\" /></prescriber>\n  <!--лекарственное средство к отпуску-->\n  <medication><reference value=\"#internalMedication1\" /></medication>\n  <dosageInstruction><text value=\"По 1 таблетке 2 раза в день\"></text></dosageInstruction>\n  <dispense>\n    <!--срок действия рецепта-->\n    <validityPeriod><start value=\"2015-06-15\"></start><end value=\"2015-08-15\"></end></validityPeriod>\n    <!--количество выдач-->\n    <numberOfRepeatsAllowed value=\"1\"></numberOfRepeatsAllowed>\n    <!--количество преперата к выдаче-->\n    <quantity><value value=\"10\"></value></quantity>\n  </dispense>\n</MedicationPrescription>"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "02 Получение ресурса Медицинское назначение (рецепт)",
+			"request": {
+				"url": "http://localhost:8080/fhir/MedicationPrescription/f6f732d4-48ae-4480-998b-58b264e3bfd0",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<MedicationPrescription xmlns=\"http://hl7.org/fhir\">\n\t<id value=\"f6f732d4-48ae-4480-998b-58b264e3bfd0\" />\n\t<dateWritten value=\"2017-09-08T09:08:31+03:00\" />\n\t<status value=\"active\" />\n\t<patient><reference value=\"Patient/79150369-6ab9-4d7d-9ef4-a61f43ca4043\" /></patient>\n\t<prescriber><reference value=\"Practicioner/1955764a-229a-477f-b5e7-cb37ff2a1bd2\" /></prescriber>\n\t<medication><reference value=\"Medication/143b8fce-b0e2-4c51-a7a4-ce4b2e96efd2\" /></medication>\n\t<dosageInstruction />\n</MedicationPrescription>"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "03 Отоваривание рецепта",
+			"request": {
+				"url": "http://localhost:8080/fhir/MedicationDispense/122f2c45-212c-4e37-a6fc-575e1c286438",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<MedicationDispense xmlns=\"http://hl7.org/fhir\">\n  <!--встроенный ресурс Medication-->\n  <!--определяет лекарственное средство-->\n  <id value=\"122f2c45-212c-4e37-a6fc-575e1c286438\" />\n  <contained>\n    <Medication xmlns=\"http://hl7.org/fhir\">\n      <id value=\"internalMedication1\"></id>\n      <code>\n        <coding>\n          <system value=\"http://www.pharma.by/Справочник.Дозировка\"></system>\n          <code value=\"39696\"></code>\n        </coding>\n      </code>\n    </Medication>\n  </contained>\n  <status value=\"completed\"></status>\n  <patient><reference value=\"Patient/79150369-6ab9-4d7d-9ef4-a61f43ca4043\" /></patient>\n  <dispenser><reference value=\"Practicioner/e3668610-2d71-4bc8-ac92-eb1d4988b0e5\"></reference></dispenser>\n  <authorizingPrescription><reference value=\"MedicationPrescription/f6f732d4-48ae-4480-998b-58b264e3bfd0\"></reference></authorizingPrescription>\n  <quantity><value value=\"10\"></value></quantity>\n  <medication><reference value=\"#internalMedication1\"></reference></medication>\n  <whenHandedOver value=\"2015-06-20\"></whenHandedOver>\n</MedicationDispense>"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "04 Установка рецепту статус готово (все действия которые записаны в рецепте произошли)",
+			"request": {
+				"url": "http://localhost:8080/fhir/MedicationPrescription/f6f732d4-48ae-4480-998b-58b264e3bfd0",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<MedicationPrescription xmlns=\"http://hl7.org/fhir\">\n\t <!--\n      Нужно указать версию MedicationPrescription из запроса 02\n      -->\n\t<meta><versionid value=\"f0b6fb3f-9628-4c40-bbb1-046f7f11710f\"/></meta>\n  <id value=\"f6f732d4-48ae-4480-998b-58b264e3bfd0\" />\n  <!--<narrative xmlns=\"http://hl7.org/fhir\">\n    <div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>\n        Rp: Таблетки Эналаприл 5 мг  __ __ __ __ упаковка №10\n        D.t.d: № 10\n        S: по 1 таблетке 2 раза в день\n      </p>\n    </div>\n  </narrative>-->\n\n  <!--встроенный ресурс Medication-->\n  <!--определяет лекарственное средство по МНН-->\n  <contained>\n    <Medication xmlns=\"http://hl7.org/fhir\">\n      <id value=\"internalMedication2\"></id>\n      <code>\n        <coding>\n          <system value=\"http://www.pharma.by/Справочник.МеждународноеНаименование\"></system>\n          <code value=\"402019\"></code>\n          <display value=\"Эналаприл\"></display>\n        </coding>\n      </code>\n      <isBrand value=\"false\"></isBrand>\n    </Medication>\n  </contained>\n  <!--встроенный ресурс Medication-->\n  <!--определяет лекарственное средство с дозировкой-->\n  <contained>\n    <Medication xmlns=\"http://hl7.org/fhir\">\n      <id value=\"internalMedication1\"></id>\n      <code>\n        <coding>\n          <system value=\"http://www.pharma.by/Справочник.Справочник.Дозировка\"></system>\n          <code value=\"37254\"></code>\n          <display value=\"Эналаприл\"></display>\n        </coding>\n      </code>\n      <isBrand value=\"true\"></isBrand>\n      <kind value=\"product\"></kind>\n      <product>\n        <form>\n          <coding>\n            <system value=\"http://www.pharma.by/Справочник.ЛекарственнаяФорма\"></system>\n            <code value=\"0001\"></code>\n            <display value=\"таблетки\"></display>\n          </coding>\n        </form>\n        <ingredient>\n          <item>\n            <reference value=\"#internalMedication2\"></reference>\n          </item>\n        </ingredient>\n      </product>\n    </Medication>\n  </contained>\n  <extension url=\"http://fhir.org/fhir/StructureDefinition/by-medicamentType\">\n    <valueCodeableConcept>\n      <coding>\n        <system value=\"http://hl7.org/fhir/vs/by-medicament-type\" />\n        <code value=\"medicinal\" />\n      </coding>\n    </valueCodeableConcept>\n  </extension>\n  <dateWritten value=\"2015-06-15\" />\n  <status value=\"completed\"></status>\n  <patient><reference value=\"Patient/79150369-6ab9-4d7d-9ef4-a61f43ca4043\" /></patient>\n  <prescriber><reference value=\"Practicioner/1955764a-229a-477f-b5e7-cb37ff2a1bd2\" /></prescriber>\n  <!--лекарственное средство к отпуску-->\n  <medication><reference value=\"#internalMedication1\" /></medication>\n  <dosageInstruction><text value=\"По 1 таблетке 2 раза в день\"></text></dosageInstruction>\n  <dispense>\n    <!--срок действия рецепта-->\n    <validityPeriod><start value=\"2015-06-15\"></start><end value=\"2015-08-15\"></end></validityPeriod>\n    <!--количество выдач-->\n    <numberOfRepeatsAllowed value=\"1\"></numberOfRepeatsAllowed>\n    <!--количество преперата к выдаче-->\n    <quantity><value value=\"10\"></value></quantity>\n  </dispense>\n</MedicationPrescription>"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "05  Получение ресурса Медицинское назначение (рецепт)",
+			"request": {
+				"url": "http://localhost:8080/fhir/MedicationPrescription/f6f732d4-48ae-4480-998b-58b264e3bfd0",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<MedicationPrescription xmlns=\"http://hl7.org/fhir\">\n\t<id value=\"f6f732d4-48ae-4480-998b-58b264e3bfd0\" />\n\t<dateWritten value=\"2017-09-08T09:08:31+03:00\" />\n\t<status value=\"active\" />\n\t<patient><reference value=\"Patient/79150369-6ab9-4d7d-9ef4-a61f43ca4043\" /></patient>\n\t<prescriber><reference value=\"Practicioner/1955764a-229a-477f-b5e7-cb37ff2a1bd2\" /></prescriber>\n\t<medication><reference value=\"Medication/143b8fce-b0e2-4c51-a7a4-ce4b2e96efd2\" /></medication>\n\t<dosageInstruction />\n</MedicationPrescription>"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "06 Получение отоваривания рецепта",
+			"request": {
+				"url": "http://localhost:8080/fhir/MedicationDispense/122f2c45-212c-4e37-a6fc-575e1c286438",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<MedicationDispense xmlns=\"http://hl7.org/fhir\">\n\t<id value=\"122f2c45-212c-4e37-a6fc-575e1c286438\" />\n\t<status value=\"completed\" />\n\t<patient><reference value=\"Patient/79150369-6ab9-4d7d-9ef4-a61f43ca4043\" /></patient>\n\t<dispenser><reference value=\"Practicioner/e3668610-2d71-4bc8-ac92-eb1d4988b0e5\" /></dispenser>\n\t<authorizingPrescription><reference value=\"MedicationPrescription/f6f732d4-48ae-4480-998b-58b264e3bfd0\" /></authorizingPrescription>\n\t<quantity><value value=\"10\" /></quantity>\n\t<medication><reference value=\"Medication/143b8fce-b0e2-4c51-a7a4-ce4b2e96efd2\" /></medication>\n\t<whenHandedOver value=\"2017-09-08T09:20:23+03:00\" />\n</MedicationDispense>"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

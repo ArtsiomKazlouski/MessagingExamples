@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MedicationPrescription xmlns="http://hl7.org/fhir">
+  <!--<narrative xmlns="http://hl7.org/fhir">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <p>
+        Rp: Таблетки Эналаприл 5 мг  __ __ __ __ упаковка №10 
+        D.t.d: № 10 
+        S: по 1 таблетке 2 раза в день
+      </p>
+    </div>
+  </narrative>-->
+
+  <!--встроенный ресурс Practitioner-->
+  <!--определяет данные врача, выписавшего рецепт-->
+  <contained>
+    <Practitioner>
+      <id value="internalPractitioner1"></id>
+      <!--идентификатор врача в МИС-->
+      <identifier>
+        <system value="e-meditella"></system>
+        <value value="3425"></value>
+      </identifier>
+
+      <name>
+        <use value="official"></use>
+        <family value="Хирургов"></family>
+        <family value="Федор"></family>
+        <family value="Ибрагимович"></family>
+      </name>
+      <practitionerRole>
+        <managingOrganization id="organization1" />          
+        <role>
+          <coding>
+            <system value="http://hl7.org/fhir/vs/practitioner-role"></system>
+            <code value="doctor">              
+            </code>            
+          </coding>
+        </role>
+      </practitionerRole>
+    </Practitioner>
+  </contained>
+  
+  <!--встроенный ресурс Medication-->
+  <!--определяет лекарственное средство-->
+  <contained>
+    <Medication xmlns="http://hl7.org/fhir">
+      <id value="internalMedication1"></id>
+      <code>
+        <coding>
+          <system value="http://www.pharma.by/Справочник.Номенклатура"></system>
+          <code value="1677"></code>
+          <display value="Эналаприл"></display>
+        </coding>
+      </code>
+      <isBrand value="true"></isBrand>
+      <kind value="product"></kind>
+      <product>
+        <form>
+          <coding>
+            <system value="http://www.pharma.by/Справочник.ЛекарственнаяФорма"></system>
+            <code value="0001"></code>
+            <display value="таблетки"></display>
+          </coding>
+        </form>
+        <ingredient>
+          <item>
+          </item>
+          <amount>
+            <numerator>
+              <value value="5"></value>
+              <units value="0093"></units>
+              <system value="http://www.pharma.by/Справочник.ЕдиницыИзмерения"></system>
+            </numerator>
+            <denominator>
+              <value value="1"></value>
+            </denominator>
+          </amount>
+        </ingredient>
+      </product>
+    </Medication>
+  </contained>
+
+  <extension url="http://hl7.org/vs/medicament-type">
+    <valueCode value="narcotic"></valueCode>
+  </extension>
+  
+  <!--<id value="medicationPrescriptionExample5"></id>-->
+  <dateWritten value="2015-06-15" />
+  <status value="active"></status>
+
+  <patient>
+    <reference value="externalPatient1" />
+  </patient>
+
+  <prescriber>
+    <reference value="#internalPractitioner1" />
+  </prescriber>
+
+  <!--лекарственное средство к отпуску-->
+  <medication>
+    <reference id="internalMedication1" />
+  </medication>
+
+  <dosageInstruction>
+    <text value="По 1 таблетке 2 раза в день"></text>
+  </dosageInstruction>
+
+  <dispense>
+    <!--срок действия рецепта-->
+    <validityPeriod>
+      <start value="2015-06-15"></start>
+      <end value="2015-08-15"></end>
+    </validityPeriod>
+    <!--количество выдач-->
+    <numberOfRepeatsAllowed value="1"></numberOfRepeatsAllowed>
+    <!--количество преперата к выдаче-->
+    <quantity>
+      <value value="10"></value>
+    </quantity>
+  </dispense>
+  
+  
+  
+</MedicationPrescription>

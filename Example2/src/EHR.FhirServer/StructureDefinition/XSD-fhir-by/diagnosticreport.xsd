@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="DiagnosticReport" type="DiagnosticReport">
+    <xs:annotation>
+      <xs:documentation>Полученные данные и интерпретация диагностических исследований, выполненных над пациентами, группами пациентов, устройствами, локациями, и/или полученными у них образцами. Отчет включает в себя клинический контекст, например информацию о запросе и поставщике информации, и некоторое сочетание атомарных результатов, изображений, текстовой и кодированной интерпретации, и форматированное представление диагностических отчетов.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="DiagnosticReport">
+    <xs:annotation>
+      <xs:documentation>Полученные данные и интерпретация диагностических исследований, выполненных над пациентами, группами пациентов, устройствами, локациями, и/или полученными у них образцами. Отчет включает в себя клинический контекст, например информацию о запросе и поставщике информации, и некоторое сочетание атомарных результатов, изображений, текстовой и кодированной интерпретации, и форматированное представление диагностических отчетов.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код или название, описывающее этот диагностический отчет.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="DiagnosticReportStatus">
+            <xs:annotation>
+              <xs:documentation>Общий статус диагностического отчета.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="issued" minOccurs="1" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата и/или время выпуска этой версии отчета исходной службой диагностики.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="subject" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Объект отчета. Обычно, но не всегда, это пациент. Также службы диагностики выполняют анализ образцов, взятых из множества других источников.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="performer" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Служба диагностики, ответственная за выпуск отчета.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="encounter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>The link to the health care event (encounter) when the order was made.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Локальный идентификатор, назначенный отчету заполнителем заказа (order filler), обычно информационной системой провайдера службы диагностики.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="requestDetail" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Подробная информация о заказанном исследовании.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="serviceCategory" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Направление службы диагностики, которое выполняет исследование, например биохимия, гематология, МРТ.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="1" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Время или временной период, к которому относятся наблюдаемые значения. Обычно это время либо выполнения процедуры, либо сбора образца, однако очень часто происхождение даты/времени не известно, известна только сама дата/время.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="diagnosticDateTime" type="dateTime"/>
+            <xs:element name="diagnosticPeriod" type="Period"/>
+          </xs:choice>
+          <xs:element name="specimen" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Подробная информации об образцах, к которым относится этот диагностический отчет.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="result" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Данные наблюдений (Observations), являющиеся частью данного диагностического отчета. Observations могут быть простыми парами название/значение (например &quot;atomic&quot; результаты), либо они могут быть группами наблюдений, которые включают ссылки на других членов группы (например панели &quot;panels&quot;).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="imagingStudy" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Одна или несколько ссылок на полную детальную информацию обо всех изображениях, выполненных во время диагностического исследования. Обычно это изображения, выполненные методами, поддерживающими DICOM, но это не обязательно. Полностью поддерживающий PACS просмотрщик может использовать эту информацию для показа исходных изображений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="image" type="DiagnosticReport.Image" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Перечень ключевых изображений, связанных с данным отчетом. Изображения, как правило, создаются во время диагностического процесса и могут быть непосредственно пациента или рассматриваемых образцов (например представляющие интерес микроскопические препараты).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="conclusion" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Краткая и клинически контекстуализированная описательная интерпретация диагностического отчета.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="codedDiagnosis" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Коды для заключения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="presentedForm" minOccurs="0" maxOccurs="unbounded" type="Attachment">
+            <xs:annotation>
+              <xs:documentation>Богатое текстовое представление отчета целиком, каким он был создан службой диагностики. Разрешаются различные форматы, но все они ДОЛЖНЫ быть семантически эквивалентными.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DiagnosticReport.Image">
+    <xs:annotation>
+      <xs:documentation>Полученные данные и интерпретация диагностических исследований, выполненных над пациентами, группами пациентов, устройствами, локациями, и/или полученными у них образцами. Отчет включает в себя клинический контекст, например информацию о запросе и поставщике информации, и некоторое сочетание атомарных результатов, изображений, текстовой и кодированной интерпретации, и форматированное представление диагностических отчетов.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="comment" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Комментарий к изображению. Обычно используется для пояснения, зачем это изображение включено, или чтобы привлечь внимание просматривающего к важным деталям.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="link" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Ссылка на источник изображения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DiagnosticReportStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="registered">
+        <xs:annotation>
+          <xs:documentation>The existence of the report is registered, but there is nothing yet available.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="partial">
+        <xs:annotation>
+          <xs:documentation>This is a partial (e.g. initial, interim or preliminary) report: data in the report may be incomplete or unverified.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="final">
+        <xs:annotation>
+          <xs:documentation>The report is complete and verified by an authorized person.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="corrected">
+        <xs:annotation>
+          <xs:documentation>The report has been modified subsequent to being Final, and is complete and verified by an authorized person.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="appended">
+        <xs:annotation>
+          <xs:documentation>The report has been modified subsequent to being Final, and is complete and verified by an authorized person. New content has been added, but existing content hasn't changed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="cancelled">
+        <xs:annotation>
+          <xs:documentation>The report is unavailable because the measurement was not started or not completed (also sometimes called &quot;aborted&quot;).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="entered-in-error">
+        <xs:annotation>
+          <xs:documentation>The report has been withdrawn following previous Final release.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DiagnosticReportStatus">
+    <xs:annotation>
+      <xs:documentation>Статус диагностического отчета в целом</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="DiagnosticReportStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

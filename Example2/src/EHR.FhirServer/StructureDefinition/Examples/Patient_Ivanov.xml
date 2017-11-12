@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+  <identifier>
+    <system value="http://ids.by"></system>
+    <value value="9112420000000022"></value>
+  </identifier>
+
+  <name>
+    <use value="official"></use>
+    <family value="Иванов"></family>
+    <given value="Иван"></given>
+    <given value="Иванович"></given>
+  </name>
+
+  <telecom>
+    <system value="phone"></system>
+    <value value="+375-29-1234567"></value>
+  </telecom>
+
+  <gender value="male"></gender>
+
+  <birthDate value="1990-07-13"></birthDate>
+
+  <deceasedBoolean value="true"></deceasedBoolean>
+
+  <!--<maritalStatus>
+    <coding>
+      <system value="http://uiip.bas-net.by/maritalstatus"></system>
+      <code value=""></code>
+    </coding>
+  </maritalStatus>-->
+    
+  <address>
+    <use value="location"></use>
+    <text value="3,18,улица Богдановича, Минск, Минская область, Беларусь"></text>
+  </address>
+
+  <careProvider>
+    <display value="34-я центральная районная клиническая поликлиника советского района г. Минска"></display>
+  </careProvider>
+
+  <!--<managingOrganization>
+    <reference id="">      
+    </reference>
+  </managingOrganization>-->
+
+  <active value="true"></active>
+  
+  
+</Patient>

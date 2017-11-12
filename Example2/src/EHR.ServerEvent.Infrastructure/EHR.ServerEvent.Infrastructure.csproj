@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RuntimeIdentifiers>centos.7-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.3.0" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Routing.Abstractions" Version="1.1.2" />
+    <PackageReference Include="Npgsql" Version="3.2.3" />
+    <PackageReference Include="protobuf-net" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EHR.FhirServer.Infrastructure\EHR.FhirServer.Infrastructure.csproj" />
+    <ProjectReference Include="..\lib\fhir-net-api\src\Hl7.Fhir.Core\Hl7.Fhir.Core.NetCore.csproj" />
+  </ItemGroup>
+
+</Project>

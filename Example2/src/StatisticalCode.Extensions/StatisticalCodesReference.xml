@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfStatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Некоторые инфекционные и паразитарные болезни</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>A00-A99</string>
+      <string>B00-B99</string>
+    </Icd10Codes>
+    <StatisticalCode>1</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>туберкулез органов дыхания</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>A15–A16</string>
+        </Icd10Codes>
+        <StatisticalCode>2</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>туберкулез других органов и систем</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>A17–A19</string>
+        </Icd10Codes>
+        <StatisticalCode>3</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие инфекционные и паразитарные болезни</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>A00–A09</string>
+          <string>A20–A28</string>
+          <string>A30–A99</string>
+          <string>B00–B09</string>
+          <string>B15–B19</string>
+          <string>B20–B83</string>
+          <string>B86–B94</string>
+          <string>B99–B99</string>
+        </Icd10Codes>
+        <StatisticalCode>4</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Новообразования</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>C00–C99</string>
+      <string>D00–D48</string>
+    </Icd10Codes>
+    <StatisticalCode>5</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>злокачественные новообразования</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>C00–C97</string>
+          <string>D00–D09</string>
+        </Icd10Codes>
+        <StatisticalCode>6</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>доброкачественные новообразования и новообразования неопределенного характера</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>D10–D48</string>
+        </Icd10Codes>
+        <StatisticalCode>7</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни крови, кроветворных органов и отдельные нарушения, вовлекающие иммунный механизм</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>D50–D89</string>
+    </Icd10Codes>
+    <StatisticalCode>8</StatisticalCode>
+   </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни эндокринной системы, расстройства питания и нарушения обмена веществ</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>E00–E34</string>
+      <string>E40–E68</string>
+      <string>E70–E89</string>
+    </Icd10Codes>
+    <StatisticalCode>9</StatisticalCode>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Психические расстройства и расстройства поведения</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>F00–F99</string>
+    </Icd10Codes>
+    <StatisticalCode>10</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>шизофрения, шизотипические бредовые расстройства</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>F20–F29</string>
+        </Icd10Codes>
+        <StatisticalCode>11</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>невротические, связанные со стрессом, и соматоформные расстройства</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>F40–F48</string>
+        </Icd10Codes>
+        <StatisticalCode>12</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>нейроциркуляторная дистония, вегетативная дистония</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>F41–F41</string>
+          <string>F45–F45</string>
+        </Icd10Codes>
+        <StatisticalCode>13</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>прочие психические расстройства</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>F00–F19</string>
+          <string>F30–F39</string>
+          <string>F50–F99</string>
+        </Icd10Codes>
+        <StatisticalCode>14</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни нервной системы</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>G00–G44</string>
+      <string>G46–G99</string>
+    </Icd10Codes>
+    <StatisticalCode>15</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни периферической нервной системы</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>G50–G52</string>
+          <string>G54–G54</string>
+          <string>G56–G58</string>
+          <string>G60–G62</string>
+          <string>G64–G64</string>
+          <string> G70–G72</string>
+        </Icd10Codes>
+        <StatisticalCode>16</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>прочие болезни нервной системы</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>G03–G04</string>
+          <string>G00–G00</string>
+          <string>G06–G06</string>
+          <string>G08–G12</string>
+          <string>G20–G21</string>
+          <string>G23–G25</string>
+          <string>G30–G31</string>
+          <string>G35–G37</string>
+          <string>G40–G44</string>
+          <string>G47–G47</string>
+          <string>G80–G83</string>
+          <string>G90–G93</string>
+          <string>G95–G98</string>
+        </Icd10Codes>
+        <StatisticalCode>17</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни глаза и его придаточного аппарата</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>H00–H59</string>
+    </Icd10Codes>
+    <StatisticalCode>18</StatisticalCode>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни уха и сосцевидного отростка</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>H60–H95</string>
+    </Icd10Codes>
+    <StatisticalCode>19</StatisticalCode>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни системы кровообращения</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>I00–I99</string>
+      <string>G45–G45</string>
+    </Icd10Codes>
+    <StatisticalCode>20</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>ревматизм</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I00–I09</string>
+        </Icd10Codes>
+        <StatisticalCode>21</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни, характеризующиеся повышенным кровяным давлением</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I10–I15</string>
+        </Icd10Codes>
+        <StatisticalCode>22</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>стенокардия</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I20–I20</string>
+        </Icd10Codes>
+        <StatisticalCode>23</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>
+          инфаркт миокарда и другие формы острой ишемической болезни сердца
+        </ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I21–I22</string>
+          <string>I24–I24</string>
+        </Icd10Codes>
+        <StatisticalCode>24</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+          <ReasonTemporaryDisability>хроническая ишемическая болезнь сердца</ReasonTemporaryDisability>
+          <Icd10Codes>
+            <string>I25–I25</string>
+          </Icd10Codes>
+          <StatisticalCode>25</StatisticalCode>
+          <StatisticalCodesReferenceChild />
+        </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни сердца</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I26–I31</string>
+          <string>I33–I38</string>
+          <string>I40–I40</string>
+          <string>I42–I42</string>
+          <string>I44–I49</string>
+        </Icd10Codes>
+        <StatisticalCode>26</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>мозговые инсульты</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I60–I64</string>
+          <string>I69–I69</string>
+        </Icd10Codes>
+        <StatisticalCode>27</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>прочие цереброваскулярные заболевания</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I65–I67</string>
+          <string>G45–G45</string>
+        </Icd10Codes>
+        <StatisticalCode>28</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни артерий, артериол и капилляров</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I70–I78</string>
+        </Icd10Codes>
+        <StatisticalCode>29</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни вен, лимфатических сосудов и лимфатических узлов</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>I80–I89</string>
+        </Icd10Codes>
+        <StatisticalCode>30</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни органов дыхания</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>J00–J99</string>
+    </Icd10Codes>
+    <StatisticalCode>31</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>острые респираторные инфекции верхних дыхательных путей</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J00–J06</string>
+          <string>J20–J22</string>
+        </Icd10Codes>
+        <StatisticalCode>32</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>грипп</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J10–J11</string>
+        </Icd10Codes>
+        <StatisticalCode>33</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>пневмония</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J12–J16</string>
+          <string>J18–J18</string>
+        </Icd10Codes>
+        <StatisticalCode>34</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни верхних дыхательных путей</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J30–J39</string>
+        </Icd10Codes>
+        <StatisticalCode>35</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>хронический бронхит</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J40–J42</string>
+          <string>J44–J44</string>
+        </Icd10Codes>
+        <StatisticalCode>36</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>бронхиальная астма</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J45–J46</string>
+        </Icd10Codes>
+        <StatisticalCode>37</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни органов дыхания</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>J43–J43</string>
+          <string>J47–J47</string>
+          <string>J80–J80</string>
+          <string>J82–J86</string>
+          <string>J90–J90</string>
+          <string>J93–J94</string>
+          <string>J98–J98</string>
+        </Icd10Codes>
+        <StatisticalCode>38</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни органов пищеварения</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>K00–K93</string>
+    </Icd10Codes>
+    <StatisticalCode>39</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни полости рта, слюнных желез и челюстей</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>K00–K14</string>
+        </Icd10Codes>
+        <StatisticalCode>40</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>язвенная болезнь желудка и двенадцатиперстной кишки</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>K25–K28</string>
+        </Icd10Codes>
+        <StatisticalCode>41</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>гастриты и дуодениты</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>K29–K29</string>
+        </Icd10Codes>
+        <StatisticalCode>42</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни аппендикса, грыжи, болезни кишечника и брюшины</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>K35–K38</string>
+          <string>K40–K46</string>
+          <string>K55–K58</string>
+          <string>K60–K63</string>
+          <string>K65–K66</string>
+        </Icd10Codes>
+        <StatisticalCode>43</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни печени</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>K70–K76</string>
+        </Icd10Codes>
+        <StatisticalCode>44</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни желчного пузыря, желчевыводящих путей и поджелудочной железы</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>K80–K86</string>
+        </Icd10Codes>
+        <StatisticalCode>45</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>
+          прочие болезни органов пищеварения
+        </ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>
+            K20–K22</string>
+          <string> K30–K31</string>
+          <string> K50–K52</string>
+          <string> K90–K92
+          </string>
+        </Icd10Codes>
+        <StatisticalCode>46</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+     
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни кожи и подкожной клетчатки</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>L00–L99</string>
+    </Icd10Codes>
+    <StatisticalCode>47</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>инфекции кожи и подкожной клетчатки</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>L02–L05</string>
+          <string>L08–L08</string>
+        </Icd10Codes>
+        <StatisticalCode>48</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни кожи и подкожной клетчатки</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>L00–L01</string>
+          <string>L10–L13</string>
+          <string>L20–L30</string>
+          <string>L40–L44</string>
+          <string>L50–L53</string>
+          <string>L55–L60</string>
+          <string>L63–L75</string>
+          <string>L80–L85</string>
+          <string>L87–L98</string>
+        </Icd10Codes>
+        <StatisticalCode>49</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни костно-мышечной системы и соединительной ткани</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>M00–M99</string>
+    </Icd10Codes>
+    <StatisticalCode>50</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>артропатии и системные поражения соединительной ткани</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>M02–M02</string>
+          <string>M05–M06</string>
+          <string>M08–M08</string>
+          <string>M10–M13</string>
+          <string>M15–M17</string>
+          <string>M19–M19</string>
+          <string>M30–M35</string>
+          <string>M45–M45</string>
+        </Icd10Codes>
+        <StatisticalCode>51</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>неврологические проявления шейного остеохондроза</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>M47–M47</string>
+          <string>M50–M50</string>
+          <string>M53–M54</string>
+        </Icd10Codes>
+        <StatisticalCode>52</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>неврологические проявления поясничного и грудного остеохондроза</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>M47–M47</string>
+          <string>M51–M51</string>
+          <string>M53–M54</string>
+        </Icd10Codes>
+        <StatisticalCode>53</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни костно-мышечной системы и соединительной ткани</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>M00–M00</string>
+          <string>M20–M25</string>
+          <string>M40–M43</string>
+          <string>M46–M46</string>
+          <string>M48–M48</string>
+          <string>M60–M62</string>
+          <string>M65–M67</string>
+          <string>M70–M72</string>
+          <string>M75–M81</string>
+          <string>M83–M89</string>
+          <string>M91–M99</string>
+        </Icd10Codes>
+        <StatisticalCode>54</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Болезни мочеполовой системы</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>N00–N99</string>
+    </Icd10Codes>
+    <StatisticalCode>55</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни почек</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>N00–N07</string>
+          <string>N11–N12</string>
+          <string>N14–N14</string>
+        </Icd10Codes>
+        <StatisticalCode>56</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни мочевыделительной системы и болезни мужских половых органов</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>N10–N11</string>
+          <string>N13–N13</string>
+          <string>N15–N15</string>
+          <string>N20–N21</string>
+          <string>N23–N23</string>
+          <string>N25–N28</string>
+          <string>N30–N32</string>
+          <string>N34–N36</string>
+          <string>N39–N39</string>
+          <string>N40–N50</string>
+          <string>N99–N99</string>
+        </Icd10Codes>
+        <StatisticalCode>57</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>болезни молочной железы и воспалительные болезни женских половых органов</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>N60–N64</string>
+          <string>N70–N73</string>
+          <string>N75–N76</string>
+        </Icd10Codes>
+        <StatisticalCode>58</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие болезни женских половых органов</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>N80–N99</string>
+        </Icd10Codes>
+        <StatisticalCode>59</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Беременность, роды и послеродовой период</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>O00–O99</string>
+    </Icd10Codes>
+    <StatisticalCode>60</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>осложнения, связанные с беременностью, в том числе самопроизвольный аборт</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>O00–O03</string>
+          <string>O08–O08</string>
+           <string>O10–O16</string>
+           <string>O20–O25</string>
+        </Icd10Codes>
+        <StatisticalCode>61</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>осложнения родов и послеродового периода</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>O70–O75</string>
+          <string>O85–O92</string>
+        </Icd10Codes>
+        <StatisticalCode>62</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>аборты</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>O04–O08</string>
+        </Icd10Codes>
+        <StatisticalCode>79</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Врожденные аномалии (пороки развития), деформации и хромосомные нарушения</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>Q00–Q99</string>
+    </Icd10Codes>
+    <StatisticalCode>63</StatisticalCode>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Симптомы, признаки и отклонения от нормы при клинических и лабораторных исследованиях, не классифицированные в других рубриках</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>R00–R99</string>
+    </Icd10Codes>
+    <StatisticalCode>64</StatisticalCode>
+  </StatisticalCodeReference>
+  <StatisticalCodeReference>
+    <ReasonTemporaryDisability>Травмы, отравления и некоторые другие последствия воздействия внешних причин</ReasonTemporaryDisability>
+    <Icd10Codes>
+      <string>S00–S99</string>
+    </Icd10Codes>
+    <StatisticalCode>65</StatisticalCode>
+    <StatisticalCodesReferenceChild>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>внутричерепная травма</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>S06–S06</string>
+        </Icd10Codes>
+        <StatisticalCode>66</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>другие травмы нервной системы</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>S04–S04</string>
+          <string>S14–S14</string>
+          <string>S24–S24</string>
+          <string>S34–S34</string>
+          <string>S44–S44</string>
+          <string>S54–S54</string>
+          <string>S64–S64</string>
+          <string>S74–S74</string>
+          <string>S84–S84</string>
+          <string>S94–S94</string>
+        </Icd10Codes>
+        <StatisticalCode>67</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>изолированные травмы мягких тканей головы, глаза, шеи, грудной клетки, живота, позвоночника и таза (включая повреждения кровеносных сосудов и внутренних органов)</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>S00–S01</string>
+          <string>S05–S05</string>
+          <string>S10–S11</string>
+          <string>S15–S16</string>
+          <string>S20–S21</string>
+          <string>S25–S27</string>
+          <string>S29–S31</string>
+          <string>S35–S37</string>
+          <string>S39–S39</string>
+        </Icd10Codes>
+        <StatisticalCode>68</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>изолированные переломы (вывихи, размозжения) головы, глазницы, шеи, грудной клетки, таза и переломы позвоночника без неврологических проявлений</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>S02–S03</string>
+          <string>S05–S05</string>
+          <string>S07–S08</string>
+          <string>S12–S13</string>
+          <string>S17–S17</string>
+          <string>S22–S23</string>
+          <string>S28–S28</string>
+          <string>S32–S33</string>
+          <string>S38–S38</string>
+        </Icd10Codes>
+        <StatisticalCode>69</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>изолированные травмы мягких тканей (сосудов, менисков, сухожилий, связок) верхних и нижних конечностей</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>S40–S41</string>
+          <string>S45–S46</string>
+          <string>S49–S51</string>
+          <string>S55–S56</string>
+          <string>S59–S61</string>
+          <string>S65–S66</string>
+          <string>S69–S71</string>
+          <string>S75–S76</string>
+          <string>S79–S81</string>
+          <string>S85–S86</string>
+          <string>S89–S91</string>
+          <string>S95–S96</string>
+          <string>S99–S99</string>
+        </Icd10Codes>
+        <StatisticalCode>70</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>изолированные переломы, вывихи, ампутации, размозжения верхних и нижних конечностей</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>S42–S43</string>
+          <string>S47–S48</string>
+          <string>S52–S53</string>
+          <string>S57–S58</string>
+          <string>S62–S63</string>
+          <string>S67–S68</string>
+          <string>S72–S73</string>
+          <string>S77–S78</string>
+          <string>S82–S83</string>
+          <string>S87–S88</string>
+          <string>S92–S93</string>
+          <string>S97–S98</string>
+        </Icd10Codes>
+        <StatisticalCode>71</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>множественные, сочетанные и комбинированные травмы, проникновения инородного тела в естественные отверстия</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>T00–T19</string>
+        </Icd10Codes>
+        <StatisticalCode>72</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>ожоги, отморожения, другие воздействия внешних причин, осложнения врачебных вмешательств</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>T20–T35</string>
+          <string>T66–T78</string>
+          <string>T80–T88</string>
+        </Icd10Codes>
+        <StatisticalCode>73</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>отравления и токсическое действие веществ</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>T36–T65</string>
+        </Icd10Codes>
+        <StatisticalCode>74</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>последствия травм головы</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>T90–T90</string>
+        </Icd10Codes>
+        <StatisticalCode>75</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+      <StatisticalCodeReference>
+        <ReasonTemporaryDisability>последствия травм (кроме травм головы), ожогов, отморожений, отравлений и других воздействий внешних причин</ReasonTemporaryDisability>
+        <Icd10Codes>
+          <string>T91–T98</string>
+        </Icd10Codes>
+        <StatisticalCode>76</StatisticalCode>
+        <StatisticalCodesReferenceChild />
+      </StatisticalCodeReference>
+    </StatisticalCodesReferenceChild>
+  </StatisticalCodeReference>
+</ArrayOfStatisticalCodeReference>

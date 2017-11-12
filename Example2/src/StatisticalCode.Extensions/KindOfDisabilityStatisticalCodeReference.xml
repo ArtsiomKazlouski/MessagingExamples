@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfKindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>commonDisease</KindDisabilityId>
+    <KindDisabilityName>заболевание общее</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>occupationalDisease</KindDisabilityId>
+    <KindDisabilityName>заболевание профессиональное</KindDisabilityName>
+    <StatisticalCode>78</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>occupationalInjury</KindDisabilityId>
+    <KindDisabilityName>производственная травма</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>householdInjury</KindDisabilityId>
+    <KindDisabilityName>травма в быту</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>effectsOfHouseholdInjury</KindDisabilityId>
+    <KindDisabilityName>последствия травмы в быту</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>effectsOfOccupationalInjury</KindDisabilityId>
+    <KindDisabilityName>последствия производственной травмы</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>careForSickFamilyMember</KindDisabilityId>
+    <KindDisabilityName>уход за больным членом семьи</KindDisabilityName>
+    <StatisticalCode>80</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>childCareTo3years</KindDisabilityId>
+    <KindDisabilityName>уход за ребенком до 3 лет</KindDisabilityName>
+    <StatisticalCode>81</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>careForDisabledChild </KindDisabilityId>
+    <KindDisabilityName>уход за ребенком-инвалидом </KindDisabilityName>
+    <StatisticalCode>81</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>reabilitationForDisabledChild</KindDisabilityId>
+    <KindDisabilityName>уход за ребенком-инвалидом, сан.-кур. лечение</KindDisabilityName>
+    <StatisticalCode>83</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>treatmentReabilitationForDisabledChild</KindDisabilityId>
+    <KindDisabilityName>уход за ребенком-инвалидом, медреабилитация</KindDisabilityName>
+    <StatisticalCode>83</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>prosthetics</KindDisabilityId>
+    <KindDisabilityName>протезирование</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>prostheticsDueToInjury</KindDisabilityId>
+    <KindDisabilityName>протезирование в связи с травмой</KindDisabilityName>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>quarantine</KindDisabilityId>
+    <KindDisabilityName>карантин</KindDisabilityName>
+    <StatisticalCode>82</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+  <KindOfDisabilityStatisticalCodeReference>
+    <KindDisabilityId>pregnancyAndChildbirth</KindDisabilityId>
+    <KindDisabilityName>беременность и роды</KindDisabilityName>
+    <StatisticalCode>85</StatisticalCode>
+  </KindOfDisabilityStatisticalCodeReference>
+</ArrayOfKindOfDisabilityStatisticalCodeReference>

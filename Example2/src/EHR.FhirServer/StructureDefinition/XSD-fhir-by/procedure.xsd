@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="Procedure" type="Procedure">
+    <xs:annotation>
+      <xs:documentation>Действие, которое проводится или было проведено над пациентом. Это может быть как физическое действие, например операция, так и менее инвазивное вмешательство, например консультация или гипнотерапия.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="Procedure">
+    <xs:annotation>
+      <xs:documentation>Действие, которое проводится или было проведено над пациентом. Это может быть как физическое действие, например операция, так и менее инвазивное вмешательство, например консультация или гипнотерапия.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Это идентификаторы записей, ассоциированных с этой процедурой, которые определены в рамках бизнес-процесса и/или используются для ссылки на них, когда не возможно использование прямой URL-ссылки на сам ресурс (например в CDA-документах или в письменной/печатной документации).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="patient" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек, над которым выполнялась процедура.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="ProcedureStatus">
+            <xs:annotation>
+              <xs:documentation>A code specifying the state of the procedure record. Generally this will be in-progress or completed state.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="category" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>A code that classifies the procedure for searching, sorting and display purposes.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Конкретная процедура, которая была выполнена. Используйте текст, если точный характер процедуры не может быть закодирован.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="bodySite" type="Procedure.BodySite" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Подробная и структурированная информация об анатомическом расположении. Можно указывать несколько местоположений - например многократная пункционная биопсия раны.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="indication" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Основание для выполнения процедуры. Это может быть Condition, кодируемый концепт или просто текстовое описание.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="performer" type="Procedure.Performer" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Описание &quot;реальных&quot; людей, а не оборудования.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="0" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Дата (время)/период, в течение которого была выполнена процедура. Разрешается задавать период для поддержки комплексных процедур, выполняемых не в один день, а также для задания продолжительности выполнения процедуры.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="performedDateTime" type="dateTime"/>
+            <xs:element name="performedPeriod" type="Period"/>
+          </xs:choice>
+          <xs:element name="encounter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Encounter, во время которого была выполнена процедура.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="location" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>The location where the procedure actually happened.  e.g. a newborn at home, a tracheostomy at a restaurant.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="outcome" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Каким был результат процедуры - решила ли она те вопросы, которые были основанием для ее выполнения?</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="report" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Это может быть гистологический результат. Это может быть несколько отчетов - например если во время процедуры было сделано несколько биопсий.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="complication" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Любые осложнения, произошедшие во время выполнения процедуры или в последующий послеоперационный период. Как правило, они отслеживаются отдельно от записей, которые обычно описывают саму процедуру, а нее возникшие после неё проблемы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="followUp" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Если процедура требует определенного последующего наблюдения - например удаления швов. Может быть как простым примечанием, так и более сложным, во втором случае можно использовать ресурс CarePlan.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="relatedItem" type="Procedure.RelatedItem" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Процедуры могут быть связаны с другими процедурами или медикаментами. Например лечение расхождения краев раны после предыдущей процедуры.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="notes" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Любые другие заметки о процедуре - например протокол операции.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="device" type="Procedure.Device" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>A device change during the procedure.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="used" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Identifies medications, devices and other substance used as part of the procedure.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Procedure.BodySite">
+    <xs:annotation>
+      <xs:documentation>Действие, которое проводится или было проведено над пациентом. Это может быть как физическое действие, например операция, так и менее инвазивное вмешательство, например консультация или гипнотерапия.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch biopsies of a lesion.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="siteCodeableConcept" type="CodeableConcept"/>
+            <xs:element name="siteReference" type="Reference"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Procedure.Performer">
+    <xs:annotation>
+      <xs:documentation>Действие, которое проводится или было проведено над пациентом. Это может быть как физическое действие, например операция, так и менее инвазивное вмешательство, например консультация или гипнотерапия.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="person" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Специалист (practitioner), который участвовал в процедуре.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="role" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Например хирург, анестезиолог, эндоскопист.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Procedure.RelatedItem">
+    <xs:annotation>
+      <xs:documentation>Действие, которое проводится или было проведено над пациентом. Это может быть как физическое действие, например операция, так и менее инвазивное вмешательство, например консультация или гипнотерапия.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="ProcedureRelationshipType">
+            <xs:annotation>
+              <xs:documentation>Тип взаимосвязи.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="target" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Связанная процедура или назначение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Procedure.Device">
+    <xs:annotation>
+      <xs:documentation>Действие, которое проводится или было проведено над пациентом. Это может быть как физическое действие, например операция, так и менее инвазивное вмешательство, например консультация или гипнотерапия.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="action" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>The kind of change that happened to the device during the procedure.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="manipulated" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>The device that was manipulated (changed) during the procedure.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ProcedureRelationshipType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="caused-by">
+        <xs:annotation>
+          <xs:documentation>This procedure had to be performed because of the related one.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="because-of">
+        <xs:annotation>
+          <xs:documentation>This procedure caused the related one to be performed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ProcedureRelationshipType">
+    <xs:annotation>
+      <xs:documentation>Тип взаимосвязи с данной процедурой</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="ProcedureRelationshipType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ProcedureStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="in-progress">
+        <xs:annotation>
+          <xs:documentation>The procedure is still occurring.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="aborted">
+        <xs:annotation>
+          <xs:documentation>The procedure was terminated without completing successfully.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="completed">
+        <xs:annotation>
+          <xs:documentation>All actions involved in the procedure have taken place.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="entered-in-error">
+        <xs:annotation>
+          <xs:documentation>The statement was entered in error and Is not valid.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ProcedureStatus">
+    <xs:annotation>
+      <xs:documentation>A code specifying the state of the procedure record</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="ProcedureStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

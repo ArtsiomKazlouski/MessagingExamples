@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="Medication" />
+  <meta>
+    <lastUpdated value="2015-04-02T14:21:09.718+02:00" />
+  </meta>
+  <url value="http://uiip/fhir/StructureDefinition/Medication" />
+  <name value="Medication" />
+  <publisher value="UIIP" />
+  <description value="Base StructureDefinition for Medication Resource" />
+  <status value="draft" />
+  <date value="2015-06-22T00:00:00+03:00" />
+  <mapping>
+    <identity value="rim" />
+    <uri value="http://hl7.org/v3" />
+    <name value="RIM" />
+  </mapping>
+  <mapping>
+    <identity value="v2" />
+    <uri value="http://hl7.org/v2" />
+    <name value="HL7 v2" />
+  </mapping>
+  <type value="constraint" />
+  <abstract value="false" />
+  <base value="http://hl7.org/fhir/StructureDefinition/Medication" />
+</StructureDefinition>

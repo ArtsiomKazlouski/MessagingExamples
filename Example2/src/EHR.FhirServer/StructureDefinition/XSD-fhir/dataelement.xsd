@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="DataElement" type="DataElement">
+    <xs:annotation>
+      <xs:documentation>Формальное описание отдельной порции информации, которая может быть собрана и запротоколирована.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="DataElement">
+    <xs:annotation>
+      <xs:documentation>Формальное описание отдельной порции информации, которая может быть собрана и запротоколирована.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="url" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>URI, используемый для идентификации этого элемента, когда на него дается ссылка в спецификации, модели, проекте или примере (должен быть глобально уникальным URI и может быть urn:uuid: или urn:oid:).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="1" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Формальный идентификатор, используемый для указания на этот элемент данных при его представлении в других форматах или для ссылки в спецификации, модели, проекте или примере.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>The identifier that is used to identify this version of the data element when it is referenced in a StructureDefinition, Questionnaire or instance. This is an arbitrary value managed by the definition author manually.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Термин, используемый людьми для ссылки на этот элемент данных. В идеале должен быть уникальным в контексте, в котором этот элемент данных ожидается использовать.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="useContext" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Содержимое было разработано с акцентом и намерением подержать перечисленные контексты. Эти термины можно использовать при индексации и поиске определений элементов данных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="experimental" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Флаг для индикации, что это определение элемента данных создано для тестирования (или обучения/оценки/маркетинга), и не предназначен для реального применения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="ConformanceResourceStatus">
+            <xs:annotation>
+              <xs:documentation>Статус элемента данных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата начала действия статуса этой бизнес-версии элемента данных. (Например дата создания черновика, или когда элемент данных стал активным либо элемент данных был удален).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="copyright" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Предупреждение об авторском праве на определение элемента данных. Предупреждения об авторских правах, как правило, являются правовыми ограничениями на использование и публикацию деталей определения элемента данных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="publisher" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя лица или организации, опубликовавших этот элемент данных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contact" type="DataElement.Contact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Контактные данные для помощи пользователю в поиске и коммуникации с издателем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="specificity" minOccurs="0" maxOccurs="1" type="DataElementSpecificity">
+            <xs:annotation>
+              <xs:documentation>Насколько точно определение элемента данных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="mapping" type="DataElement.Mapping" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Спецификация (не справочник), с которой элементы, составляющие DataElement, имеют некоторое соответствие.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="element" minOccurs="1" maxOccurs="unbounded" type="ElementDefinition">
+            <xs:annotation>
+              <xs:documentation>Defines the structure, type, allowed values and other constraining characteristics of the data element.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DataElement.Contact">
+    <xs:annotation>
+      <xs:documentation>Формальное описание отдельной порции информации, которая может быть собрана и запротоколирована.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя контактного лица для связи насчет этого элемента данных.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактная информация физического лица (если было указано имя) или издателя.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DataElement.Mapping">
+    <xs:annotation>
+      <xs:documentation>Формальное описание отдельной порции информации, которая может быть собрана и запротоколирована.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="identity" minOccurs="1" maxOccurs="1" type="id">
+            <xs:annotation>
+              <xs:documentation>Внутренний идентификатор, который используется для идентификации этого мэппинга при выполнении конкретных мэппингов на поэлементной основе.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="uri" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI спецификации, на которую делается этот мэппинг.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя спецификации, на которую делается мэппинг.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="comments" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Комментарии к этому мэппингу, включающие указание версии, проблем, ограничений области применения и других важных примечаний к использованию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DataElementSpecificity-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="comparable">
+        <xs:annotation>
+          <xs:documentation>The data element is sufficiently well-constrained that multiple pieces of data captured according to the constraints of the data element will be comparable (though in some cases, a degree of automated conversion/normalization may be required).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="fully-specified">
+        <xs:annotation>
+          <xs:documentation>The data element is fully specified down to a single value set, single unit of measure, single data type, etc.  Multiple pieces of data associated with this data element are fully compareable.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="equivalent">
+        <xs:annotation>
+          <xs:documentation>The data element allows multiple units of measure having equivalent meaning.  E.g. &quot;cc&quot; (cubic centimeter) and &quot;mL&quot;.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="convertable">
+        <xs:annotation>
+          <xs:documentation>The data element allows multiple units of measure that are convertable between each other (e.g. Inches and centimeters) and/or allows data to be captured in multiple value sets for which a known mapping exists allowing conversion of meaning.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="scaleable">
+        <xs:annotation>
+          <xs:documentation>A convertable data element where unit conversions are different only by a power of 10.  E.g. g, mg, kg.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="flexible">
+        <xs:annotation>
+          <xs:documentation>The data element is unconstrained in units, choice of data types and/or choice of vocabulary such that automated comparison of data captured using the data element is not possible.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DataElementSpecificity">
+    <xs:annotation>
+      <xs:documentation>Указывает степень точности определения элемента данных</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="DataElementSpecificity-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

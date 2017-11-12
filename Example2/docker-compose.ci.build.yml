@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  ci-build:
+    image: microsoft/aspnetcore-build:1.0-1.1
+    volumes:
+      - .:/build
+    working_dir: /build
+    command: >
+      /bin/bash -c "dotnet restore ./ehr.platform.sln && 
+                    dotnet publish ./ehr.platform.sln -c Release -o ./obj/Docker/publish &&
+                    dotnet vstest `find test -name *.UnitTests.dll -type f | grep obj/Docker/publish | paste -sd ' ' ` "

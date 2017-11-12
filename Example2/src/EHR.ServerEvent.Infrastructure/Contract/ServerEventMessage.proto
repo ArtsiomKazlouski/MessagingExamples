@@ -1,0 +1,27 @@
+﻿syntax = "proto2";
+package EHR.ServerEvent.Infrastructure.Contract;
+
+message ServerEventMessage {
+   required string Registered = 1;
+   required string ActionCode = 2;
+   optional string ActionScope = 3;
+   required string Outcome = 4;
+   optional string OutcomeDesc = 5;
+   required string Source = 6;
+   required string ResourceType =7;
+   required string ResourceId = 8;
+   required string ResourceVersionId = 9;
+   required string Hash = 10;
+   optional string AccessPoint = 11;
+   required string ClientId = 12;
+   optional string UserId = 13;
+   repeated KeyValuePair_String_String Claims = 14;
+   required string PatientId = 15;
+   required string PatientVersionId = 16;
+   optional string EncounterId = 17;
+   optional string EncounterVersionId = 18;
+}
+message KeyValuePair_String_String {
+   optional string Key = 1;
+   optional string Value = 2;
+}

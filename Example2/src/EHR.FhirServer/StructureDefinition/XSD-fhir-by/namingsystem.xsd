@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="NamingSystem" type="NamingSystem">
+    <xs:annotation>
+      <xs:documentation>Куратор пространства имен, который выдает уникальные обозначения в пределах этого пространства имен для идентификации концептов, людей, устройств и т. п. Представляет &quot;System&quot;, используемую внутри типов данных Идентификатор и Кодинг.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="NamingSystem">
+    <xs:annotation>
+      <xs:documentation>Куратор пространства имен, который выдает уникальные обозначения в пределах этого пространства имен для идентификации концептов, людей, устройств и т. п. Представляет &quot;System&quot;, используемую внутри типов данных Идентификатор и Кодинг.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="NamingSystemType">
+            <xs:annotation>
+              <xs:documentation>Указывает назначение этой namingsystem - какие виды сущностей она делает уникальными.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Описательное имя данного типа идентификатора или кодовой системы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="1" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>The date  (and optionally time) when the system was registered or published.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="ConformanceResourceStatus">
+            <xs:annotation>
+              <xs:documentation>Указывает, готова ли namingsystem к использованию &quot;ready for use&quot; или нет.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="country" minOccurs="0" maxOccurs="1" type="code">
+            <xs:annotation>
+              <xs:documentation>Если присутствует, указывает, что идентифицирующая или кодовая система главным образом предназначена для пользования или применения к сущностям указанной страны. Например страны, ассоциируемой с государственной кодовой системой.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="category" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Назначение категории namingsystem для упрощения поиска группировкой связанных namingsystems.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="responsible" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Название организации, ответственной за выпуск идентификаторов или кодов для этого пространства имен и обеспечение отсутствия конфликтов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Подробности о том, что идентифицирует эта namingsystem, включая область действия, гранулярность (неоднородность структуры), маркировку версий и т. п.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="usage" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Предоставляет руководство по использованию пространства имен, включая обработку символов форматирования, применение верхнего или нижнего регистра и проч.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="uniqueId" type="NamingSystem.UniqueId" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Указывает, как можно идентифицировать систему, чтобы ссылаться на нее в электронном обмене.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="publisher" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>The name of the individual or organization that published the naming system.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contact" type="NamingSystem.Contact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Contacts to assist a user in finding and communicating with the publisher.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="replacedBy" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>For namingsystems that are retired, indicates the namingsystem that should be used in their place (if any).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NamingSystem.UniqueId">
+    <xs:annotation>
+      <xs:documentation>Куратор пространства имен, который выдает уникальные обозначения в пределах этого пространства имен для идентификации концептов, людей, устройств и т. п. Представляет &quot;System&quot;, используемую внутри типов данных Идентификатор и Кодинг.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="NamingSystemIdentifierType">
+            <xs:annotation>
+              <xs:documentation>Обозначает уникальную схему идентификации, используемой для этого конкретного идентификатора.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="value" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Строка, которую следует оправлять для идентификации кодовой системы или идентифицирующей системы.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="preferred" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Указывает, является ли этот идентификатор &quot;предпочтительным&quot; для этого типа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation>Определяет период времени, в течение которого этот идентификатор считается допустимым для ссылки на namingsystem. Вне этого периода идентификатор может быть недетерминированным.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NamingSystem.Contact">
+    <xs:annotation>
+      <xs:documentation>Куратор пространства имен, который выдает уникальные обозначения в пределах этого пространства имен для идентификации концептов, людей, устройств и т. п. Представляет &quot;System&quot;, используемую внутри типов данных Идентификатор и Кодинг.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>The name of an individual to contact regarding the naming system.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Contact details for individual (if a name was provided) or the publisher.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="NamingSystemType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="codesystem">
+        <xs:annotation>
+          <xs:documentation>The namingsystem is used to define concepts and symbols to represent those concepts.  E.g. UCUM, LOINC, NDC code, local lab codes, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="identifier">
+        <xs:annotation>
+          <xs:documentation>The namingsystem is used to manage identifiers (e.g. license numbers, order numbers, etc.).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="root">
+        <xs:annotation>
+          <xs:documentation>The namingsystem is used as the root for other identifiers and namingsystems.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NamingSystemType">
+    <xs:annotation>
+      <xs:documentation>Устанавливает назначение namingsystem</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="NamingSystemType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="NamingSystemIdentifierType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="oid">
+        <xs:annotation>
+          <xs:documentation>An ISO object identifier.  E.g. 1.2.3.4.5.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="uuid">
+        <xs:annotation>
+          <xs:documentation>A universally unique identifier of the form a5afddf4-e880-459b-876e-e4591b0acc11.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="uri">
+        <xs:annotation>
+          <xs:documentation>A uniform resource identifier (ideally a URL - uniform resource locator).  E.g. http://unitsofmeasure.org.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="other">
+        <xs:annotation>
+          <xs:documentation>Some other type of unique identifier.  E.g HL7-assigned reserved string such as LN for LOINC.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NamingSystemIdentifierType">
+    <xs:annotation>
+      <xs:documentation>Определяет стиль уникального идентификатора, используемого для указания пространства имен</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="NamingSystemIdentifierType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

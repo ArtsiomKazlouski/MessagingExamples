@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="MedicationAdministration" type="MedicationAdministration">
+    <xs:annotation>
+      <xs:documentation>Описывает событие употребления пациентом или другого введения лекарственного средства. Может быть как простым - проглотить таблетку, так и длительным вливанием.Связанные ресурсы привязывают это событие к его санкционирующему предписанию (authorizing prescription) и конкретной встрече (encounter) пациента и медицинского специалиста (health care practitioner).</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="MedicationAdministration">
+    <xs:annotation>
+      <xs:documentation>Описывает событие употребления пациентом или другого введения лекарственного средства. Может быть как простым - проглотить таблетку, так и длительным вливанием.Связанные ресурсы привязывают это событие к его санкционирующему предписанию (authorizing prescription) и конкретной встрече (encounter) пациента и медицинского специалиста (health care practitioner).</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Внешний идентификатор - FHIR сгенерирует свои собственные внутренние идентификаторы (возможно URLs), которыми ресурсу нет необходимости явно управлять. Здесь указывается тот идентификатор, который будет использоваться другой не FHIR системой - например автоматизированная подача лекарственного средства будет создавать запись при каждом срабатывании; введение, когда пациент отсутствовал в палате, может выполняться другой системой или вводиться после этого события. Особенно важно, если эти записи необходимо обновлять.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="MedicationAdministrationStatus">
+            <xs:annotation>
+              <xs:documentation>Устанавливается, как правило, для указания, что введение было завершено. Для некоторых длительных введений, например вливаний, возможно состояние, когда введение начато, но не завершено или приостановлено на время, пока идет другой процесс.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="patient" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Человек или животное, которому было выдано лекарственное средство.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="practitioner" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Лицо, ответственное за выдачу лекарственного средства пациенту.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="encounter" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Визит, госпитализация или другой вид контакта пациента и поставщика медицинских услуг, в рамках которого было выполнено введение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="prescription" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Исходный запрос, указание или полномочие на выполнение введения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="wasNotGiven" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Установите в true, если запись говорит о том, что лекарственное средство НЕ БЫЛО введено.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reasonNotGiven" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, указывающий почему введение не было выполнено.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="reasonGiven" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, указывающий, почему лекарственное средство было выдано.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:choice minOccurs="1" maxOccurs="1" >
+            <xs:annotation>
+              <xs:documentation>Интервал времени, в течение которого происходило введение (или не происходило, когда атрибут 'notGiven' установлен в true). Для большинства введений, таких как глотание таблетки, больше подходит использование dateTime.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="effectiveTimeDateTime" type="dateTime"/>
+            <xs:element name="effectiveTimePeriod" type="Period"/>
+          </xs:choice>
+          <xs:element name="medication" minOccurs="0" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Определяет лекарственное средство, которое было введено. Это либо ссылка на ресурс, представляющий детали лекарственного средства, либо простой атрибут с кодом лекарственного средства из известного списка медикаментов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="device" minOccurs="0" maxOccurs="unbounded" type="Reference">
+            <xs:annotation>
+              <xs:documentation>Устройство, используемое для введения лекарственного средства пациенту. Например конкретный инфузионный насос.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="note" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Дополнительная информация о введении лекарственного средства, которая не может быть передана в других атрибутах.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="dosage" type="MedicationAdministration.Dosage" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Указывает, каким образом лекарственное средство было использовано пациентом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MedicationAdministration.Dosage">
+    <xs:annotation>
+      <xs:documentation>Описывает событие употребления пациентом или другого введения лекарственного средства. Может быть как простым - проглотить таблетку, так и длительным вливанием.Связанные ресурсы привязывают это событие к его санкционирующему предписанию (authorizing prescription) и конкретной встрече (encounter) пациента и медицинского специалиста (health care practitioner).</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="text" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольные текстовые инструкции по дозировке могут указываться в случае, когда они слишком сложные, чтобы их закодировать. Если присутствуют кодированные инструкции, произвольные текстовые инструкции могут также прилагаться для отображения людям, принимающим или вводящим этот медикамент.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="site" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное указание анатомического положения, где медикамент вводится в тело. Например &quot;левая рука&quot;.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="route" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Код, обозначающий способ ввода или физиологический путь введения терапевтического средства в или на пациента. Например местный, внутривенный и т. д.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="method" minOccurs="0" maxOccurs="1" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Кодированное значение, обозначающее метод, которым лекарственное средство было введено в или на тело. Наиболее часто используется для инъекций. Примеры: Slow Push; Deep IV.При использовании справочников этот термин уже согласован со способом или формой введения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="quantity" minOccurs="0" maxOccurs="1" type="Quantity">
+            <xs:annotation>
+              <xs:documentation>Количество лекарственного средства, данного при одном введении. Используйте это значение, когда введение является, по сути, мгновенным событием, таким как проглотить таблетку или сделать инъекцию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="rate" minOccurs="0" maxOccurs="1" type="Ratio">
+            <xs:annotation>
+              <xs:documentation>Определяет скорость, с которой лекарственное средство вводится в пациента. Обычно это скорость вливания, например: 200 мл в течение 2 часов. Может также выражаться как скорость в единицу времени, например 100 мл в час - продолжительность не указана либо указана в quantity.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="MedicationAdministrationStatus-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="in-progress">
+        <xs:annotation>
+          <xs:documentation>The administration has started but has not yet completed.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="on-hold">
+        <xs:annotation>
+          <xs:documentation>Actions implied by the administration have been temporarily halted, but are expected to continue later. May also be called &quot;suspended&quot;.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="completed">
+        <xs:annotation>
+          <xs:documentation>All actions that are implied by the administration have occurred.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="entered-in-error">
+        <xs:annotation>
+          <xs:documentation>The administration was entered in error and therefore nullified.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="stopped">
+        <xs:annotation>
+          <xs:documentation>Actions implied by the administration have been permanently halted, before all of them occurred.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MedicationAdministrationStatus">
+    <xs:annotation>
+      <xs:documentation>A set of codes indicating the current status of a MedicationAdministration</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="MedicationAdministrationStatus-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2011+, HL7, Inc.
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without modification, 
+  are permitted provided that the following conditions are met:
+  
+   * Redistributions of source code must retain the above copyright notice, this 
+     list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+   * Neither the name of HL7 nor the names of its contributors may be used to 
+     endorse or promote products derived from this software without specific 
+     prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+  POSSIBILITY OF SUCH DAMAGE.
+  
+
+  Generated on Thu, Jun 4, 2015 08:04+0000 for FHIR v0.5.0 
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" targetNamespace="http://hl7.org/fhir" elementFormDefault="qualified" version="1.0">
+  <xs:include schemaLocation="fhir-base.xsd"/>
+  <xs:element name="StructureDefinition" type="StructureDefinition">
+    <xs:annotation>
+      <xs:documentation>Определение FHIR-структуры. Данный ресурс используется для описания основных ресурсов, типов данных, определенных в FHIR, а также для описания расширений и ограничений на ресурсы и типы данных.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="StructureDefinition">
+    <xs:annotation>
+      <xs:documentation>Определение FHIR-структуры. Данный ресурс используется для описания основных ресурсов, типов данных, определенных в FHIR, а также для описания расширений и ограничений на ресурсы и типы данных.</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DomainResource">
+        <xs:sequence>
+          <xs:element name="url" minOccurs="1" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URL, по которому этот StructureDefinition доступен (или будет опубликован), и который используется для ссылки на этот StructureDefinition в URL расширений и значениях тегов в действующих FHIR-системах.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="identifier" minOccurs="0" maxOccurs="unbounded" type="Identifier">
+            <xs:annotation>
+              <xs:documentation>Формальный идентификатор, который используется для идентификации этого StructureDefinition, когда он представлен в других форматах, или на него ссылаются в спецификации, модели, проекте или примере (должен быть глобально уникальным OID, UUID или URI), (если нет возможности использовать literal URI).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="version" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Идентификатор, используемый для указания на эту версию StructureDefinition, когда на неё ссылаются в спецификации, модели, проекте или примере. Это произвольное значение, управляемое автором StructureDefinition вручную.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="1" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое название на естественном языке, идентифицирующее StructureDefinition.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="useContext" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+            <xs:annotation>
+              <xs:documentation>Содержимое разрабатывалось с фокусом на и поддержкой перечисленных видов контекста. Эти термины могут использоваться для содействия индексации и поиску структурных определений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="display" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Определено для того, чтобы приложения могли использовать это название при отображения значения расширения пользователю.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="publisher" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя физического лица или организации, которая опубликовала данное структурное определение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contact" type="StructureDefinition.Contact" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Контактные данные для помощи пользователю найти и вступить в контакт с издателем.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Произвольное текстовое описание  StructureDefinition и его использования, на естественном языке.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="requirements" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Объясняет, зачем необходимо это структурное определение и почему оно было ограничено таким образом.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="copyright" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Предупреждение об авторском праве на структурное определение. Предупреждения об авторских правах, как правило, являются правовыми ограничениями на использование и публикацию информации об ограничениях и мэппинге.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="code" minOccurs="0" maxOccurs="unbounded" type="Coding">
+            <xs:annotation>
+              <xs:documentation>Набор терминов из внешних справочников, который может оказывать помощь при индексации и поиске шаблонов.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="status" minOccurs="1" maxOccurs="1" type="ConformanceResourceStatus">
+            <xs:annotation>
+              <xs:documentation>Статус StructureDefinition.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="experimental" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Этот StructureDefinition был создан для тестирования (или обучения/оценки/маркетинга), и не предназначен для реального применения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="date" minOccurs="0" maxOccurs="1" type="dateTime">
+            <xs:annotation>
+              <xs:documentation>Дата публикации этой версии StructureDefinition.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="fhirVersion" minOccurs="0" maxOccurs="1" type="id">
+            <xs:annotation>
+              <xs:documentation>Версия спецификации FHIR, на которой основан этот StructureDefinition - это формальная версия спецификации без номера ревизии, например [publication].[major].[minor], это 0.5.0 для этой версии.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="mapping" type="StructureDefinition.Mapping" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Внешняя спецификация, с которой сопоставляется это содержимое.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="1" maxOccurs="1" type="StructureDefinitionType">
+            <xs:annotation>
+              <xs:documentation>Задает тип структуры, которую описывает данное определение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="abstract" minOccurs="1" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation>Является ли описываемая структура абстрактной или нет - то есть может ли фактический обмениваемый элемент вообще быть этого типа.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="contextType" minOccurs="0" maxOccurs="1" type="ExtensionContext">
+            <xs:annotation>
+              <xs:documentation>Если это расширение, определяет контекст в пределах FHIR-ресурсов, в которых может использоваться это расширение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="context" minOccurs="0" maxOccurs="unbounded" type="string">
+            <xs:annotation>
+              <xs:documentation>Определяет типы элементов ресурса или типа данных, к которым может применяться это расширение.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="base" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI базовой структуры, на которой строится данный набор ограничений.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="snapshot" type="StructureDefinition.Snapshot" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Структура в виде снапшота выражается в автономной форме, которая может использоваться и интерпретироваться без учета базового StructureDefinition.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="differential" type="StructureDefinition.Differential" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Дифференциальный вид выражается относительно базового StructureDefinition - это объявление различий, которые он применяет.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StructureDefinition.Contact">
+    <xs:annotation>
+      <xs:documentation>Определение FHIR-структуры. Данный ресурс используется для описания основных ресурсов, типов данных, определенных в FHIR, а также для описания расширений и ограничений на ресурсы и типы данных.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя контактного лица для связи насчет этого структурного определения.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="telecom" minOccurs="0" maxOccurs="unbounded" type="ContactPoint">
+            <xs:annotation>
+              <xs:documentation>Контактная информация физического лица (если было указано имя) или издателя.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StructureDefinition.Mapping">
+    <xs:annotation>
+      <xs:documentation>Определение FHIR-структуры. Данный ресурс используется для описания основных ресурсов, типов данных, определенных в FHIR, а также для описания расширений и ограничений на ресурсы и типы данных.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="identity" minOccurs="1" maxOccurs="1" type="id">
+            <xs:annotation>
+              <xs:documentation>Внутренний идентификатор, который используется для идентификации этого набора мэппингов, когда делаются конкретные мэппинги.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="uri" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation>Абсолютный URI, идентифицирующий спецификацию, в которой выражен этот мэппинг.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="name" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Имя спецификации, на которую делается мэппинг.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="comments" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation>Комментарии к этому мэппингу, включая версионные примечания, вопросы, ограничения области применения и другие важные примечания к использованию.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StructureDefinition.Snapshot">
+    <xs:annotation>
+      <xs:documentation>Определение FHIR-структуры. Данный ресурс используется для описания основных ресурсов, типов данных, определенных в FHIR, а также для описания расширений и ограничений на ресурсы и типы данных.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="element" minOccurs="1" maxOccurs="unbounded" type="ElementDefinition">
+            <xs:annotation>
+              <xs:documentation>Собирает ограничения со всех элементов ресурса.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StructureDefinition.Differential">
+    <xs:annotation>
+      <xs:documentation>Определение FHIR-структуры. Данный ресурс используется для описания основных ресурсов, типов данных, определенных в FHIR, а также для описания расширений и ограничений на ресурсы и типы данных.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="element" minOccurs="1" maxOccurs="unbounded" type="ElementDefinition">
+            <xs:annotation>
+              <xs:documentation>Собирает ограничения со всех элементов ресурса.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="StructureDefinitionType-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="type">
+        <xs:annotation>
+          <xs:documentation>A data type - either a primitive or complex structure that defines a set of data elements. These can be used throughout Resource and extension definitions.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="resource">
+        <xs:annotation>
+          <xs:documentation>A resource defined by the FHIR specification.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="constraint">
+        <xs:annotation>
+          <xs:documentation>A set of constraints on a resource or data type that describe how it is used for a particular use.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="extension">
+        <xs:annotation>
+          <xs:documentation>A definition of an extension that can be used in a FHIR resource (or a set of constraints on an exsting extension).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="StructureDefinitionType">
+    <xs:annotation>
+      <xs:documentation>Задает тип структуры, которую описывает определение</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="StructureDefinitionType-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ExtensionContext-list">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="resource">
+        <xs:annotation>
+          <xs:documentation>The context is all elements matching a particular resource element path.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="datatype">
+        <xs:annotation>
+          <xs:documentation>The context is all nodes matching a particular data type element path (root or repeating element) or all elements referencing a particular primitive data type (expressed as the datatype name).</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="mapping">
+        <xs:annotation>
+          <xs:documentation>The context is all nodes whose mapping to a specified reference model corresponds to a particular mapping structure.  The context identifies the mapping target. The mapping should clearly identify where such an extension could be used.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="extension">
+        <xs:annotation>
+          <xs:documentation>The context is a particular extension from a particular profile.  Expressed as uri#name, where uri identifies the profile and #name identifies the extension code.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ExtensionContext">
+    <xs:annotation>
+      <xs:documentation>Как интерпретируется контекст расширения</xs:documentation>
+      <xs:documentation>If the element is present, it must have either a @value, an @id, or extensions</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Element">
+        <xs:attribute name="value" type="ExtensionContext-list" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

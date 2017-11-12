@@ -1,0 +1,18 @@
+{
+  "ConnectionStrings": {
+    "prescription_db": "Server={{ fhirServer_db_server }};Port={{ fhirServer_db_port }};Database={{ fhirServer_db_database }};User Id={{ fhirServer_db_user }};Password={{ fhirServer_db_password }};"
+  },
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  {%- block toggles %}
+  "Toggles": {
+    "Authentication": false,
+    "ServerEvent": false,
+	"Nginx":  true 
+  }
+  {% endblock %}
+}
