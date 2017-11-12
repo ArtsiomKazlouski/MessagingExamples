@@ -1,0 +1,1 @@
+& .squirell/OctopusDeploymentScript.ps1

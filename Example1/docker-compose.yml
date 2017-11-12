@@ -1,0 +1,9 @@
+version: '2'
+
+services:  
+  rabbit:    
+    image: rafakato/rabbitmq-delayed-message-exchange:3.6.1-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    
