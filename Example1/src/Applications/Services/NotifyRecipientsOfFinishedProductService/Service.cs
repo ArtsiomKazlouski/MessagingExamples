@@ -82,10 +82,10 @@ namespace NotifyRecipientsOfFinishedProductService
                 switch (deliveryCount)
                 {
                     case 1:
-                        nextDelay = (int)TimeSpan.FromMinutes(1).TotalMilliseconds;
+                        nextDelay = (int)TimeSpan.FromSeconds(5).TotalMilliseconds;
                         break;
                     case 2:
-                        nextDelay = (int)TimeSpan.FromMinutes(5).TotalMilliseconds;
+                        nextDelay = (int)TimeSpan.FromSeconds(15).TotalMilliseconds;
                         break;
                     default:
                         Log.Error(e, $"Exceeded Retry Count: {deliveryCount}");
@@ -140,7 +140,7 @@ namespace NotifyRecipientsOfFinishedProductService
             try
             {
                 var checkResult = _checkSubscriptionService.Check(message, query);
-                Log.Verbose($"Check successful");
+                Log.Verbose($"Check result: {checkResult}");
 
                 return checkResult;
             }

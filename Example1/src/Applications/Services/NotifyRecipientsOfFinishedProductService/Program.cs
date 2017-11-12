@@ -39,24 +39,12 @@ namespace NotifyRecipientsOfFinishedProductService
 
             builder.Register(c => RabbitHutch.CreateBus(register => register.Register<IEasyNetQLogger>(l => easyNetQLogger)).Advanced).As<IAdvancedBus>();
 
-            builder.Register(t =>
-            {
-                var client = new OAuth2Client(
-                    new Uri(settings.TokenEndpoint),
-                    settings.Client,
-                    settings.Clientsecret);
-
-                var tokenResult = client.RequestClientCredentialsAsync(settings.RequestedScopes).Result;
-                return tokenResult;
-            });
-
-            builder.RegisterType<Authenticator>().AsImplementedInterfaces();
             
             builder.Register(c =>
                 new HttpMessageHandlerClient(
                     () => new HttpClientHandler(),
                     settings.SubscriptionServiceEndpoint, 
-                    container.Resolve<IAuthenticator>(),
+                    null,
                     new DelegatedDeserializer(JsonConvert.DeserializeObject),
                     new DelegatedSerializer(JsonConvert.SerializeObject),
                     string.Empty)

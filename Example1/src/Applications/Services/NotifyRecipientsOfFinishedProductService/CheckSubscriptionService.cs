@@ -13,10 +13,10 @@ namespace NotifyRecipientsOfFinishedProductService
         private readonly HttpClient _client;
         private readonly Func<TokenResponse> _tokenFactory;
 
-        public CheckSubscriptionService(HttpClient client, Func<TokenResponse> tokenFactory)
+        public CheckSubscriptionService()
         {
-            _client = client ?? throw new ArgumentNullException(nameof(client));
-            _tokenFactory = tokenFactory ?? throw new ArgumentNullException(nameof(tokenFactory));
+            //_client = client ?? throw new ArgumentNullException(nameof(client));
+            //_tokenFactory = tokenFactory ?? throw new ArgumentNullException(nameof(tokenFactory));
         }
 
         public bool Check(MessageMetadata message, string query)
