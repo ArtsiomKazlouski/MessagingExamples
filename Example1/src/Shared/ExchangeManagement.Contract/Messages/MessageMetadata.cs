@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace ExchangeManagement.Contract.Messages
 {
+    public class ImportResult
+    {
+        public long Id { get; set; }
+    }
+
     public class MessageMetadata
     {
+        public long Id { get; set; }
         public string Content { get; set; }
     }
 
@@ -42,5 +48,10 @@ namespace ExchangeManagement.Contract.Messages
 
             return message.Content.StartsWith("r", StringComparison.InvariantCultureIgnoreCase);
         }
+    }
+
+    public interface IImportService
+    {
+        long Import(Subscription subscription, MessageMetadata product);
     }
 }

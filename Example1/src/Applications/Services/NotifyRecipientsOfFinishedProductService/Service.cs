@@ -4,6 +4,7 @@ using System.Linq;
 using EasyNetQ;
 using EasyNetQ.Topology;
 using ExchangeManagement.Contract;
+using ExchangeManagement.Contract.Messages;
 using ExchangeManagement.Contract.ServiceContracts;
 using InfResourceManagement.Shared.Contracts.Types.InformationResource;
 using Serilog;
@@ -39,22 +40,22 @@ namespace NotifyRecipientsOfFinishedProductService
             _bus.Bind(_retryExchanger, queue, "*");
 
             _bus.Consume(queue, registration => registration
-                .Add<AggregateInformationResourceDetails>((message, info) =>
+                .Add<MessageMetadata>((message, info) =>
                 {
                     Process(message.Body);
                 })
-                .Add<RedeliveribleInformationResource>((message, info) =>
+                .Add<RedeliveribleMessage>((message, info) =>
                 {
-                    ProcessWithRetry(message.Body.Resource,message.Body.Subscriptions,message.Body.DeliveryCount);
+                    ProcessWithRetry(message.Body.Message,message.Body.Subscriptions,message.Body.DeliveryCount);
                 }));
         }
 
         
 
 
-        public void Process(AggregateInformationResourceDetails product)
+        public void Process(MessageMetadata message)
         {
-            Log.Verbose($"RecievedProduct with id={product.Resource.Id}");
+            Log.Verbose($"RecievedProduct with id={message.Id}");
             //get subscriptions
             var subscriptions = _subscriptionService.List();
             Log.Verbose($"Obtained subscriptions count: {subscriptions.Count}");
@@ -63,11 +64,11 @@ namespace NotifyRecipientsOfFinishedProductService
             {
                 Log.Verbose($"Check consumer uri:{subscriptionGroup.Key}");
 
-                ProcessWithRetry(product,subscriptionGroup.ToList());
+                ProcessWithRetry(message,subscriptionGroup.ToList());
             }
         }
 
-        public void ProcessWithRetry(AggregateInformationResourceDetails product, IList<Subscription> subscriptionGroup, int tryIndex = 0)
+        public void ProcessWithRetry(MessageMetadata product, IList<Subscription> subscriptionGroup, int tryIndex = 0)
         {
             var deliveryCount = tryIndex+1;
             int nextDelay;
@@ -101,21 +102,21 @@ namespace NotifyRecipientsOfFinishedProductService
                 }
             };
 
-            var redeliveribleInformationResource = new RedeliveribleInformationResource()
+            var redeliveribleInformationResource = new RedeliveribleMessage()
             {
                 DeliveryCount = deliveryCount,
-                Resource = product,
+                Message = product,
                 Subscriptions = subscriptionGroup
             };
 
-            _bus.Publish(_retryExchanger, String.Empty, true, new Message<RedeliveribleInformationResource>(redeliveribleInformationResource , properties));
+            _bus.Publish(_retryExchanger, String.Empty, true, new Message<RedeliveribleMessage>(redeliveribleInformationResource , properties));
         }
 
-        public void ProcessSubscriptionGroup(AggregateInformationResourceDetails product, IList<Subscription> subscriptionGroup, int tryIndex = 0)
+        public void ProcessSubscriptionGroup(MessageMetadata product, IList<Subscription> subscriptionGroup, int tryIndex = 0)
         {
             foreach (var subscription in subscriptionGroup.Where(s=>s.IsDownloadResourceFile))
             {
-                if (!IsHaveResult(subscription, product.Resource.Id))
+                if (!IsHaveResult(subscription, product.Id))
                 {
                     continue;
                 }
@@ -129,17 +130,15 @@ namespace NotifyRecipientsOfFinishedProductService
 
             foreach (var subscription in subscriptionGroup.Where(s=>!s.IsDownloadResourceFile))
             {
-                if (!IsHaveResult(subscription, product.Resource.Id))
+                if (!IsHaveResult(subscription, product.Id))
                 {
                     continue;
                 }
 
-                var productCopy=new AggregateInformationResourceDetails
+                var productCopy=new MessageMetadata()
                 {
-                    Resource = product.Resource,
-                    DemoPictures = product.DemoPictures,
-                    Previews = product.Previews,
-                    Version = product.Version
+                    Id = product.Id,
+                    Content = product.Content,
                 };
 
                 //if has any result => send to consumer

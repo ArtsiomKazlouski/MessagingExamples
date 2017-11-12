@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using ExchangeManagement.Contract;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
+using ExchangeManagement.Contract.Messages;
 using Newtonsoft.Json;
 using Serilog;
 using Thinktecture.IdentityModel.Client;
@@ -20,21 +20,24 @@ namespace NotifyRecipientsOfFinishedProductService
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public long Import(Subscription subscription, AggregateInformationResourceDetails product)
+        public long Import(Subscription subscription, MessageMetadata product)
         {
             Log.Verbose($"Credential of subscription: {subscription.AuthorizationOptions.TokenEndpoint} {subscription.AuthorizationOptions.ClientId} {subscription.AuthorizationOptions.ClientSecret}");
 
-            var auth2Client = new OAuth2Client(
+            if (subscription.AuthorizationOptions!=null && string.IsNullOrWhiteSpace(subscription.AuthorizationOptions.TokenEndpoint) == false )
+            {
+                var auth2Client = new OAuth2Client(
                     new Uri(subscription.AuthorizationOptions.TokenEndpoint),
                     subscription.AuthorizationOptions.ClientId,
                     subscription.AuthorizationOptions.ClientSecret);
-            var tokenResult = auth2Client.RequestClientCredentialsAsync(_settings.RequestedScopes).Result;
-            Log.Verbose($"Token Result: {JsonConvert.SerializeObject(tokenResult.AccessToken)}");
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{tokenResult.AccessToken}");
+                var tokenResult = auth2Client.RequestClientCredentialsAsync(_settings.RequestedScopes).Result;
+                Log.Verbose($"Token Result: {JsonConvert.SerializeObject(tokenResult.AccessToken)}");
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{tokenResult.AccessToken}");
+            }
 
-            var result = _client.PostAsXmlAsync(subscription.Url, product).Result;
+            var result = _client.PostAsJsonAsync(subscription.Url, product).Result;
             Log.Verbose("Responce Code: " + result.StatusCode);
-            return result.Content.ReadAsAsync<InformationResource>().Result.Id;
+            return result.Content.ReadAsAsync<ImportResult>().Result.Id;
         }
     }
 }
