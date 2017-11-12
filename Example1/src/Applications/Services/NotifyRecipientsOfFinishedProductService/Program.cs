@@ -28,7 +28,7 @@ namespace NotifyRecipientsOfFinishedProductService
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.AppSettings() 
                 .Enrich.WithExceptionDetails()
-                .WriteTo.Sink(new EventLogSink(settings.ServiceName, settings.ServiceName, new JsonFormatter(renderMessage: true), ".", true))
+                .WriteTo.Console()
                 .CreateLogger();
 
             var builder = new ContainerBuilder();
@@ -75,7 +75,7 @@ namespace NotifyRecipientsOfFinishedProductService
                     })
                 .As<HttpClient>();
             
-            builder.RegisterType<TimeDemoPictureService>().AsImplementedInterfaces();
+            builder.RegisterType<CheckSubscriptionService>().AsImplementedInterfaces();
 
             builder.RegisterType<SubscriptionService>().AsImplementedInterfaces();
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using EasyNetQ;
 using EasyNetQ.Topology;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
+using ExchangeManagement.Contract.Messages;
 using NotifyRecipientsOfFinishedProductService;
 using Xunit;
 
@@ -35,7 +35,7 @@ namespace RabbitMqRetryPolicy.IntegrationTests
             var firstConsume = DateTime.Now;
             var secondConsume = DateTime.Now;
 
-            _bus.Consume(q, registration => registration.Add<RedeliveribleInformationResource>((message, info) =>
+            _bus.Consume(q, registration => registration.Add<RedeliveribleMessage>((message, info) =>
             {
                 if (message.Body.DeliveryCount == 0)
                 {
@@ -50,7 +50,7 @@ namespace RabbitMqRetryPolicy.IntegrationTests
                             {"x-delay",5000 }
                         }
                     };
-                    _bus.Publish(er,String.Empty, true,new Message<RedeliveribleInformationResource>(message.Body,properties));
+                    _bus.Publish(er,String.Empty, true,new Message<RedeliveribleMessage>(message.Body,properties));
                     return;
                 }
 
@@ -65,9 +65,9 @@ namespace RabbitMqRetryPolicy.IntegrationTests
             _bus.Bind(e, q, "*");
             _bus.Bind(er, q, "*");
 
-            var payload = new RedeliveribleInformationResource(){Resource = new AggregateInformationResourceDetails(){ } };
+            var payload = new RedeliveribleMessage(){Message = new MessageMetadata(){ } };
 
-            _bus.Publish(e,String.Empty, false,new Message<RedeliveribleInformationResource>(payload));
+            _bus.Publish(e,String.Empty, false,new Message<RedeliveribleMessage>(payload));
             areDelivered.WaitOne(TimeSpan.FromSeconds(2));
             Assert.True(delivered);
 

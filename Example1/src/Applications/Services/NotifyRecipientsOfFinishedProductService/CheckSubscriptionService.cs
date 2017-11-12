@@ -1,44 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Web;
-using InfResourceManagement.Shared.Contracts.Types;
-using InfResourceManagement.Shared.Contracts.Types.Demopictures;
-using Serilog;
+using ExchangeManagement.Contract.Messages;
 using Thinktecture.IdentityModel.Client;
 
 namespace NotifyRecipientsOfFinishedProductService
 {
-    public class TimeDemoPictureService: ITimeDemoPictureService
+    public class CheckSubscriptionService: ICheckSubscriptionService
     {
         private readonly HttpClient _client;
         private readonly Func<TokenResponse> _tokenFactory;
 
-        public TimeDemoPictureService(HttpClient client, Func<TokenResponse> tokenFactory)
+        public CheckSubscriptionService(HttpClient client, Func<TokenResponse> tokenFactory)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _tokenFactory = tokenFactory ?? throw new ArgumentNullException(nameof(tokenFactory));
         }
 
-        public PagedResult<DemoPicture> Search(string query)
+        public bool Check(MessageMetadata message, string query)
         {
-            var token = _tokenFactory.Invoke();
+            //var token = _tokenFactory.Invoke();
 
-            Log.Verbose($"DemoPicture search token={token.AccessToken}");
+            //Log.Verbose($"DemoPicture search token={token.AccessToken}");
 
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+            //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
 
-            var nameValueCollection = HttpUtility.ParseQueryString(query);
-            var pairs = nameValueCollection.AllKeys.SelectMany(nameValueCollection.GetValues, (k, v) => new KeyValuePair<string, string>(k, v));
+            //var nameValueCollection = HttpUtility.ParseQueryString(query);
+            //var pairs = nameValueCollection.AllKeys.SelectMany(nameValueCollection.GetValues, (k, v) => new KeyValuePair<string, string>(k, v));
 
-            var searchResponce = _client.PostAsync("demopictures/search",new FormUrlNoLimitEncodedContent(pairs)).Result;
+            //var searchResponce = _client.PostAsync("demopictures/search",new FormUrlNoLimitEncodedContent(pairs)).Result;
 
-            Log.Verbose($"DemoPicture search responce code: {searchResponce.StatusCode}");
+            //Log.Verbose($"DemoPicture search responce code: {searchResponce.StatusCode}");
 
-            return searchResponce.Content.ReadAsAsync<PagedResult<DemoPicture>>().Result;
+            //return searchResponce.Content.ReadAsAsync<PagedResult<DemoPicture>>().Result;
+
+            return message.Content.EndsWith(query,StringComparison.InvariantCultureIgnoreCase);
         }
     }
 

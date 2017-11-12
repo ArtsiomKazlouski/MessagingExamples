@@ -1,6 +1,5 @@
 ﻿using ExchangeManagement.Contract;
 using ExchangeManagement.Contract.Messages;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
 
 namespace NotifyRecipientsOfFinishedProductService
 {

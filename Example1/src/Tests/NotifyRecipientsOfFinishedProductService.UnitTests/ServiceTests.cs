@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using EasyNetQ;
-using EasyNetQ.Topology;
-using ExchangeManagement.Contract;
-using ExchangeManagement.Contract.ServiceContracts;
-using InfResourceManagement.Shared.Contracts.Types;
-using InfResourceManagement.Shared.Contracts.Types.Demopictures;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
-using Moq;
-using ResourceFileManagment.Contracts.DataContracts.Archive;
-using Xunit;
+﻿using ExchangeManagement.Contract;
+using ExchangeManagement.Contract.Messages;
 
 namespace NotifyRecipientsOfFinishedProductService.UnitTests
 {
@@ -31,246 +20,216 @@ namespace NotifyRecipientsOfFinishedProductService.UnitTests
                 IsDownloadResourceFile = true
             };
         }
+        
 
-        public DemoPictureDetails GetDemopicture(long infTestId, long demoTestId)
+        public MessageMetadata GetAggregateInformationResource(long infTestId, long demoTestId)
         {
-            return new DemoPictureDetails()
+            return new MessageMetadata()
             {
-                InformationResourceId = infTestId,
-                DemopictureId = demoTestId,
+                Id = 5,
+                Content = "P"
             };
         }
 
-        public AggregateInformationResourceDetails GetAggregateInformationResource(long infTestId, long demoTestId)
-        {
-            return new AggregateInformationResourceDetails()
-            {
-                Resource = new InformationResource()
-                {
-                    Id = infTestId,
-                    Schema = new Schema() { Id = 5, Name = "RawData" }
-                },
-                DemoPictures = new List<DemoPictureDetails>()
-                {
-                    GetDemopicture(infTestId, demoTestId)
-                },
-                ResourceFile = new GisResourceFileDTO
-                {
-                    Id = infTestId,
-                    PassportType = 5,
-                    State = GisResourceFileState.Regular,
-                    Files = new List<GisResourceFileAttachmentDTO>
-                    {
-                        new GisResourceFileAttachmentDTO
-                        {
-                            FileName = "Test",
-                            FileSize = 100
-                        }
-                    }
-                }
-            };
-        }
+        //[Fact]
+        //public void OneFindDemopicture()
+        //{
+        //    var subscription = GetSubscription("test");
+        //    var subscriptionList = new List<Subscription>()
+        //    {
+        //        subscription,
+        //        subscription
+        //    };
 
-        [Fact]
-        public void OneFindDemopicture()
-        {
-            var subscription = GetSubscription("test");
-            var subscriptionList = new List<Subscription>()
-            {
-                subscription,
-                subscription
-            };
+        //    var infTestId = 100;
+        //    var demoTestId = 101;
 
-            var infTestId = 100;
-            var demoTestId = 101;
+        //    var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
 
-            var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
+        //    var query = subscription.Query + "&informationResourceId=" +
+        //                aggregateInformationResource.Id;
 
-            var query = subscription.Query + "&informationResourceId=" +
-                        aggregateInformationResource.Resource.Id;
-
-            var subscriptionServiceMock = new Mock<ISubscriptionService>();
-            subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
+        //    var subscriptionServiceMock = new Mock<ISubscriptionService>();
+        //    subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
             
-            var timeDemoPictureServiceMock = new Mock<ITimeDemoPictureService>();
-            timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>(){Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count});
-
-            var importServiceMock = new Mock<IImportService>();
-            importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Returns(infTestId);
-
-            var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
-            handler.Process(aggregateInformationResource);
-
-            subscriptionServiceMock.Verify(service => service.List(), Times.Once);
-            timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
-        }
-
-        [Fact]
-        public void OneImport()
-        {
-            var subscription = GetSubscription("test");
-            var subscription2 = GetSubscription("test");
-            var subscriptionList = new List<Subscription>()
-            {
-                subscription,
-                subscription2
-            };
-
-            var infTestId = 100;
-            var demoTestId = 101;
-
-            var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
-
-            var query = subscription.Query + "&informationResourceId=" +
-                        aggregateInformationResource.Resource.Id;
-
-            var subscriptionServiceMock = new Mock<ISubscriptionService>();
-            subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
-
-            var timeDemoPictureServiceMock = new Mock<ITimeDemoPictureService>();
-            timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
-
-            var importServiceMock = new Mock<IImportService>();
-            importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Returns(infTestId);
-            importServiceMock.Setup(service => service.Import(subscription2, aggregateInformationResource)).Returns(infTestId);
-
-            var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
-            handler.Process(aggregateInformationResource);
-
-            subscriptionServiceMock.Verify(service => service.List(), Times.Once);
-            timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription2, aggregateInformationResource), Times.Never);
-        }
-
-        [Fact]
-        public void OneImportProblemShouldPublishWithRetry()
-        {
-            var subscription = GetSubscription("test");
-            var subscription2 = GetSubscription("test");
-            var subscriptionList = new List<Subscription>()
-            {
-                subscription,
-                subscription2
-            };
-
-            var infTestId = 100;
-            var demoTestId = 101;
-
-            var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
-
-            var query = subscription.Query + "&informationResourceId=" +
-                        aggregateInformationResource.Resource.Id;
-
-            var advancedBusMock = new Mock<IAdvancedBus>();
-
-            var subscriptionServiceMock = new Mock<ISubscriptionService>();
-            subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
-
-            var timeDemoPictureServiceMock = new Mock<ITimeDemoPictureService>();
-            timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
-
-            var importServiceMock = new Mock<IImportService>();
-            importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Throws(new Exception("problem occured"));
-            importServiceMock.Setup(service => service.Import(subscription2, aggregateInformationResource)).Returns(infTestId);
             
-            var handler = new Service(advancedBusMock.Object, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
-            handler.Process( aggregateInformationResource );
 
-            advancedBusMock.Verify(bus => bus.Publish(It.IsAny<IExchange>(), String.Empty, true, It.Is<IMessage<RedeliveribleInformationResource>>(message => object.Equals(message.Properties.Headers.Single().Value, (int)TimeSpan.FromMinutes(1).TotalMilliseconds))), Times.Once);
+        //    var importServiceMock = new Mock<IImportService>();
+        //    importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Returns(infTestId);
 
-            subscriptionServiceMock.Verify(service => service.List(), Times.Once);
-            timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription2, aggregateInformationResource), Times.Never);
-        }
+        //    var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
+        //    handler.Process(aggregateInformationResource);
 
-        [Fact]
-        public void TwoImport()
-        {
-            var subscription = GetSubscription("test");
-            var subscription2 = GetSubscription("test2");
-            var subscriptionList = new List<Subscription>()
-            {
-                subscription,
-                subscription2
-            };
+        //    subscriptionServiceMock.Verify(service => service.List(), Times.Once);
+        //    timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
+        //}
 
-            var infTestId = 100;
-            var demoTestId = 101;
+        //[Fact]
+        //public void OneImport()
+        //{
+        //    var subscription = GetSubscription("test");
+        //    var subscription2 = GetSubscription("test");
+        //    var subscriptionList = new List<Subscription>()
+        //    {
+        //        subscription,
+        //        subscription2
+        //    };
 
-            var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
+        //    var infTestId = 100;
+        //    var demoTestId = 101;
 
-            var query = subscription.Query + "&informationResourceId=" +
-                        aggregateInformationResource.Resource.Id;
+        //    var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
 
-            var subscriptionServiceMock = new Mock<ISubscriptionService>();
-            subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
+        //    var query = subscription.Query + "&informationResourceId=" +
+        //                aggregateInformationResource.Resource.Id;
 
-            var timeDemoPictureServiceMock = new Mock<ITimeDemoPictureService>();
-            timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
+        //    var subscriptionServiceMock = new Mock<ISubscriptionService>();
+        //    subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
 
-            var importServiceMock = new Mock<IImportService>();
-            importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Returns(infTestId);
-            importServiceMock.Setup(service => service.Import(subscription2, aggregateInformationResource)).Returns(infTestId);
+        //    var timeDemoPictureServiceMock = new Mock<ICheckSubscriptionService>();
+        //    timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
 
-            var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
-            handler.Process(aggregateInformationResource);
+        //    var importServiceMock = new Mock<IImportService>();
+        //    importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Returns(infTestId);
+        //    importServiceMock.Setup(service => service.Import(subscription2, aggregateInformationResource)).Returns(infTestId);
 
-            subscriptionServiceMock.Verify(service => service.List(), Times.Once);
-            timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Exactly(2));
+        //    var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
+        //    handler.Process(aggregateInformationResource);
 
-            importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription2, aggregateInformationResource), Times.Once);
-        }
+        //    subscriptionServiceMock.Verify(service => service.List(), Times.Once);
+        //    timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription2, aggregateInformationResource), Times.Never);
+        //}
 
-        [Fact]
-        public void ImportWithoutResourceFile()
-        {
-            var subscription = GetSubscription("test");
-            var subscription2 = GetSubscription("test");
-            subscription2.Query = "test2";
-            subscription2.IsDownloadResourceFile = false;
-            var subscriptionList = new List<Subscription>()
-            {
-                subscription,
-                subscription2
-            };
+        //[Fact]
+        //public void OneImportProblemShouldPublishWithRetry()
+        //{
+        //    var subscription = GetSubscription("test");
+        //    var subscription2 = GetSubscription("test");
+        //    var subscriptionList = new List<Subscription>()
+        //    {
+        //        subscription,
+        //        subscription2
+        //    };
 
-            var infTestId = 100;
-            var demoTestId = 101;
+        //    var infTestId = 100;
+        //    var demoTestId = 101;
 
-            var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
+        //    var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
 
-            var query = subscription.Query + "&informationResourceId=" +
-                        aggregateInformationResource.Resource.Id;
+        //    var query = subscription.Query + "&informationResourceId=" +
+        //                aggregateInformationResource.Resource.Id;
 
-            var query2 = subscription2.Query + "&informationResourceId=" +
-                         aggregateInformationResource.Resource.Id;
+        //    var advancedBusMock = new Mock<IAdvancedBus>();
 
-            var subscriptionServiceMock = new Mock<ISubscriptionService>();
-            subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
+        //    var subscriptionServiceMock = new Mock<ISubscriptionService>();
+        //    subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
 
-            var timeDemoPictureServiceMock = new Mock<ITimeDemoPictureService>();
-            timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>());
-            timeDemoPictureServiceMock.Setup(service => service.Search(query2)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
+        //    var timeDemoPictureServiceMock = new Mock<ICheckSubscriptionService>();
+        //    timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
 
-            var importServiceMock = new Mock<IImportService>();
-            importServiceMock.Setup(service => service.Import(subscription, It.IsAny<AggregateInformationResourceDetails>())).Returns(infTestId);
+        //    var importServiceMock = new Mock<IImportService>();
+        //    importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Throws(new Exception("problem occured"));
+        //    importServiceMock.Setup(service => service.Import(subscription2, aggregateInformationResource)).Returns(infTestId);
+            
+        //    var handler = new Service(advancedBusMock.Object, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
+        //    handler.Process( aggregateInformationResource );
 
-            var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
-            handler.Process(aggregateInformationResource);
+        //    advancedBusMock.Verify(bus => bus.Publish(It.IsAny<IExchange>(), String.Empty, true, It.Is<IMessage<RedeliveribleInformationResource>>(message => object.Equals(message.Properties.Headers.Single().Value, (int)TimeSpan.FromMinutes(1).TotalMilliseconds))), Times.Once);
 
-            subscriptionServiceMock.Verify(service => service.List(), Times.Once);
-            timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
-            timeDemoPictureServiceMock.Verify(service => service.Search(query2), Times.Once);
-            importServiceMock.Verify(service => service.Import(subscription2, It.Is<AggregateInformationResourceDetails>(
-                product => product.Resource == aggregateInformationResource.Resource
-                           && ReferenceEquals(product.DemoPictures, aggregateInformationResource.DemoPictures)
-                           && ReferenceEquals(product.Previews, aggregateInformationResource.Previews)
-                           && product.Version == aggregateInformationResource.Version
-                           && product.ResourceFile == null)), Times.Once);
-        }
+        //    subscriptionServiceMock.Verify(service => service.List(), Times.Once);
+        //    timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription2, aggregateInformationResource), Times.Never);
+        //}
+
+        //[Fact]
+        //public void TwoImport()
+        //{
+        //    var subscription = GetSubscription("test");
+        //    var subscription2 = GetSubscription("test2");
+        //    var subscriptionList = new List<Subscription>()
+        //    {
+        //        subscription,
+        //        subscription2
+        //    };
+
+        //    var infTestId = 100;
+        //    var demoTestId = 101;
+
+        //    var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
+
+        //    var query = subscription.Query + "&informationResourceId=" +
+        //                aggregateInformationResource.Resource.Id;
+
+        //    var subscriptionServiceMock = new Mock<ISubscriptionService>();
+        //    subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
+
+        //    var timeDemoPictureServiceMock = new Mock<ICheckSubscriptionService>();
+        //    timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
+
+        //    var importServiceMock = new Mock<IImportService>();
+        //    importServiceMock.Setup(service => service.Import(subscription, aggregateInformationResource)).Returns(infTestId);
+        //    importServiceMock.Setup(service => service.Import(subscription2, aggregateInformationResource)).Returns(infTestId);
+
+        //    var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
+        //    handler.Process(aggregateInformationResource);
+
+        //    subscriptionServiceMock.Verify(service => service.List(), Times.Once);
+        //    timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Exactly(2));
+
+        //    importServiceMock.Verify(service => service.Import(subscription, aggregateInformationResource), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription2, aggregateInformationResource), Times.Once);
+        //}
+
+        //[Fact]
+        //public void ImportWithoutResourceFile()
+        //{
+        //    var subscription = GetSubscription("test");
+        //    var subscription2 = GetSubscription("test");
+        //    subscription2.Query = "test2";
+        //    subscription2.IsDownloadResourceFile = false;
+        //    var subscriptionList = new List<Subscription>()
+        //    {
+        //        subscription,
+        //        subscription2
+        //    };
+
+        //    var infTestId = 100;
+        //    var demoTestId = 101;
+
+        //    var aggregateInformationResource = GetAggregateInformationResource(infTestId, demoTestId);
+
+        //    var query = subscription.Query + "&informationResourceId=" +
+        //                aggregateInformationResource.Resource.Id;
+
+        //    var query2 = subscription2.Query + "&informationResourceId=" +
+        //                 aggregateInformationResource.Resource.Id;
+
+        //    var subscriptionServiceMock = new Mock<ISubscriptionService>();
+        //    subscriptionServiceMock.Setup(service => service.List()).Returns(subscriptionList);
+
+        //    var timeDemoPictureServiceMock = new Mock<ICheckSubscriptionService>();
+        //    timeDemoPictureServiceMock.Setup(service => service.Search(query)).Returns(() => new PagedResult<DemoPicture>());
+        //    timeDemoPictureServiceMock.Setup(service => service.Search(query2)).Returns(() => new PagedResult<DemoPicture>() { Results = aggregateInformationResource.DemoPictures.Cast<DemoPicture>().ToList(), TotalCount = aggregateInformationResource.DemoPictures.Count });
+
+        //    var importServiceMock = new Mock<IImportService>();
+        //    importServiceMock.Setup(service => service.Import(subscription, It.IsAny<AggregateInformationResourceDetails>())).Returns(infTestId);
+
+        //    var handler = new Service(null, null, subscriptionServiceMock.Object, timeDemoPictureServiceMock.Object, importServiceMock.Object);
+        //    handler.Process(aggregateInformationResource);
+
+        //    subscriptionServiceMock.Verify(service => service.List(), Times.Once);
+        //    timeDemoPictureServiceMock.Verify(service => service.Search(query), Times.Once);
+        //    timeDemoPictureServiceMock.Verify(service => service.Search(query2), Times.Once);
+        //    importServiceMock.Verify(service => service.Import(subscription2, It.Is<AggregateInformationResourceDetails>(
+        //        product => product.Resource == aggregateInformationResource.Resource
+        //                   && ReferenceEquals(product.DemoPictures, aggregateInformationResource.DemoPictures)
+        //                   && ReferenceEquals(product.Previews, aggregateInformationResource.Previews)
+        //                   && product.Version == aggregateInformationResource.Version
+        //                   && product.ResourceFile == null)), Times.Once);
+        //}
     }
 }

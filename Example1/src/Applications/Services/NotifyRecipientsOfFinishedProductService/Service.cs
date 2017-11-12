@@ -6,7 +6,6 @@ using EasyNetQ.Topology;
 using ExchangeManagement.Contract;
 using ExchangeManagement.Contract.Messages;
 using ExchangeManagement.Contract.ServiceContracts;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
 using Serilog;
 
 namespace NotifyRecipientsOfFinishedProductService
@@ -15,17 +14,17 @@ namespace NotifyRecipientsOfFinishedProductService
     {
         private readonly IAdvancedBus _bus;
         private readonly Settings _settings;
-        private readonly ITimeDemoPictureService _timeDemoPictureService;
+        private readonly ICheckSubscriptionService _checkSubscriptionService;
         private readonly ISubscriptionService _subscriptionService;
         private readonly IImportService _importService;
         private IExchange _retryExchanger;
 
-        public Service(IAdvancedBus bus, Settings settings, ISubscriptionService subscriptionService, ITimeDemoPictureService timeDemoPictureService, IImportService importService)
+        public Service(IAdvancedBus bus, Settings settings, ISubscriptionService subscriptionService, ICheckSubscriptionService checkSubscriptionService, IImportService importService)
         {
             _bus = bus;
             _settings = settings;
             _subscriptionService = subscriptionService;
-            _timeDemoPictureService = timeDemoPictureService;
+            _checkSubscriptionService = checkSubscriptionService;
             _importService = importService;
         }
 
@@ -114,9 +113,9 @@ namespace NotifyRecipientsOfFinishedProductService
 
         public void ProcessSubscriptionGroup(MessageMetadata product, IList<Subscription> subscriptionGroup, int tryIndex = 0)
         {
-            foreach (var subscription in subscriptionGroup.Where(s=>s.IsDownloadResourceFile))
+            foreach (var subscription in subscriptionGroup)
             {
-                if (!IsHaveResult(subscription, product.Id))
+                if (!IsHaveResult(subscription, product))
                 {
                     continue;
                 }
@@ -128,51 +127,28 @@ namespace NotifyRecipientsOfFinishedProductService
                 return;
             }
 
-            foreach (var subscription in subscriptionGroup.Where(s=>!s.IsDownloadResourceFile))
-            {
-                if (!IsHaveResult(subscription, product.Id))
-                {
-                    continue;
-                }
-
-                var productCopy=new MessageMetadata()
-                {
-                    Id = product.Id,
-                    Content = product.Content,
-                };
-
-                //if has any result => send to consumer
-                _importService.Import(subscription, productCopy);
-                Log.Information($"Notify by suscription id: {subscription.SubscriptionId}, uri {subscription.Url}");
-
-                return;
-            }
+            
         }
 
-        private bool IsHaveResult(Subscription subscription, long resouurceId)
+        private bool IsHaveResult(Subscription subscription, MessageMetadata message)
         {
             //search by query in service
-            var query = subscription.Query + "&informationResourceId=" + resouurceId;
+            var query = subscription.Query;// + "&informationResourceId=" + message.Id;
 
             Log.Verbose($"Query for search: {query}");
 
             try
             {
-                var searchResult = _timeDemoPictureService.Search(query);
-                Log.Verbose($"Found demoPictures count: {searchResult.TotalCount}");
+                var checkResult = _checkSubscriptionService.Check(message, query);
+                Log.Verbose($"Check successful");
 
-                if (searchResult.TotalCount == 0)
-                {
-                    return false;
-                }
+                return checkResult;
             }
             catch (Exception e)
             {
                 Log.Warning($"problem occured when check subscription id {subscription.SubscriptionId}", e);
                 return false;
             }
-
-            return true;
         }
 
         public void Stop()

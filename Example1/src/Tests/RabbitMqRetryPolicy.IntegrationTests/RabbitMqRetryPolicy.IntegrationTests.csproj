@@ -30,17 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccountManagement.Contract, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AccountManagement.Contract.1.3.98\lib\net45\AccountManagement.Contract.dll</HintPath>
-    </Reference>
     <Reference Include="EasyNetQ, Version=1.1.0.492, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EasyNetQ.1.1.0.492\lib\net45\EasyNetQ.dll</HintPath>
-    </Reference>
-    <Reference Include="InfResourceManagement.Shared.Contracts, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\InfResourceManagement.Shared.Contracts.1.11.180\lib\net45\InfResourceManagement.Shared.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="OrderManagement.Contracts, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\OrderManagement.Contracts.1.6.49\lib\net45\OrderManagement.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.6.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RabbitMQ.Client.3.6.0\lib\net45\RabbitMQ.Client.dll</HintPath>
@@ -81,6 +72,10 @@
     <ProjectReference Include="..\..\Applications\Services\NotifyRecipientsOfFinishedProductService\NotifyRecipientsOfFinishedProductService.csproj">
       <Project>{bd1686bb-1973-4495-a8a7-494ff570b7b7}</Project>
       <Name>NotifyRecipientsOfFinishedProductService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\ExchangeManagement.Contract\ExchangeManagement.Contract.csproj">
+      <Project>{36C2D186-AF9F-4D0A-9BF1-F5614BBDC89C}</Project>
+      <Name>ExchangeManagement.Contract</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

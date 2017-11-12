@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ExchangeManagement.Contract;
 using ExchangeManagement.Contract.Messages;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
 
 namespace NotifyRecipientsOfFinishedProductService
 { 
