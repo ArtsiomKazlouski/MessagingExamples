@@ -4,7 +4,7 @@ using System.Net.Http;
 using Autofac;
 using EasyNetQ;
 using EasyNetQ.Serilog;
-using InfResourceManagement.Wrapper;
+using ExchangeManagement.Contract.Messages;
 using Newtonsoft.Json;
 using RestSharpClient;
 using RestSharpClient.Contracts;
@@ -28,7 +28,7 @@ namespace CheckProductReadyService
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.AppSettings()
                 .Enrich.WithExceptionDetails()
-                .WriteTo.Sink(new EventLogSink(settings.ServiceName, settings.ServiceName, new JsonFormatter(renderMessage: true), ".", true))
+                .WriteTo.Console()
                 .CreateLogger();
             
             var builder = new ContainerBuilder();
@@ -62,7 +62,7 @@ namespace CheckProductReadyService
                     string.Empty)
             ).As<IRestClient>();
             
-            builder.RegisterType<FinishedProductService>().AsImplementedInterfaces();
+            builder.RegisterType<StubFinishedProductService>().AsImplementedInterfaces();
 
             builder.RegisterType<CheckProductReadyService>().AsSelf();
 

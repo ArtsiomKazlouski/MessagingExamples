@@ -11,6 +11,7 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Features.Variance;
 using Autofac.Integration.WebApi;
+using EasyNetQ;
 using ExchangeManagement.Host.WebApi.Handlers;
 using ExchangeManagement.Migrations.Installers;
 using FluentMigrator.Runner.Initialization;
@@ -133,8 +134,8 @@ namespace ExchangeManagement.Host.WebApi
 
             builder.RegisterType<SqlConnection>().As<IDbConnection>().UsingConstructor(typeof(string))
                 .WithParameter("connectionString", connectionString).AsImplementedInterfaces().ExternallyOwned();
-            
-            //builder.RegisterAssemblyTypes(ThisAssembly).AssignableTo<Profile>().As<Profile>();
+
+            builder.Register(c => RabbitHutch.CreateBus().Advanced).As<IAdvancedBus>().InstancePerLifetimeScope();
         }
     }
 

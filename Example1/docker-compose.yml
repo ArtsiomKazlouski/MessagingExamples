@@ -3,6 +3,10 @@ version: '2'
 services:  
   rabbit:    
     image: rafakato/rabbitmq-delayed-message-exchange:3.6.1-management
+    environment:
+        RABBITMQ_DEFAULT_USER: guest
+        RABBITMQ_DEFAULT_PASS: guest
+        RABBITMQ_DEFAULT_VHOST: test-gis-by        
     ports:
       - 5672:5672
       - 15672:15672

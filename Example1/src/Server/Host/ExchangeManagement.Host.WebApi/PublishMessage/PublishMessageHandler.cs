@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using EasyNetQ;
+using EasyNetQ.Topology;
 using ExchangeManagement.Contract.Messages;
 using MediatR;
 
@@ -23,9 +25,18 @@ namespace ExchangeManagement.Host.WebApi.PublishMessage
 
     public class PublishMessageHandler:AsyncRequestHandler<PublishMessageRequest>
     {
-        protected override Task HandleCore(PublishMessageRequest message)
+        private readonly IAdvancedBus _advancedBus;
+
+        public PublishMessageHandler(IAdvancedBus advancedBus)
         {
-            throw new NotImplementedException("publish");
+            _advancedBus = advancedBus;
+        }
+
+        protected override async Task HandleCore(PublishMessageRequest message)
+        {
+            var exchanger = _advancedBus.ExchangeDeclare(ExchangerNames.InformationResource, ExchangeType.Topic);
+
+            await _advancedBus.PublishAsync(exchanger, MessageTopics.Created,false,new Message<MessageMetadata>(message.MessageMetadata));
         }
     }
 

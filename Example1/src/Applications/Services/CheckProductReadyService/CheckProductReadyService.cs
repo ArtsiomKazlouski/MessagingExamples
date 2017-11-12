@@ -1,9 +1,7 @@
 ﻿using System;
 using EasyNetQ;
 using EasyNetQ.Topology;
-using InfResourceManagement.Shared.Contracts.Messages;
-using InfResourceManagement.Shared.Contracts.ServiceContracts;
-using InfResourceManagement.Shared.Contracts.Types.InformationResource;
+using ExchangeManagement.Contract.Messages;
 
 namespace CheckProductReadyService
 {
@@ -26,9 +24,6 @@ namespace CheckProductReadyService
             var infExchanger = _bus.ExchangeDeclare(ExchangerNames.InformationResource, ExchangeType.Topic);
             var demoExchanger = _bus.ExchangeDeclare(ExchangerNames.DemoPicture, ExchangeType.Topic);
             var quickLookExchanger = _bus.ExchangeDeclare(ExchangerNames.QuickLook, ExchangeType.Topic);
-            var resourceFileExchanger =
-                _bus.ExchangeDeclare(ResourceFileManagment.Contracts.Messages.ExchangerNames.ResourceFile,
-                    ExchangeType.Topic);
 
             _finishedProductsExchange = _bus.ExchangeDeclare(_settings.FinishedProductExchanger, ExchangeType.Fanout);
 
@@ -37,43 +32,33 @@ namespace CheckProductReadyService
             _bus.Bind(infExchanger, queue, "*");
             _bus.Bind(demoExchanger, queue, "*");
             _bus.Bind(quickLookExchanger, queue, "*");
-            _bus.Bind(resourceFileExchanger, queue, "*");
+            
 
             _bus.Consume(queue, registration => registration
-                .Add<InformationResourceMessage>((message, info) =>{ ConsumeAndProcess(message.Body); })
-                .Add<DemopictureMessage>((message, info) => { ConsumeAndProcess(message.Body); })
-                .Add<QuickLookMessage>((message, info) => { ConsumeAndProcess(message.Body); })
-                .Add<ResourceFileManagment.Contracts.Messages.ResourceFileMessage>((message,info)=>{ConsumeAndProcess(message.Body);})
+                .Add<MessageMetadata>((message, info) =>{ ConsumeAndProcess(message.Body); })
             );
         }
 
 
-        public void ConsumeAndProcess(InformationResourceMessage resourceMessage)
+       
+
+        public void ConsumeAndProcess(MessageMetadata message)
         {
-            if (resourceMessage == null)
+            if (message == null)
             {
-                throw new ArgumentNullException(nameof(resourceMessage));
+                throw new ArgumentNullException(nameof(message));
             }
 
-            Handle(resourceMessage.InformationResourceId);
+            Handle(message);
         }
 
-        public void ConsumeAndProcess(ResourceFileManagment.Contracts.Messages.ResourceFileMessage resourceFileMessage)
+        private void Handle(MessageMetadata message)
         {
-            if (resourceFileMessage == null)
+            if (_finishedProductService.IsReady(message))
             {
-                throw new ArgumentNullException(nameof(resourceFileMessage));
+                //if product ready publish it
+                _bus.Publish(_finishedProductsExchange, String.Empty, false, new Message<MessageMetadata>(message));
             }
-
-            Handle(resourceFileMessage.ResourceFileId);
-            
-        }
-
-        private void Handle(long informationResourceId)
-        {
-            var product = _finishedProductService.Get(informationResourceId);
-            //if product ready publish it
-            _bus.Publish(_finishedProductsExchange, String.Empty, false, new Message<AggregateInformationResourceDetails>(product));
         }
 
 
@@ -82,6 +67,4 @@ namespace CheckProductReadyService
             _bus.SafeDispose();
         }
     }
-
-   
 }
