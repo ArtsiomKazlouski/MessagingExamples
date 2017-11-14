@@ -48,6 +48,8 @@ namespace ExchangeManagement.Host.WebApi
             app.UseAutofacMiddleware(container)
                 .UseAutofacWebApi(httpConfiguration)
                 .UseWebApi(httpConfiguration);
+
+            ConfigureSignalR(app);
             
         }
 
