@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\..\..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\..\..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -148,13 +149,12 @@
     <Compile Include="Calculation\AppendCalculationResultRequestHandler.cs" />
     <Compile Include="Calculation\GetCalculationResultRequesthandler.cs" />
     <Compile Include="Calculation\RequestCalculationHandler.cs" />
-    <Compile Include="DapperUnitOfWork.cs" />
+    <Compile Include="Exceptions\EntityBadRequestException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\EntityUpdateConcurrencyException.cs" />
     <Compile Include="Handlers\GlobalExceptionHandler.cs" />
-    <Compile Include="Handlers\SqlExceptionHandler.cs" />
+    <Compile Include="Handlers\SignalRHandler.cs" />
     <Compile Include="Handlers\ValidatorHandler.cs" />
-    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="MediatorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CalculationController.cs" />

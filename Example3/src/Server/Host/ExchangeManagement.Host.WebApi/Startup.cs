@@ -100,7 +100,7 @@ namespace ExchangeManagement.Host.WebApi
                 );
 
             builder.RegisterGenericDecorator(
-               typeof(SqlExceptionHandler<,>),
+               typeof(SignalRHandler<,>),
                typeof(IAsyncRequestHandler<,>),
                fromKey: "commandHandler", toKey: "sqlExceptionHandler");
             
@@ -121,15 +121,6 @@ namespace ExchangeManagement.Host.WebApi
                 var c = ctx.Resolve<IComponentContext>();
                 return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
             });
-
-            //registration of UnitOfWork
-            builder.RegisterType<DapperUnitOfWork>().AsImplementedInterfaces().InstancePerLifetimeScope();
-
-            //Register IDbConnection
-            string connectionString = ConfigurationManager.ConnectionStrings["SubscriptionConnectionString"].ConnectionString;
-
-            builder.RegisterType<SqlConnection>().As<IDbConnection>().UsingConstructor(typeof(string))
-                .WithParameter("connectionString", connectionString).AsImplementedInterfaces().ExternallyOwned();
 
             builder.Register(c => RabbitHutch.CreateBus().Advanced).As<IAdvancedBus>().InstancePerLifetimeScope();
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using ExchangeManagement.Contract.Messages;
+using ExchangeManagement.Host.WebApi.Exceptions;
 using ExchangeManagement.Host.WebApi.TasksDatabase;
 using MediatR;
 
@@ -31,6 +32,17 @@ namespace ExchangeManagement.Host.WebApi.Calculation
         public async Task<TaskCalculationResult> Handle(GetCalculationResultRequest message)
         {
             var task = _taskRepository.Get(message.TaskId);
+
+            if (task==null)
+            {
+                throw new EntityNotFoundException("task not exist");
+            }
+
+
+            if (task.Result == null)
+            {
+                throw new EntityBadRequestException("result doesn't exist");
+            }
 
             return await Task.FromResult(new TaskCalculationResult(){Id = task.Id, Result = task.Result.Value});
         }

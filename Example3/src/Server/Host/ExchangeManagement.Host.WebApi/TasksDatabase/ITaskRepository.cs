@@ -29,7 +29,12 @@ namespace ExchangeManagement.Host.WebApi.TasksDatabase
 
         public TaskEntity Get(long taskId)
         {
-            return _taskEntities[taskId];
+            TaskEntity entity;
+            if (_taskEntities.TryGetValue(taskId, out entity))
+            {
+                return entity;
+            }
+            return null;
         }
 
         public TaskEntity Update(TaskEntity task)

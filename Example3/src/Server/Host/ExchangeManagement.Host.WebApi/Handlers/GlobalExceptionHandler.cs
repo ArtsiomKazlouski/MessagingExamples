@@ -17,6 +17,7 @@ namespace ExchangeManagement.Host.WebApi.Handlers
         private readonly Dictionary<Type, HttpStatusCode> _errorsDictionary = new Dictionary<Type, HttpStatusCode>
         {
             { typeof(EntityNotFoundException), HttpStatusCode.NotFound},
+            { typeof(EntityBadRequestException), HttpStatusCode.BadRequest},
             { typeof(EntityUpdateConcurrencyException), HttpStatusCode.Conflict},
             { typeof(ValidationException), HttpStatusCode.BadRequest},
         };
