@@ -1,0 +1,270 @@
+{
+  "exchanges": [
+    {
+      "name": "topic.exch",
+      "type": "2",
+      "x": 299,
+      "y": 297,
+      "resource_type": "exchange",
+      "id": 1
+    },
+    {
+      "name": "v",
+      "resource_type": "exchange",
+      "id": 38,
+      "type": "2",
+      "x": 444,
+      "y": 184
+    },
+    {
+      "name": "v",
+      "resource_type": "exchange",
+      "id": 39,
+      "type": 0,
+      "x": 437,
+      "y": 309
+    },
+    {
+      "name": "v",
+      "resource_type": "exchange",
+      "id": 40,
+      "type": 0,
+      "x": 429,
+      "y": 444
+    },
+    {
+      "name": "productE",
+      "resource_type": "exchange",
+      "id": 61,
+      "type": "1",
+      "x": 330,
+      "y": 659
+    }
+  ],
+  "queues": [
+    {
+      "name": "actionsQ",
+      "resource_type": "queue",
+      "id": 44,
+      "type": 0,
+      "x": 680,
+      "y": 292,
+      "messages": [],
+      "totalConsumers": 1,
+      "lastConsumer": 0
+    },
+    {
+      "name": "productQ",
+      "resource_type": "queue",
+      "id": 62,
+      "type": 0,
+      "x": 492,
+      "y": 659,
+      "messages": [],
+      "totalConsumers": 2,
+      "lastConsumer": 0
+    }
+  ],
+  "bindings": [
+    {
+      "source": 8,
+      "vhost": "default",
+      "source_type": "producer",
+      "destination": 1,
+      "destination_type": "exchange",
+      "id": 16,
+      "routing_key": "di.usr.one",
+      "arguments": []
+    },
+    {
+      "source": 9,
+      "vhost": "default",
+      "source_type": "producer",
+      "destination": 1,
+      "destination_type": "exchange",
+      "id": 17,
+      "routing_key": "di.usr.two",
+      "arguments": []
+    },
+    {
+      "source": 34,
+      "vhost": "demo",
+      "destination": 1,
+      "destination_type": "exchange",
+      "routing_key": "key",
+      "arguments": [],
+      "id": 36,
+      "source_type": "producer"
+    },
+    {
+      "source": 1,
+      "vhost": "demo",
+      "destination": 40,
+      "destination_type": "exchange",
+      "routing_key": "*",
+      "arguments": [],
+      "id": 41,
+      "source_type": "exchange"
+    },
+    {
+      "source": 1,
+      "vhost": "demo",
+      "destination": 39,
+      "destination_type": "exchange",
+      "routing_key": "*",
+      "arguments": [],
+      "id": 42,
+      "source_type": "exchange"
+    },
+    {
+      "source": 1,
+      "vhost": "demo",
+      "destination": 38,
+      "destination_type": "exchange",
+      "routing_key": "*",
+      "arguments": [],
+      "id": 43,
+      "source_type": "exchange"
+    },
+    {
+      "source": 38,
+      "vhost": "demo",
+      "destination": 44,
+      "destination_type": "queue",
+      "routing_key": "resource.created",
+      "arguments": [],
+      "id": 45,
+      "source_type": "exchange"
+    },
+    {
+      "source": 39,
+      "vhost": "demo",
+      "destination": 44,
+      "destination_type": "queue",
+      "routing_key": "resource.updated",
+      "arguments": [],
+      "id": 46,
+      "source_type": "exchange"
+    },
+    {
+      "source": 44,
+      "vhost": "demo",
+      "destination": 32,
+      "destination_type": "consumer",
+      "routing_key": "key",
+      "arguments": [],
+      "id": 48,
+      "source_type": "queue"
+    },
+    {
+      "source": 60,
+      "vhost": "demo",
+      "destination": 61,
+      "destination_type": "exchange",
+      "routing_key": "key",
+      "arguments": [],
+      "id": 63,
+      "source_type": "producer"
+    },
+    {
+      "source": 61,
+      "vhost": "demo",
+      "destination": 62,
+      "destination_type": "queue",
+      "routing_key": "key",
+      "arguments": [],
+      "id": 64,
+      "source_type": "exchange"
+    },
+    {
+      "source": 62,
+      "vhost": "demo",
+      "destination": 10,
+      "destination_type": "consumer",
+      "routing_key": "key",
+      "arguments": [],
+      "id": 65,
+      "source_type": "queue"
+    },
+    {
+      "source": 62,
+      "vhost": "demo",
+      "destination": 70,
+      "destination_type": "consumer",
+      "routing_key": "key",
+      "arguments": [],
+      "id": 71,
+      "source_type": "queue"
+    }
+  ],
+  "producers": [
+    {
+      "name": "resource.created",
+      "x": 153,
+      "y": 164,
+      "interval": 5,
+      "publish": {
+        "to": 1,
+        "payload": "one",
+        "routing_key": "di.usr.one"
+      },
+      "resource_type": "producer",
+      "id": 8
+    },
+    {
+      "name": "resource.updated",
+      "x": 143,
+      "y": 295,
+      "interval": 5,
+      "publish": {
+        "to": 1,
+        "payload": "two",
+        "routing_key": "di.usr.two"
+      },
+      "resource_type": "producer",
+      "id": 9
+    },
+    {
+      "name": "resource.deleted",
+      "resource_type": "producer",
+      "id": 34,
+      "type": 0,
+      "x": 146,
+      "y": 436
+    },
+    {
+      "name": "product",
+      "resource_type": "producer",
+      "id": 60,
+      "type": 0,
+      "x": 128,
+      "y": 659
+    }
+  ],
+  "consumers": [
+    {
+      "name": "webhoockSVR1",
+      "x": 686,
+      "y": 654,
+      "consume": 2,
+      "resource_type": "consumer",
+      "id": 10
+    },
+    {
+      "name": "CheckOrTransformService",
+      "resource_type": "consumer",
+      "id": 32,
+      "type": 0,
+      "x": 870,
+      "y": 291
+    },
+    {
+      "name": "webhoockSVR2",
+      "resource_type": "consumer",
+      "id": 70,
+      "type": 0,
+      "x": 674,
+      "y": 750
+    }
+  ]
+}
