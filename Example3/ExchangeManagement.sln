@@ -9,10 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B1EBFA97
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{744B5212-FD3E-4C42-9717-1FC9FB598070}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{BF9ABB50-6908-49CB-A6CB-3C68BDCF0A37}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeManagement.Migrations", "src\Server\Migrations\ExchangeManagement.Migrations\ExchangeManagement.Migrations.csproj", "{6AFFA471-A17A-406A-A6EA-561CD42EE927}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculation.Test", "src\Tests\CheckProductVersionService.UnitTests\Calculation.Test.csproj", "{370778B6-F6E1-458F-B59B-1AEC2FDA07FB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{7D7AA065-690F-4824-BAD7-D80483EFE144}"
@@ -51,10 +47,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6AFFA471-A17A-406A-A6EA-561CD42EE927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AFFA471-A17A-406A-A6EA-561CD42EE927}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AFFA471-A17A-406A-A6EA-561CD42EE927}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AFFA471-A17A-406A-A6EA-561CD42EE927}.Release|Any CPU.Build.0 = Release|Any CPU
 		{370778B6-F6E1-458F-B59B-1AEC2FDA07FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{370778B6-F6E1-458F-B59B-1AEC2FDA07FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370778B6-F6E1-458F-B59B-1AEC2FDA07FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,8 +80,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BF9ABB50-6908-49CB-A6CB-3C68BDCF0A37} = {744B5212-FD3E-4C42-9717-1FC9FB598070}
-		{6AFFA471-A17A-406A-A6EA-561CD42EE927} = {BF9ABB50-6908-49CB-A6CB-3C68BDCF0A37}
 		{370778B6-F6E1-458F-B59B-1AEC2FDA07FB} = {B1EBFA97-E4DF-4F0E-9CAA-B4C99D9A4CC6}
 		{36C2D186-AF9F-4D0A-9BF1-F5614BBDC89C} = {A73B0BAE-B877-4DC3-BADA-06307C7803CD}
 		{0839D350-F957-407C-8154-184A2DF4B7D9} = {744B5212-FD3E-4C42-9717-1FC9FB598070}

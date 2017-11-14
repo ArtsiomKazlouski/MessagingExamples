@@ -28,11 +28,11 @@ namespace ExchangeManagement.Host.WebApi.Calculation
             _taskRepository = taskRepository;
         }
 
-        public Task<TaskCalculationResult> Handle(GetCalculationResultRequest message)
+        public async Task<TaskCalculationResult> Handle(GetCalculationResultRequest message)
         {
             var task = _taskRepository.Get(message.TaskId);
 
-            return Task.FromResult(new TaskCalculationResult(){Id = task.Id, Result = task.Result.Value});
+            return await Task.FromResult(new TaskCalculationResult(){Id = task.Id, Result = task.Result.Value});
         }
     }
 }

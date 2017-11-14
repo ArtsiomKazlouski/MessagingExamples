@@ -14,8 +14,6 @@ using Autofac.Integration.WebApi;
 using EasyNetQ;
 using ExchangeManagement.Host.WebApi.Handlers;
 using ExchangeManagement.Host.WebApi.TasksDatabase;
-using ExchangeManagement.Migrations.Installers;
-using FluentMigrator.Runner.Initialization;
 using FluentValidation;
 using MediatR;
 using Microsoft.Owin;
@@ -35,8 +33,7 @@ namespace ExchangeManagement.Host.WebApi
 
             builder.RegisterModule<WebApiModule>()
                 .RegisterModule<InfrastructureModule>();
-            builder.RegisterAssemblyModules(typeof(MigrationsRunnerInstaller).Assembly);
-
+            
             builder.RegisterType<InMemoryTaskRepository>().AsImplementedInterfaces().SingleInstance();
 
             RegisterDependency(builder);
@@ -49,11 +46,7 @@ namespace ExchangeManagement.Host.WebApi
             app.UseAutofacMiddleware(container)
                 .UseAutofacWebApi(httpConfiguration)
                 .UseWebApi(httpConfiguration);
-
-            foreach (var context in container.Resolve<IEnumerable<RunnerContext>>())
-            {
-                new CustomTaskExecutor(context).CheskForNotAppliedMigrations();
-            }
+            
         }
 
         protected virtual void RegisterDependency(ContainerBuilder builder)

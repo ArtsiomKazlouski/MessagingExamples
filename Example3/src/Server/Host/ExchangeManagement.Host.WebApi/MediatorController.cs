@@ -7,7 +7,6 @@ using Swashbuckle.Swagger.Annotations;
 namespace ExchangeManagement.Host.WebApi
 {
     [SwaggerResponseRemoveDefaults]
-    [SwaggerResponse(HttpStatusCode.Unauthorized, "Unauthorized")]
     public abstract class MediatorController : ApiController
     {
         protected IMediator Mediator { get; private set; }

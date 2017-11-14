@@ -1,1 +1,0 @@
-﻿tools\FluentMigratorTools\Migrate.exe /configPath App.config /connectionString SubscriptionConnectionString /provider SqlServer2008 /assembly ExchangeManagement.Migrations.dll

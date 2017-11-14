@@ -28,7 +28,7 @@ namespace ExchangeManagement.Host.WebApi
         /// <summary>
         /// Set results
         /// </summary>
-        /// <param name="taskArguments">Content</param>
+        /// <param name="calculationResult">Content</param>
         /// <returns>Подписка</returns>
         [HttpPost]
         [Route("result", Name = "SetTaskResult")]
@@ -42,15 +42,13 @@ namespace ExchangeManagement.Host.WebApi
         /// <summary>
         /// Get results
         /// </summary>
-        /// <param name="taskArguments">Content</param>
+        /// <param name="taskId">Id Of Task</param>
         /// <returns>Подписка</returns>
         [HttpGet]
-        [Route("result", Name = "SetTaskResult")]
-        public async Task<IHttpActionResult> Create(long taskId)
+        [Route("{taskId}", Name = "GetCalculationResult")]
+        public async Task<IHttpActionResult> Get(long taskId)
         {
-            await Mediator.SendAsync(new GetCalculationResultRequest(taskId));
-
-            return Ok();
+            return Ok(await Mediator.SendAsync(new GetCalculationResultRequest(taskId)));
         }
     }
 }

@@ -166,10 +166,6 @@
       <Project>{36C2D186-AF9F-4D0A-9BF1-F5614BBDC89C}</Project>
       <Name>ExchangeManagement.Contract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Migrations\ExchangeManagement.Migrations\ExchangeManagement.Migrations.csproj">
-      <Project>{6AFFA471-A17A-406A-A6EA-561CD42EE927}</Project>
-      <Name>ExchangeManagement.Migrations</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

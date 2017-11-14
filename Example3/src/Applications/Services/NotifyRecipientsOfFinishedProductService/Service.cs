@@ -36,9 +36,7 @@ namespace WorkerService
                     Process(message.Body);
                 }));
         }
-
         
-
 
         public void Process(TaskArguments taskArguments)
         {
@@ -50,7 +48,11 @@ namespace WorkerService
                 Result = taskArguments.A + taskArguments.B
             };
 
+            Log.Verbose($"Calculation started for task id={taskArguments.Id}");
+
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(result.Result));
+
+            Log.Verbose($"Calculation finished for task id={taskArguments.Id}");
 
             _apiService.SendResults(result);
         }
