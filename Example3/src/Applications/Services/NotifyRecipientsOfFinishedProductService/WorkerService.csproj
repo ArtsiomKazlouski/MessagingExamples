@@ -94,8 +94,6 @@
     <Compile Include="..\..\..\SolutionItems\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="IApiService.cs" />
-    <Compile Include="ApiService.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Program.cs" />

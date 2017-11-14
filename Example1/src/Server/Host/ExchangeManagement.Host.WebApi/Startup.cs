@@ -47,10 +47,10 @@ namespace ExchangeManagement.Host.WebApi
                 .UseAutofacWebApi(httpConfiguration)
                 .UseWebApi(httpConfiguration);
 
-            foreach (var context in container.Resolve<IEnumerable<RunnerContext>>())
-            {
-                new CustomTaskExecutor(context).CheskForNotAppliedMigrations();
-            }
+            //foreach (var context in container.Resolve<IEnumerable<RunnerContext>>())
+            //{
+            //    new CustomTaskExecutor(context).CheskForNotAppliedMigrations();
+            //}
         }
 
         protected virtual void RegisterDependency(ContainerBuilder builder)

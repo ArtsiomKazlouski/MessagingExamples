@@ -1,6 +1,7 @@
 ﻿using System;
 using EasyNetQ;
 using EasyNetQ.Topology;
+using ExchangeManagement.Contract;
 using ExchangeManagement.Contract.Messages;
 using Serilog;
 
@@ -12,7 +13,6 @@ namespace WorkerService
         private readonly Settings _settings;
         
         private readonly IApiService _apiService;
-        private IExchange _retryExchanger;
 
         public Service(IAdvancedBus bus, Settings settings, IApiService apiService)
         {
@@ -28,7 +28,6 @@ namespace WorkerService
             var queue = _bus.QueueDeclare("ProductQueue");
 
             _bus.Bind(finishedProductExchanger, queue, "*");
-            _bus.Bind(_retryExchanger, queue, "*");
 
             _bus.Consume(queue, registration => registration
                 .Add<TaskArguments>((message, info) =>
