@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>SubscriptionEditor</id>
+		<version>$version$</version>
+		<authors>UIIP</authors>
+		<description>Управление подписками</description>		
+    <title>Клиент управления подписками</title>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<copyright>copyright 2017</copyright>
+    <iconUrl>$iconUrl$</iconUrl>
+  </metadata>
+	<files>
+	  <file src="**\*" target="lib\net45" exclude="app.publish\*;tools\**\*;Releases\*;**\*.ps1;.squirell\*;**\*.pdb;**\*.nupkg;**\*.vshost.*" />
+  </files>
+</package>

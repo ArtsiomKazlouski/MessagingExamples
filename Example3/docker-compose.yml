@@ -1,78 +1,13 @@
 version: '2'
 
-networks:
-  full:
-    driver: bridge
+services:  
+  rabbit:    
+    image: rafakato/rabbitmq-delayed-message-exchange:3.6.1-management
+    environment:
+        RABBITMQ_DEFAULT_USER: guest
+        RABBITMQ_DEFAULT_PASS: guest
+        RABBITMQ_DEFAULT_VHOST: test-gis-by        
+    ports:
+      - 5672:5672
+      - 15672:15672
     
-services:
-          
-  audit.elasticsearch:
-     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0 
-     environment:
-       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-       # disable X-Pack
-       # see https://www.elastic.co/guide/en/x-pack/current/xpack-settings.html
-       #     https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html#xpack-enabling
-       xpack.security.enabled: "false"
-       xpack.monitoring.enabled: "false"
-       xpack.graph.enabled: "false"
-       xpack.watcher.enabled: "false"
-     volumes:
-       - ./docker/audit.elasticsearch/data:/usr/share/elasticsearch/data
-     networks:
-       - full
-   
-  audit.kibana:
-     image: docker.elastic.co/kibana/kibana:5.3.0
-     volumes:
-       - ./docker/audit.kibana/config/:/usr/share/kibana/config    
-     networks:
-       - full
-     depends_on:
-       - audit.elasticsearch 
-    
-
-  rabbitmq:
-      image: rabbitmq      
-      networks:
-        - full
-      build:
-        context: ./docker/rabbitmq/
-        dockerfile: Dockerfile
-      ports:
-        - "5672:5672"   
-        - "15672:15672"
-      labels:
-        - "com.microsoft.visualstudio.targetoperatingsystem=linux" 
-      
-  db.postgres:
-      image: ehr.fhirbase
-      environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: postgres
-        TDSVER: 7.0
-      build:
-        context: ./docker/db.postgres/
-        dockerfile: Dockerfile   
-      networks:
-        - full
-        
-  db.postgres.migrator:
-      build:
-         context: ./docker/db.postgres.migrator/
-         dockerfile: Dockerfile   
-      networks:
-        - full
-      depends_on:
-        - db.postgres 
-      command: -c "/flyway/wait-for-postgres.sh db.postgres 5432 postgres postgres postgres  
-                    && sleep 30 
-                    && flyway 
-                        -url=jdbc:postgresql://db.postgres:5432/postgres 
-                        -user=postgres  -password=postgres migrate" 
-      labels:
-        - "com.microsoft.visualstudio.targetoperatingsystem=linux"
-  
-
-   
