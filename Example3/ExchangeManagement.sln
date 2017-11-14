@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{637495E9-95B5-482A-9825-3F571CC4BD1C}"
 EndProject
@@ -29,10 +29,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeManagement.Host.WebApi", "src\Server\Host\ExchangeManagement.Host.WebApi\ExchangeManagement.Host.WebApi.csproj", "{BAC841FB-C55C-4F34-AF9D-F06D4E63D8EA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService", "src\Applications\Services\NotifyRecipientsOfFinishedProductService\WorkerService.csproj", "{BD1686BB-1973-4495-A8A7-494FF570B7B7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Windows", "Windows", "{59C4094D-823A-4BCB-8115-2DC2D37E0D8A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionEditor", "src\Applications\Windows\SubscriptionEditor\SubscriptionEditor.csproj", "{73D507AB-E574-46F9-9C90-C3D349C6B3A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeManagement.Wrapper", "src\Shared\ExchangeManagement.Wrapper\ExchangeManagement.Wrapper.csproj", "{AEA281B5-B697-44EB-9B35-C1B3B7AFEC4A}"
 EndProject
@@ -67,10 +63,6 @@ Global
 		{BD1686BB-1973-4495-A8A7-494FF570B7B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD1686BB-1973-4495-A8A7-494FF570B7B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD1686BB-1973-4495-A8A7-494FF570B7B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73D507AB-E574-46F9-9C90-C3D349C6B3A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73D507AB-E574-46F9-9C90-C3D349C6B3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73D507AB-E574-46F9-9C90-C3D349C6B3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73D507AB-E574-46F9-9C90-C3D349C6B3A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AEA281B5-B697-44EB-9B35-C1B3B7AFEC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AEA281B5-B697-44EB-9B35-C1B3B7AFEC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEA281B5-B697-44EB-9B35-C1B3B7AFEC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,8 +79,6 @@ Global
 		{20CA6855-FD0E-40A0-95C1-7C30CE5ABF85} = {46ECCD1E-478F-4415-839F-C3DCC7A49633}
 		{BAC841FB-C55C-4F34-AF9D-F06D4E63D8EA} = {0839D350-F957-407C-8154-184A2DF4B7D9}
 		{BD1686BB-1973-4495-A8A7-494FF570B7B7} = {46ECCD1E-478F-4415-839F-C3DCC7A49633}
-		{59C4094D-823A-4BCB-8115-2DC2D37E0D8A} = {637495E9-95B5-482A-9825-3F571CC4BD1C}
-		{73D507AB-E574-46F9-9C90-C3D349C6B3A1} = {59C4094D-823A-4BCB-8115-2DC2D37E0D8A}
 		{AEA281B5-B697-44EB-9B35-C1B3B7AFEC4A} = {A73B0BAE-B877-4DC3-BADA-06307C7803CD}
 		{E8B94910-12DD-477B-A2EB-3FCA00D5AE70} = {7D7AA065-690F-4824-BAD7-D80483EFE144}
 	EndGlobalSection

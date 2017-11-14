@@ -13,9 +13,11 @@ using Autofac.Features.Variance;
 using Autofac.Integration.WebApi;
 using EasyNetQ;
 using ExchangeManagement.Host.WebApi.Handlers;
+using ExchangeManagement.Host.WebApi.SignalR;
 using ExchangeManagement.Host.WebApi.TasksDatabase;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
 using SwaggerDocumentation;
@@ -73,6 +75,26 @@ namespace ExchangeManagement.Host.WebApi
             httpConfig.UseSwagger(Assembly.GetExecutingAssembly(), documentationOauthConfig);
 
         }
+
+        public void ConfigureSignalR(IAppBuilder app)
+        {
+            // When connectionstring is configured start the ServiceBus backplane
+            //var connectionStringName = ConfigurationManager.AppSettings["SignalRBackplaneConnectionStringName"] ?? string.Empty;
+
+            //var connection = ConfigurationManager.ConnectionStrings[connectionStringName];
+            //if (connection != null && !string.IsNullOrEmpty(connection.ConnectionString))
+            //{
+            //    var configuration = new ServiceBusScaleoutConfiguration(connection.ConnectionString, topicPrefix);
+            //    configuration.TopicCount = 1;
+            //    configuration.TimeToLive = TimeSpan.FromMinutes(1);
+            //    GlobalHost.DependencyResolver.UseServiceBus(configuration);
+            //}
+
+            var hubConfiguration = new HubConfiguration();
+            hubConfiguration.EnableJSONP = true;
+            // Any connection or hub wire up and configuration should go here
+            app.MapSignalR(hubConfiguration);
+        }
     }
 
     public class InfrastructureModule : Module
@@ -93,6 +115,7 @@ namespace ExchangeManagement.Host.WebApi
             // builder.RegisterAssemblyTypes(ThisAssembly).AsImplementedInterfaces();
             
             builder.RegisterAssemblyTypes(ThisAssembly).AsClosedTypesOf(typeof(AbstractValidator<>)).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(ThisAssembly).AsClosedTypesOf(typeof(IMessageProcessor<,>)).AsImplementedInterfaces();
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .As(type => type.GetInterfaces()
                 .Where(interfaceType => interfaceType.IsClosedTypeOf(typeof(IAsyncRequestHandler<,>)))
@@ -123,6 +146,8 @@ namespace ExchangeManagement.Host.WebApi
             });
 
             builder.Register(c => RabbitHutch.CreateBus().Advanced).As<IAdvancedBus>().InstancePerLifetimeScope();
+
+
         }
     }
 
