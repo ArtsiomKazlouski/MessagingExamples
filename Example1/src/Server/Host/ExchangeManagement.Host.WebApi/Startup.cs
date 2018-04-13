@@ -47,10 +47,15 @@ namespace ExchangeManagement.Host.WebApi
                 .UseAutofacWebApi(httpConfiguration)
                 .UseWebApi(httpConfiguration);
 
-            //foreach (var context in container.Resolve<IEnumerable<RunnerContext>>())
-            //{
-            //    new CustomTaskExecutor(context).CheskForNotAppliedMigrations();
-            //}
+            foreach (var context in container.Resolve<IEnumerable<RunnerContext>>())
+            {
+                new CustomTaskExecutor(context).Execute();
+            }
+
+            foreach (var context in container.Resolve<IEnumerable<RunnerContext>>())
+            {
+                new CustomTaskExecutor(context).CheskForNotAppliedMigrations();
+            }
         }
 
         protected virtual void RegisterDependency(ContainerBuilder builder)
@@ -90,8 +95,7 @@ namespace ExchangeManagement.Host.WebApi
             //SqlServerTypes.Utilities.LoadNativeAssemblies(System.Web.HttpContext.Current != null
             //    ? System.Web.HttpContext.Current.Server.MapPath("~/bin")
             //    : (System.AppDomain.CurrentDomain.BaseDirectory));
-
-
+            
             base.Load(builder);
 
             // builder.RegisterAssemblyTypes(ThisAssembly).AsImplementedInterfaces();
